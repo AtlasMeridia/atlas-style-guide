@@ -1,0 +1,56 @@
+{
+  "outlets": [
+    {
+      "id": "web",
+      "name": "Web",
+      "type": "web",
+      "description": "Primary outlet for kennypliu.com and related web properties",
+      "specs": {
+        "breakpoints": {
+          "sm": "640px",
+          "md": "768px",
+          "lg": "1024px",
+          "xl": "1280px",
+          "2xl": "1536px"
+        }
+      },
+      "status": "active"
+    },
+    {
+      "id": "print-business-cards",
+      "name": "Business Cards",
+      "type": "print",
+      "description": "Professional business cards via MOO",
+      "specs": {
+        "dimensions": {
+          "width": "3.5in",
+          "height": "2in",
+          "bleed": "0.125in",
+          "safeZone": "0.25in"
+        },
+        "colorSpace": "CMYK",
+        "resolution": "300dpi",
+        "vendor": {
+          "name": "MOO",
+          "notes": "Product selection TBD"
+        }
+      },
+      "status": "placeholder"
+    },
+    {
+      "id": "print-stationery",
+      "name": "Stationery",
+      "type": "print",
+      "description": "Letterhead, envelopes, and note cards",
+      "specs": {
+        "colorSpace": "CMYK",
+        "resolution": "300dpi",
+        "vendor": {
+          "name": "MOO",
+          "notes": "Product selection TBD"
+        }
+      },
+      "status": "placeholder"
+    }
+  ]
+}

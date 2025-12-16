@@ -1,0 +1,2649 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ATLAS Meridia — Brand Style Guide</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Crimson+Pro:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300;1,400&family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=Noto+Serif+TC:wght@300;400;500;600&family=Source+Serif+4:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
+    
+    <style>
+        /* ═══════════════════════════════════════════════════
+           THEME SYSTEM
+           ═══════════════════════════════════════════════════ */
+        
+        :root {
+            /* Theme toggle */
+            --theme-transition: 400ms ease;
+            /* ═══════════════════════════════════════════
+               COLOR SYSTEM
+               ═══════════════════════════════════════════ */
+            
+            /* Navy Scale — Primary dark palette */
+            --navy-900: #060d18;      /* Deepest - reserved for contrast */
+            --navy-800: #0a1628;      /* Primary dark background */
+            --navy-700: #1a2744;      /* Secondary dark / text on light */
+            --navy-600: #2d3f5e;      /* Tertiary dark / hover states */
+            --navy-500: #4a5d7a;      /* Muted text on light */
+            --navy-400: #6b7d99;      /* Disabled / placeholder */
+            --navy-300: #94a3b8;      /* Subtle borders on dark */
+            
+            /* Cream Scale — Primary light palette */
+            --cream-100: #fffef9;     /* Pure - cards, elevated surfaces */
+            --cream-200: #faf8f4;     /* Primary light background */
+            --cream-300: #f5f0e8;     /* Secondary light / warm tone */
+            --cream-400: #ebe4d8;     /* Borders on light */
+            --cream-500: #d4c9b8;     /* Dark mode primary text */
+            --cream-550: #c4b9a8;     /* Dark mode secondary text */
+            --cream-600: #b0a593;     /* Dark mode muted text */
+            
+            /* Accent Colors */
+            --gold-primary: #c9a961;  /* Primary accent - CTAs, highlights */
+            --gold-light: #dfc689;    /* Hover state */
+            --gold-dark: #a68b4b;     /* Active state */
+            --copper: #b87333;        /* Secondary accent - sparingly */
+            
+            /* Semantic Colors */
+            --success: #4a7c59;
+            --warning: #c9a961;
+            --error: #9e4a4a;
+            
+            /* ═══════════════════════════════════════════
+               TYPOGRAPHY SYSTEM
+               ═══════════════════════════════════════════ */
+            
+            /* Font Families */
+            --font-display: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+            --font-body-primary: 'Crimson Pro', Georgia, serif;
+            --font-body-alt: 'Source Serif 4', Georgia, serif;
+            --font-ui: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            --font-mono: 'IBM Plex Mono', 'SF Mono', 'Monaco', 'Consolas', monospace;
+            
+            /* Traditional Chinese Font Families */
+            --font-body-zh: 'Noto Serif TC', 'Songti TC', 'PMingLiU', serif;
+            --font-ui-zh: 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif;
+            
+            /* Font Sizes — Fluid scale */
+            --text-xs: 0.7rem;        /* 11.2px - Legal, footnotes */
+            --text-sm: 0.8rem;        /* 12.8px - Captions, labels */
+            --text-base: 1.125rem;    /* 18px - UI body copy */
+            --text-body: 1.25rem;     /* 20px mobile/tablet, 24px desktop — see Responsive Typography */
+            --text-lg: 1.25rem;       /* 20px - Lead paragraphs */
+            --text-xl: 1.375rem;      /* 22px - Subheadings */
+            --text-2xl: 1.5rem;       /* 24px - Section titles */
+            --text-3xl: 2rem;         /* 32px - Page titles */
+            --text-4xl: 2.5rem;       /* 40px - Hero headlines */
+            --text-5xl: 3.5rem;       /* 56px - Display */
+            
+            /* Body Copy Settings — for long-form reading */
+            --body-weight: 400;
+            --body-tracking: 0;
+            --body-line-height: 1.8;
+            
+            /* Line Heights */
+            --leading-tight: 1.2;
+            --leading-snug: 1.4;
+            --leading-normal: 1.6;
+            --leading-relaxed: 1.8;
+            --leading-loose: 2;
+            
+            /* Letter Spacing */
+            --tracking-tight: -0.02em;
+            --tracking-normal: 0;
+            --tracking-wide: 0.05em;
+            --tracking-wider: 0.1em;
+            --tracking-widest: 0.2em;
+            
+            /* ═══════════════════════════════════════════
+               SPACING SYSTEM
+               ═══════════════════════════════════════════ */
+            
+            --space-1: 0.25rem;       /* 4px */
+            --space-2: 0.5rem;        /* 8px */
+            --space-3: 0.75rem;       /* 12px */
+            --space-4: 1rem;          /* 16px */
+            --space-5: 1.5rem;        /* 24px */
+            --space-6: 2rem;          /* 32px */
+            --space-8: 3rem;          /* 48px */
+            --space-10: 4rem;         /* 64px */
+            --space-12: 6rem;         /* 96px */
+            --space-16: 8rem;         /* 128px */
+            
+            /* Reading Widths */
+            --width-prose: 38rem;     /* ~65 characters - optimal reading */
+            --width-prose-wide: 48rem;
+            --width-content: 64rem;
+            --width-full: 80rem;
+            
+            /* ═══════════════════════════════════════════
+               EFFECTS
+               ═══════════════════════════════════════════ */
+            
+            --shadow-sm: 0 1px 2px rgba(10, 22, 40, 0.05);
+            --shadow-md: 0 4px 12px rgba(10, 22, 40, 0.08);
+            --shadow-lg: 0 12px 32px rgba(10, 22, 40, 0.12);
+            
+            --transition-fast: 150ms ease;
+            --transition-base: 300ms ease;
+            --transition-slow: 500ms ease;
+            
+            /* Keyframe Animations */
+            @keyframes spin {
+                to { transform: rotate(360deg); }
+            }
+            
+            --radius-sm: 2px;
+            --radius-md: 4px;
+            --radius-lg: 8px;
+            
+            /* Theme-aware colors (light mode defaults) */
+            --bg-primary: var(--cream-200);
+            --bg-secondary: var(--cream-100);
+            --bg-elevated: var(--cream-100);
+            --bg-inverse: var(--navy-800);
+            
+            --text-primary: var(--navy-700);
+            --text-secondary: var(--navy-600);
+            --text-muted: var(--navy-500);
+            --text-inverse: var(--cream-300);
+            --text-display: var(--navy-700);  /* Display text color */
+            --display-weight: 300;            /* Display text weight */
+            
+            --border-color: var(--cream-400);
+            --border-subtle: rgba(26, 39, 68, 0.1);
+        }
+        
+        /* Dark mode overrides */
+        [data-theme="dark"] {
+            --bg-primary: var(--navy-800);
+            --bg-secondary: var(--navy-700);
+            --bg-elevated: var(--navy-700);
+            --bg-inverse: var(--cream-200);
+            
+            /* Warmer cream tones reduce halation on dark backgrounds */
+            --text-primary: var(--cream-500);
+            --text-secondary: var(--cream-550);
+            --text-muted: var(--cream-600);
+            --text-inverse: var(--navy-700);
+            --text-display: var(--cream-500);
+            
+            --border-color: var(--navy-600);
+            --border-subtle: rgba(245, 240, 232, 0.1);
+            
+            /* Lighter weight + wider tracking for dark mode readability */
+            --body-weight: 300;
+            --body-tracking: 0.01em;
+            --display-weight: 300;
+        }
+        
+        /* ═══════════════════════════════════════════════════
+           BASE STYLES
+           ═══════════════════════════════════════════════════ */
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            font-size: 16px;
+            scroll-behavior: smooth;
+            scroll-padding-top: 80px; /* Account for sticky nav height */
+        }
+        
+        body {
+            font-family: var(--font-body-primary);
+            font-size: var(--text-base);
+            line-height: var(--leading-relaxed);
+            color: var(--text-primary);
+            background: var(--bg-primary);
+            transition: background var(--theme-transition), color var(--theme-transition);
+        }
+        
+        /* Grain texture */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+            opacity: 0.02;
+            pointer-events: none;
+            z-index: 1000;
+        }
+        
+        /* ═══════════════════════════════════════════════════
+           STYLE GUIDE LAYOUT
+           ═══════════════════════════════════════════════════ */
+        
+        .guide-header {
+            background: var(--navy-800);
+            padding: var(--space-16) var(--space-6);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .guide-header::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: 
+                radial-gradient(ellipse at 30% 50%, rgba(201, 169, 97, 0.08) 0%, transparent 50%),
+                radial-gradient(ellipse at 70% 50%, rgba(45, 63, 94, 0.3) 0%, transparent 50%);
+        }
+        
+        .guide-header-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .guide-header h1 {
+            font-family: var(--font-display);
+            font-size: var(--text-5xl);
+            font-weight: 300;
+            color: var(--cream-500);
+            letter-spacing: var(--tracking-wide);
+            margin-bottom: var(--space-4);
+        }
+        
+        .guide-header h1 span {
+            font-style: italic;
+            font-weight: 400;
+        }
+        
+        .guide-header p {
+            font-family: var(--font-ui);
+            font-size: var(--text-sm);
+            font-weight: 400;
+            letter-spacing: var(--tracking-wider);
+            text-transform: uppercase;
+            color: var(--gold-primary);
+        }
+        
+        .guide-nav {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: var(--bg-elevated);
+            border-bottom: 1px solid var(--border-color);
+            padding: var(--space-4) var(--space-6);
+            transition: background var(--theme-transition), border-color var(--theme-transition);
+        }
+        
+        .guide-nav-inner {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            max-width: var(--width-full);
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        .guide-nav ul {
+            display: flex;
+            justify-content: center;
+            gap: var(--space-8);
+            list-style: none;
+        }
+        
+        .guide-nav a {
+            font-family: var(--font-ui);
+            font-size: var(--text-xs);
+            font-weight: 500;
+            letter-spacing: var(--tracking-wider);
+            text-transform: uppercase;
+            text-decoration: none;
+            color: var(--text-muted);
+            transition: color var(--transition-fast);
+            padding-bottom: var(--space-1);
+            border-bottom: 1px solid transparent;
+        }
+        
+        .guide-nav a:hover {
+            color: var(--text-primary);
+        }
+        
+        .guide-nav a.active {
+            color: var(--gold-primary);
+            border-bottom-color: var(--gold-primary);
+        }
+        
+        /* Theme Toggle */
+        .theme-toggle {
+            position: absolute;
+            right: 0;
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+            padding: var(--space-2) var(--space-3);
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            border-radius: 100px;
+            cursor: pointer;
+            transition: all var(--transition-base);
+        }
+        
+        .theme-toggle:hover {
+            border-color: var(--gold-primary);
+        }
+        
+        .theme-toggle-track {
+            width: 44px;
+            height: 24px;
+            background: var(--navy-300);
+            border-radius: 100px;
+            position: relative;
+            transition: background var(--theme-transition);
+        }
+        
+        [data-theme="dark"] .theme-toggle-track {
+            background: var(--gold-primary);
+        }
+        
+        .theme-toggle-thumb {
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 20px;
+            height: 20px;
+            background: var(--cream-100);
+            border-radius: 50%;
+            transition: transform var(--transition-base);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        [data-theme="dark"] .theme-toggle-thumb {
+            transform: translateX(20px);
+            background: var(--navy-800);
+        }
+        
+        .theme-toggle-icon {
+            width: 12px;
+            height: 12px;
+            color: var(--gold-primary);
+        }
+        
+        .theme-toggle-icon.sun {
+            display: block;
+        }
+        
+        .theme-toggle-icon.moon {
+            display: none;
+        }
+        
+        [data-theme="dark"] .theme-toggle-icon.sun {
+            display: none;
+        }
+        
+        [data-theme="dark"] .theme-toggle-icon.moon {
+            display: block;
+            color: var(--cream-500);
+        }
+        
+        .theme-toggle-label {
+            font-family: var(--font-ui);
+            font-size: var(--text-xs);
+            font-weight: 500;
+            letter-spacing: var(--tracking-wide);
+            text-transform: uppercase;
+            color: var(--text-muted);
+        }
+        
+        .guide-section {
+            padding: var(--space-12) var(--space-6);
+            max-width: var(--width-full);
+            margin: 0 auto;
+            background: var(--bg-primary);
+            transition: background var(--theme-transition);
+        }
+        
+        .guide-section:nth-child(odd) {
+            background: var(--bg-secondary);
+        }
+        
+        .section-header {
+            margin-bottom: var(--space-8);
+            padding-bottom: var(--space-4);
+            border-bottom: 1px solid var(--border-color);
+            transition: border-color var(--theme-transition);
+        }
+        
+        .section-number {
+            font-family: var(--font-display);
+            font-size: var(--text-sm);
+            font-weight: 400;
+            color: var(--gold-primary);
+            display: block;
+            margin-bottom: var(--space-2);
+        }
+        
+        .section-title {
+            font-family: var(--font-display);
+            font-size: var(--text-3xl);
+            font-weight: var(--display-weight);
+            color: var(--text-display);
+            transition: color var(--theme-transition), font-weight var(--theme-transition);
+        }
+        
+        .subsection {
+            margin-bottom: var(--space-10);
+        }
+        
+        .subsection-title {
+            font-family: var(--font-display);
+            font-size: var(--text-xl);
+            font-weight: 500;
+            font-style: italic;
+            color: var(--text-secondary);
+            margin-bottom: var(--space-4);
+            transition: color var(--theme-transition);
+        }
+        
+        .subsection-desc {
+            font-family: var(--font-body-primary);
+            font-size: var(--text-base);
+            color: var(--text-muted);
+            max-width: var(--width-prose);
+            margin-bottom: var(--space-6);
+            transition: color var(--theme-transition);
+        }
+        
+        /* ═══════════════════════════════════════════════════
+           COLOR SWATCHES
+           ═══════════════════════════════════════════════════ */
+        
+        .color-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: var(--space-4);
+        }
+        
+        .color-swatch {
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            background: var(--bg-elevated);
+            box-shadow: var(--shadow-sm);
+            transition: background var(--theme-transition);
+        }
+        
+        .color-swatch-preview {
+            height: 100px;
+        }
+        
+        .color-swatch-info {
+            padding: var(--space-3);
+        }
+        
+        .color-swatch-name {
+            font-family: var(--font-ui);
+            font-size: var(--text-sm);
+            font-weight: 500;
+            color: var(--text-primary);
+            display: block;
+            transition: color var(--theme-transition);
+        }
+        
+        .color-swatch-value {
+            font-family: var(--font-ui);
+            font-size: var(--text-xs);
+            color: var(--text-muted);
+            font-variant-numeric: tabular-nums;
+            transition: color var(--theme-transition);
+        }
+        
+        .color-row {
+            display: flex;
+            gap: 2px;
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            margin-bottom: var(--space-4);
+        }
+        
+        .color-chip {
+            flex: 1;
+            height: 80px;
+            display: flex;
+            align-items: flex-end;
+            padding: var(--space-2);
+        }
+        
+        .color-chip span {
+            font-family: var(--font-ui);
+            font-size: var(--text-xs);
+            font-weight: 500;
+        }
+        
+        /* ═══════════════════════════════════════════════════
+           TYPOGRAPHY SPECIMENS
+           ═══════════════════════════════════════════════════ */
+        
+        .type-specimen {
+            padding: var(--space-6);
+            background: var(--bg-elevated);
+            border-radius: var(--radius-md);
+            margin-bottom: var(--space-4);
+            transition: background var(--theme-transition);
+        }
+        
+        .type-specimen-dark {
+            background: var(--navy-800);
+        }
+        
+        .type-label {
+            font-family: var(--font-ui);
+            font-size: var(--text-xs);
+            font-weight: 500;
+            letter-spacing: var(--tracking-wider);
+            text-transform: uppercase;
+            color: var(--gold-primary);
+            margin-bottom: var(--space-3);
+            display: block;
+        }
+        
+        .type-sample-display {
+            font-family: var(--font-display);
+            font-size: var(--text-4xl);
+            font-weight: var(--display-weight);
+            line-height: var(--leading-tight);
+            color: var(--text-display);
+            transition: color var(--theme-transition), font-weight var(--theme-transition);
+        }
+        
+        .type-sample-display em {
+            font-style: italic;
+            font-weight: 400;
+        }
+        
+        .type-specimen-dark .type-sample-display {
+            color: var(--cream-500);
+        }
+        
+        .type-sample-body {
+            font-family: var(--font-body-primary);
+            font-size: var(--text-base);
+            line-height: var(--leading-relaxed);
+            color: var(--text-secondary);
+            max-width: var(--width-prose);
+            transition: color var(--theme-transition);
+        }
+        
+        .type-specimen-dark .type-sample-body {
+            color: var(--cream-500);
+        }
+        
+        .type-sample-ui {
+            font-family: var(--font-ui);
+            font-size: var(--text-sm);
+            color: var(--text-muted);
+            transition: color var(--theme-transition);
+        }
+        
+        .type-sample-mono {
+            font-family: var(--font-mono);
+            font-size: var(--text-sm);
+            color: var(--text-secondary);
+            transition: color var(--theme-transition);
+        }
+        
+        /* Article/Post Body Copy — optimized for long-form reading */
+        .prose-body {
+            font-family: var(--font-body-primary);
+            font-size: var(--text-body);
+            font-weight: var(--body-weight);
+            letter-spacing: var(--body-tracking);
+            line-height: var(--body-line-height);
+            color: var(--text-primary);
+            max-width: var(--width-prose);
+            transition: color var(--theme-transition), font-weight var(--theme-transition), letter-spacing var(--theme-transition);
+        }
+        
+        .prose-body-dark {
+            font-family: var(--font-body-primary);
+            font-size: var(--text-body);
+            font-weight: 300;
+            letter-spacing: 0.01em;
+            line-height: var(--body-line-height);
+            color: var(--cream-500);
+            max-width: var(--width-prose);
+        }
+        
+        .font-comparison {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--space-4);
+        }
+        
+        .font-option {
+            padding: var(--space-5);
+            background: var(--bg-elevated);
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border-color);
+            transition: background var(--theme-transition), border-color var(--theme-transition);
+        }
+        
+        .font-option.recommended {
+            border-color: var(--gold-primary);
+            position: relative;
+        }
+        
+        .font-option.recommended::after {
+            content: 'Recommended';
+            position: absolute;
+            top: var(--space-3);
+            right: var(--space-3);
+            font-family: var(--font-ui);
+            font-size: var(--text-xs);
+            font-weight: 500;
+            letter-spacing: var(--tracking-wide);
+            text-transform: uppercase;
+            color: var(--gold-primary);
+        }
+        
+        .font-option h4 {
+            font-family: var(--font-ui);
+            font-size: var(--text-sm);
+            font-weight: 500;
+            color: var(--text-primary);
+            margin-bottom: var(--space-2);
+            transition: color var(--theme-transition);
+        }
+        
+        .font-option-sample {
+            font-size: var(--text-lg);
+            line-height: var(--leading-relaxed);
+            color: var(--text-secondary);
+            margin-bottom: var(--space-3);
+            transition: color var(--theme-transition);
+        }
+        
+        .font-option-sample.crimson { font-family: 'Crimson Pro', serif; }
+        .font-option-sample.source { font-family: 'Source Serif 4', serif; }
+        
+        .font-option p {
+            font-family: var(--font-ui);
+            font-size: var(--text-xs);
+            color: var(--text-muted);
+            line-height: var(--leading-normal);
+            transition: color var(--theme-transition);
+        }
+        
+        /* Type Scale */
+        .type-scale {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-4);
+        }
+        
+        .type-scale-item {
+            display: grid;
+            grid-template-columns: 100px 1fr;
+            align-items: baseline;
+            gap: var(--space-4);
+        }
+        
+        .type-scale-label {
+            font-family: var(--font-ui);
+            font-size: var(--text-xs);
+            color: var(--text-muted);
+            text-align: right;
+            transition: color var(--theme-transition);
+        }
+        
+        .type-scale-sample {
+            font-family: var(--font-display);
+            color: var(--text-primary);
+            transition: color var(--theme-transition);
+        }
+        
+        .type-scale-sample.xs { font-size: var(--text-xs); }
+        .type-scale-sample.sm { font-size: var(--text-sm); }
+        .type-scale-sample.base { font-size: var(--text-base); }
+        .type-scale-sample.lg { font-size: var(--text-lg); }
+        .type-scale-sample.xl { font-size: var(--text-xl); }
+        .type-scale-sample.xxl { font-size: var(--text-2xl); }
+        .type-scale-sample.xxxl { font-size: var(--text-3xl); }
+        .type-scale-sample.xxxxl { font-size: var(--text-4xl); }
+        .type-scale-sample.xxxxxl { font-size: var(--text-5xl); }
+        
+        /* ═══════════════════════════════════════════════════
+           COMPONENT EXAMPLES
+           ═══════════════════════════════════════════════════ */
+        
+        .component-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--space-6);
+        }
+        
+        .component-card {
+            padding: var(--space-6);
+            background: var(--bg-elevated);
+            border-radius: var(--radius-md);
+            transition: background var(--theme-transition);
+        }
+        
+        .component-card.dark {
+            background: var(--navy-800);
+        }
+        
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-2);
+            font-family: var(--font-ui);
+            font-size: var(--text-sm);
+            font-weight: 500;
+            letter-spacing: var(--tracking-wider);
+            text-transform: uppercase;
+            text-decoration: none;
+            padding: var(--space-3) var(--space-5);
+            border: none;
+            cursor: pointer;
+            transition: all var(--transition-base);
+        }
+        
+        .btn-primary {
+            background: var(--gold-primary);
+            color: var(--navy-800);
+        }
+        
+        .btn-primary:hover {
+            background: var(--gold-light);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            color: var(--text-primary);
+            border: 1px solid var(--text-primary);
+        }
+        
+        .btn-outline:hover {
+            background: var(--text-primary);
+            color: var(--bg-primary);
+        }
+        
+        .btn-ghost {
+            background: transparent;
+            color: var(--cream-500);
+            border-bottom: 1px solid var(--gold-primary);
+            padding: var(--space-2) 0;
+        }
+        
+        .btn-ghost:hover {
+            color: var(--gold-primary);
+        }
+        
+        /* Links */
+        .link-examples a {
+            display: block;
+            margin-bottom: var(--space-3);
+        }
+        
+        .link-inline {
+            font-family: var(--font-body-primary);
+            color: var(--text-primary);
+            text-decoration: underline;
+            text-decoration-color: var(--gold-primary);
+            text-underline-offset: 3px;
+            transition: all var(--transition-fast);
+        }
+        
+        .link-inline:hover {
+            color: var(--gold-dark);
+        }
+        
+        .link-subtle {
+            font-family: var(--font-ui);
+            font-size: var(--text-sm);
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color var(--transition-fast);
+        }
+        
+        .link-subtle:hover {
+            color: var(--text-primary);
+        }
+        
+        /* Labels */
+        .label {
+            font-family: var(--font-ui);
+            font-size: var(--text-xs);
+            font-weight: 500;
+            letter-spacing: var(--tracking-wider);
+            text-transform: uppercase;
+        }
+        
+        .label-gold { color: var(--gold-primary); }
+        .label-muted { color: var(--text-muted); }
+        
+        /* ═══════════════════════════════════════════════════
+           SPACING VISUALIZATION
+           ═══════════════════════════════════════════════════ */
+        
+        .spacing-demo {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-4);
+        }
+        
+        .spacing-item {
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+        }
+        
+        .spacing-block {
+            background: var(--gold-primary);
+            opacity: 0.6;
+            height: 24px;
+        }
+        
+        .spacing-item span {
+            font-family: var(--font-ui);
+            font-size: var(--text-xs);
+            color: var(--text-muted);
+            white-space: nowrap;
+            transition: color var(--theme-transition);
+        }
+        
+        /* ═══════════════════════════════════════════════════
+           USAGE EXAMPLES
+           ═══════════════════════════════════════════════════ */
+        
+        .usage-example {
+            background: var(--bg-elevated);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            margin-bottom: var(--space-6);
+            transition: background var(--theme-transition);
+        }
+        
+        .usage-preview {
+            padding: var(--space-8);
+        }
+        
+        .usage-preview.dark {
+            background: var(--navy-800);
+        }
+        
+        .usage-code {
+            background: var(--navy-900);
+            padding: var(--space-4);
+            overflow-x: auto;
+        }
+        
+        .usage-code pre {
+            font-family: 'SF Mono', 'Monaco', 'Consolas', monospace;
+            font-size: var(--text-xs);
+            color: var(--cream-500);
+            line-height: var(--leading-relaxed);
+        }
+        
+        .usage-code .comment { color: var(--navy-400); }
+        .usage-code .property { color: var(--gold-primary); }
+        .usage-code .value { color: #7ec699; }
+        
+        /* ═══════════════════════════════════════════════════
+           MOTION SECTION
+           ═══════════════════════════════════════════════════ */
+        
+        .motion-demo {
+            display: flex;
+            gap: var(--space-6);
+            flex-wrap: wrap;
+        }
+        
+        .motion-item {
+            flex: 1;
+            min-width: 200px;
+            padding: var(--space-5);
+            background: var(--bg-elevated);
+            border-radius: var(--radius-md);
+            text-align: center;
+            transition: background var(--theme-transition);
+        }
+        
+        .motion-box {
+            width: 60px;
+            height: 60px;
+            background: var(--text-primary);
+            margin: 0 auto var(--space-4);
+            border-radius: var(--radius-sm);
+            transition: background var(--theme-transition);
+        }
+        
+        .motion-item:hover .motion-fast {
+            transform: translateX(20px);
+            transition: transform 150ms ease;
+        }
+        
+        .motion-item:hover .motion-base {
+            transform: translateX(20px);
+            transition: transform 300ms ease;
+        }
+        
+        .motion-item:hover .motion-slow {
+            transform: translateX(20px);
+            transition: transform 500ms ease;
+        }
+        
+        .motion-item span {
+            font-family: var(--font-ui);
+            font-size: var(--text-xs);
+            color: var(--text-muted);
+            transition: color var(--theme-transition);
+        }
+        
+        /* ═══════════════════════════════════════════════════
+           RESPONSIVE
+           ═══════════════════════════════════════════════════ */
+        
+        @media (max-width: 768px) {
+            .guide-nav-inner {
+                flex-direction: column;
+                gap: var(--space-4);
+            }
+            
+            .guide-nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: var(--space-4);
+            }
+            
+            .theme-toggle {
+                position: relative;
+            }
+            
+            .font-comparison {
+                grid-template-columns: 1fr;
+            }
+            
+            .type-scale-item {
+                grid-template-columns: 80px 1fr;
+            }
+            
+            .guide-header h1 {
+                font-size: var(--text-4xl);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="guide-header">
+        <div class="guide-header-content">
+            <h1>ATLAS <span>Meridia</span></h1>
+            <p>Brand Style Guide</p>
+            <p style="font-family: var(--font-body-primary); font-size: var(--text-sm); font-style: italic; color: var(--cream-500); margin-top: var(--space-3);">Version 1.3 · December 1, 2025</p>
+        </div>
+    </header>
+    
+    <!-- Navigation -->
+    <nav class="guide-nav">
+        <div class="guide-nav-inner">
+            <ul>
+                <li><a href="#brand">Brand</a></li>
+                <li><a href="#logo">Logo</a></li>
+                <li><a href="#colors">Colors</a></li>
+                <li><a href="#typography">Typography</a></li>
+                <li><a href="#voice">Voice</a></li>
+                <li><a href="#spacing">Spacing</a></li>
+                <li><a href="#components">Components</a></li>
+                <li><a href="#motion">Motion</a></li>
+                <li><a href="#ghost">Ghost</a></li>
+            </ul>
+            
+            <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+                <span class="theme-toggle-label">Theme</span>
+                <div class="theme-toggle-track">
+                    <div class="theme-toggle-thumb">
+                        <svg class="theme-toggle-icon sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="5"/>
+                            <line x1="12" y1="1" x2="12" y2="3"/>
+                            <line x1="12" y1="21" x2="12" y2="23"/>
+                            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+                            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+                            <line x1="1" y1="12" x2="3" y2="12"/>
+                            <line x1="21" y1="12" x2="23" y2="12"/>
+                            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+                            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+                        </svg>
+                        <svg class="theme-toggle-icon moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                        </svg>
+                    </div>
+                </div>
+            </button>
+        </div>
+    </nav>
+    
+    <!-- Brand Section -->
+    <section class="guide-section" id="brand">
+        <div class="section-header">
+            <span class="section-number">01</span>
+            <h2 class="section-title">Brand Foundation</h2>
+        </div>
+        
+        <div class="subsection">
+            <h3 class="subsection-title">Mission</h3>
+            <div class="type-specimen">
+                <p style="font-family: var(--font-display); font-size: var(--text-2xl); font-weight: 300; line-height: var(--leading-snug); color: var(--text-primary); max-width: var(--width-prose);">
+                    ATLAS Meridia is a laboratory for exploring what becomes possible when artificial intelligence, knowledge architecture, and creative technology intersect.
+                </p>
+            </div>
+        </div>
+        
+        <div class="subsection">
+            <h3 class="subsection-title">Brand Essence</h3>
+            <p class="subsection-desc">Three pillars define who we are and how we operate.</p>
+            
+            <div class="component-grid" style="grid-template-columns: repeat(3, 1fr);">
+                <div class="component-card">
+                    <span class="label label-gold" style="display: block; margin-bottom: var(--space-3);">Curiosity</span>
+                    <p style="font-family: var(--font-body-primary); font-size: var(--text-base); color: var(--text-secondary); line-height: var(--leading-relaxed);">We approach every problem with genuine intellectual curiosity, valuing questions as much as answers.</p>
+                </div>
+                <div class="component-card">
+                    <span class="label label-gold" style="display: block; margin-bottom: var(--space-3);">Rigor</span>
+                    <p style="font-family: var(--font-body-primary); font-size: var(--text-base); color: var(--text-secondary); line-height: var(--leading-relaxed);">We pursue depth over breadth, building understanding through systematic exploration and careful documentation.</p>
+                </div>
+                <div class="component-card">
+                    <span class="label label-gold" style="display: block; margin-bottom: var(--space-3);">Craft</span>
+                    <p style="font-family: var(--font-body-primary); font-size: var(--text-base); color: var(--text-secondary); line-height: var(--leading-relaxed);">We believe in the power of well-made things—elegant solutions, refined interfaces, and thoughtful systems.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="subsection">
+            <h3 class="subsection-title">Brand Story</h3>
+            <div class="type-specimen">
+                <p class="type-sample-body" style="margin-bottom: var(--space-4);">
+                    The name itself speaks to our orientation: an <em>atlas</em> maps territories both known and unknown, while a <em>meridian</em> marks the line from which all other measurements are taken.
+                </p>
+                <p class="type-sample-body">
+                    We aim to be both—cartographers of emerging possibility and a fixed point of reference in a rapidly shifting landscape. Our work exists at the meridians: the invisible lines where different fields of knowledge converge. At these boundaries, the unexpected emerges.
+                </p>
+            </div>
+        </div>
+        
+        <div class="subsection">
+            <h3 class="subsection-title">Brand Personality</h3>
+            <p class="subsection-desc">If ATLAS Meridia were a person, they would be...</p>
+            
+            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-4); max-width: var(--width-content);">
+                <div class="component-card">
+                    <h4 style="font-family: var(--font-display); font-size: var(--text-lg); font-weight: 500; font-style: italic; color: var(--text-primary); margin-bottom: var(--space-2);">Thoughtful, not aloof</h4>
+                    <p style="font-family: var(--font-body-primary); font-size: var(--text-sm); color: var(--text-muted);">We take time to consider deeply, but remain approachable and warm.</p>
+                </div>
+                <div class="component-card">
+                    <h4 style="font-family: var(--font-display); font-size: var(--text-lg); font-weight: 500; font-style: italic; color: var(--text-primary); margin-bottom: var(--space-2);">Confident, not arrogant</h4>
+                    <p style="font-family: var(--font-body-primary); font-size: var(--text-sm); color: var(--text-muted);">We know our craft and share it generously, without condescension.</p>
+                </div>
+                <div class="component-card">
+                    <h4 style="font-family: var(--font-display); font-size: var(--text-lg); font-weight: 500; font-style: italic; color: var(--text-primary); margin-bottom: var(--space-2);">Precise, not pedantic</h4>
+                    <p style="font-family: var(--font-body-primary); font-size: var(--text-sm); color: var(--text-muted);">We care about details because they matter, not to show off.</p>
+                </div>
+                <div class="component-card">
+                    <h4 style="font-family: var(--font-display); font-size: var(--text-lg); font-weight: 500; font-style: italic; color: var(--text-primary); margin-bottom: var(--space-2);">Experimental, not reckless</h4>
+                    <p style="font-family: var(--font-body-primary); font-size: var(--text-sm); color: var(--text-muted);">We embrace bold exploration within a framework of thoughtful practice.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Logo Section -->
+    <section class="guide-section" id="logo">
+        <div class="section-header">
+            <span class="section-number">02</span>
+            <h2 class="section-title">Logo</h2>
+        </div>
+        
+        <div class="subsection">
+            <h3 class="subsection-title">Primary Wordmark</h3>
+            <p class="subsection-desc">The ATLAS Meridia wordmark is our primary brand identifier. It uses Cormorant Garamond with "ATLAS" in medium weight uppercase and "Meridia" in light italic.</p>
+            
+            <div class="component-grid">
+                <div class="component-card" style="text-align: center; padding: var(--space-10);">
+                    <span class="type-label">Light Background</span>
+                    <p style="font-family: var(--font-display); font-size: var(--text-3xl); font-weight: 500; letter-spacing: 0.1em; color: var(--navy-700); margin-top: var(--space-4);">
+                        ATLAS <span style="font-weight: 300; font-style: italic; letter-spacing: 0.02em;">Meridia</span>
+                    </p>
+                </div>
+                <div class="component-card dark" style="text-align: center; padding: var(--space-10);">
+                    <span class="type-label">Dark Background</span>
+                    <p style="font-family: var(--font-display); font-size: var(--text-3xl); font-weight: 500; letter-spacing: 0.1em; color: var(--cream-500); margin-top: var(--space-4);">
+                        ATLAS <span style="font-weight: 300; font-style: italic; letter-spacing: 0.02em;">Meridia</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="subsection">
+            <h3 class="subsection-title">Clear Space</h3>
+            <p class="subsection-desc">Maintain minimum clear space around the logo equal to the cap-height of the "A" in ATLAS. This ensures the wordmark has room to breathe and maintains visual impact.</p>
+            
+            <div class="component-card" style="text-align: center; padding: var(--space-8); position: relative;">
+                <div style="display: inline-block; position: relative; border: 1px dashed var(--gold-primary); padding: var(--space-6);">
+                    <p style="font-family: var(--font-display); font-size: var(--text-2xl); font-weight: 500; letter-spacing: 0.1em; color: var(--text-primary);">
+                        ATLAS <span style="font-weight: 300; font-style: italic; letter-spacing: 0.02em;">Meridia</span>
+                    </p>
+                    <!-- Clear space indicators -->
+                    <span style="position: absolute; top: 50%; left: -2rem; transform: translateY(-50%); font-family: var(--font-ui); font-size: var(--text-xs); color: var(--gold-primary);">X</span>
+                    <span style="position: absolute; top: 50%; right: -2rem; transform: translateY(-50%); font-family: var(--font-ui); font-size: var(--text-xs); color: var(--gold-primary);">X</span>
+                    <span style="position: absolute; top: -1.5rem; left: 50%; transform: translateX(-50%); font-family: var(--font-ui); font-size: var(--text-xs); color: var(--gold-primary);">X</span>
+                    <span style="position: absolute; bottom: -1.5rem; left: 50%; transform: translateX(-50%); font-family: var(--font-ui); font-size: var(--text-xs); color: var(--gold-primary);">X</span>
+                </div>
+                <p style="font-family: var(--font-ui); font-size: var(--text-xs); color: var(--text-muted); margin-top: var(--space-4);">X = Cap-height of "A" in the wordmark</p>
+            </div>
+        </div>
+        
+        <div class="subsection">
+            <h3 class="subsection-title">Minimum Size</h3>
+            <p class="subsection-desc">To ensure legibility, the wordmark should never appear smaller than the minimum sizes specified below.</p>
+            
+            <div class="component-grid">
+                <div class="component-card">
+                    <span class="type-label">Digital (Screen)</span>
+                    <p style="font-family: var(--font-display); font-size: 14px; font-weight: 500; letter-spacing: 0.1em; color: var(--text-primary); margin: var(--space-4) 0;">
+                        ATLAS <span style="font-weight: 300; font-style: italic; letter-spacing: 0.02em;">Meridia</span>
+                    </p>
+                    <p style="font-family: var(--font-ui); font-size: var(--text-xs); color: var(--text-muted);">Minimum: 14px cap-height / 120px width</p>
+                </div>
+                <div class="component-card">
+                    <span class="type-label">Print</span>
+                    <p style="font-family: var(--font-display); font-size: var(--text-base); font-weight: 500; letter-spacing: 0.1em; color: var(--text-primary); margin: var(--space-4) 0;">
+                        ATLAS <span style="font-weight: 300; font-style: italic; letter-spacing: 0.02em;">Meridia</span>
+                    </p>
+                    <p style="font-family: var(--font-ui); font-size: var(--text-xs); color: var(--text-muted);">Minimum: 0.5" / 12mm width</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="subsection">
+            <h3 class="subsection-title">Logo Don'ts</h3>
+            <p class="subsection-desc">To maintain brand integrity, avoid these common misuses of the wordmark.</p>
+            
+            <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-4);">
+                <div class="component-card" style="text-align: center; padding: var(--space-5); border: 1px solid var(--error); opacity: 0.7;">
+                    <p style="font-family: var(--font-display); font-size: var(--text-lg); font-weight: 500; letter-spacing: 0.1em; color: var(--text-primary); transform: scaleX(1.3);">
+                        ATLAS <span style="font-weight: 300; font-style: italic;">M</span>
+                    </p>
+                    <p style="font-family: var(--font-ui); font-size: var(--text-xs); color: var(--error); margin-top: var(--space-3);">Don't stretch</p>
+                </div>
+                <div class="component-card" style="text-align: center; padding: var(--space-5); border: 1px solid var(--error); opacity: 0.7;">
+                    <p style="font-family: var(--font-display); font-size: var(--text-lg); font-weight: 500; letter-spacing: 0.1em; color: #7c3aed;">
+                        ATLAS <span style="font-weight: 300; font-style: italic;">Meridia</span>
+                    </p>
+                    <p style="font-family: var(--font-ui); font-size: var(--text-xs); color: var(--error); margin-top: var(--space-3);">Don't recolor</p>
+                </div>
+                <div class="component-card" style="text-align: center; padding: var(--space-5); border: 1px solid var(--error); opacity: 0.7;">
+                    <p style="font-family: var(--font-display); font-size: var(--text-lg); font-weight: 500; letter-spacing: 0.1em; color: var(--text-primary); transform: rotate(-15deg);">
+                        ATLAS <span style="font-weight: 300; font-style: italic;">Meridia</span>
+                    </p>
+                    <p style="font-family: var(--font-ui); font-size: var(--text-xs); color: var(--error); margin-top: var(--space-3);">Don't rotate</p>
+                </div>
+                <div class="component-card" style="text-align: center; padding: var(--space-5); border: 1px solid var(--error); opacity: 0.7;">
+                    <p style="font-family: Arial, sans-serif; font-size: var(--text-lg); font-weight: bold; letter-spacing: 0.1em; color: var(--text-primary);">
+                        ATLAS <span style="font-weight: normal; font-style: italic;">Meridia</span>
+                    </p>
+                    <p style="font-family: var(--font-ui); font-size: var(--text-xs); color: var(--error); margin-top: var(--space-3);">Don't change font</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Colors Section -->
+    <section class="guide-section" id="colors">
+        <div class="section-header">
+            <span class="section-number">03</span>
+            <h2 class="section-title">Color System</h2>
+        </div>
+        
+        <div class="subsection">
+            <h3 class="subsection-title">Navy Scale</h3>
+            <p class="subsection-desc">The primary dark palette. Navy-800 serves as the main dark background, with lighter values for layering and text.</p>
+            
+            <div class="color-row">
+                <div class="color-chip" style="background: var(--navy-900);">
+                    <span style="color: var(--cream-300);">900</span>
+                </div>
+                <div class="color-chip" style="background: var(--navy-800);">
+                    <span style="color: var(--cream-300);">800</span>
+                </div>
+                <div class="color-chip" style="background: var(--navy-700);">
+                    <span style="color: var(--cream-300);">700</span>
+                </div>
+                <div class="color-chip" style="background: var(--navy-600);">
+                    <span style="color: var(--cream-300);">600</span>
+                </div>
+                <div class="color-chip" style="background: var(--navy-500);">
+                    <span style="color: var(--cream-100);">500</span>
+                </div>
+                <div class="color-chip" style="background: var(--navy-400);">
+                    <span style="color: var(--navy-800);">400</span>
+                </div>
+                <div class="color-chip" style="background: var(--navy-300);">
+                    <span style="color: var(--navy-800);">300</span>
+                </div>
+            </div>
+            
+            <div class="color-grid">
+                <div class="color-swatch">
+                    <div class="color-swatch-preview" style="background: var(--navy-800);"></div>
+                    <div class="color-swatch-info">
+                        <span class="color-swatch-name">Navy 800 — Primary Dark</span>
+                        <span class="color-swatch-value">#0a1628</span>
+                    </div>
+                </div>
+                <div class="color-swatch">
+                    <div class="color-swatch-preview" style="background: var(--navy-700);"></div>
+                    <div class="color-swatch-info">
+                        <span class="color-swatch-name">Navy 700 — Text on Light</span>
+                        <span class="color-swatch-value">#1a2744</span>
+                    </div>
+                </div>
+                <div class="color-swatch">
+                    <div class="color-swatch-preview" style="background: var(--navy-500);"></div>
+                    <div class="color-swatch-info">
+                        <span class="color-swatch-name">Navy 500 — Muted Text</span>
+                        <span class="color-swatch-value">#4a5d7a</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="subsection">
+            <h3 class="subsection-title">Cream Scale</h3>
+            <p class="subsection-desc">The warm light palette. Cream-200 is the primary light background. Cream-500 is dark mode primary text, with 550/600 for secondary and muted text.</p>
+            
+            <div class="color-row">
+                <div class="color-chip" style="background: var(--cream-100);">
+                    <span style="color: var(--navy-600);">100</span>
+                </div>
+                <div class="color-chip" style="background: var(--cream-200);">
+                    <span style="color: var(--navy-600);">200</span>
+                </div>
+                <div class="color-chip" style="background: var(--cream-300);">
+                    <span style="color: var(--navy-600);">300</span>
+                </div>
+                <div class="color-chip" style="background: var(--cream-400);">
+                    <span style="color: var(--navy-600);">400</span>
+                </div>
+                <div class="color-chip" style="background: var(--cream-500); border: 2px solid var(--gold-primary);">
+                    <span style="color: var(--navy-700);">500</span>
+                </div>
+                <div class="color-chip" style="background: var(--cream-550);">
+                    <span style="color: var(--navy-700);">550</span>
+                </div>
+                <div class="color-chip" style="background: var(--cream-600);">
+                    <span style="color: var(--navy-800);">600</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="subsection">
+            <h3 class="subsection-title">Accent Colors</h3>
+            <p class="subsection-desc">Gold serves as the primary accent for CTAs and highlights. Use copper sparingly for secondary emphasis.</p>
+            
+            <div class="color-grid">
+                <div class="color-swatch">
+                    <div class="color-swatch-preview" style="background: var(--gold-primary);"></div>
+                    <div class="color-swatch-info">
+                        <span class="color-swatch-name">Gold Primary</span>
+                        <span class="color-swatch-value">#c9a961</span>
+                    </div>
+                </div>
+                <div class="color-swatch">
+                    <div class="color-swatch-preview" style="background: var(--gold-light);"></div>
+                    <div class="color-swatch-info">
+                        <span class="color-swatch-name">Gold Light — Hover</span>
+                        <span class="color-swatch-value">#dfc689</span>
+                    </div>
+                </div>
+                <div class="color-swatch">
+                    <div class="color-swatch-preview" style="background: var(--copper);"></div>
+                    <div class="color-swatch-info">
+                        <span class="color-swatch-name">Copper — Secondary</span>
+                        <span class="color-swatch-value">#b87333</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="subsection">
+            <h3 class="subsection-title">Semantic Colors</h3>
+            <p class="subsection-desc">Functional colors for communicating status and feedback. Use consistently across all interfaces.</p>
+            
+            <div class="color-grid">
+                <div class="color-swatch">
+                    <div class="color-swatch-preview" style="background: var(--success);"></div>
+                    <div class="color-swatch-info">
+                        <span class="color-swatch-name">Success</span>
+                        <span class="color-swatch-value">#4a7c59</span>
+                    </div>
+                </div>
+                <div class="color-swatch">
+                    <div class="color-swatch-preview" style="background: var(--warning);"></div>
+                    <div class="color-swatch-info">
+                        <span class="color-swatch-name">Warning</span>
+                        <span class="color-swatch-value">#c9a961</span>
+                    </div>
+                </div>
+                <div class="color-swatch">
+                    <div class="color-swatch-preview" style="background: var(--error);"></div>
+                    <div class="color-swatch-info">
+                        <span class="color-swatch-name">Error</span>
+                        <span class="color-swatch-value">#9e4a4a</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Typography Section -->
+    <section class="guide-section" id="typography">
+        <div class="section-header">
+            <span class="section-number">04</span>
+            <h2 class="section-title">Typography</h2>
+        </div>
+        
+        <div class="subsection">
+            <h3 class="subsection-title">Display Font — Cormorant Garamond</h3>
+            <p class="subsection-desc">Used for headlines, titles, and display text. Light weight (300) for elegance, with italic for emphasis.</p>
+            
+            <div class="type-specimen">
+                <span class="type-label">Light on Light</span>
+                <p class="type-sample-display">Navigating the <em>edges</em> of intelligence</p>
+            </div>
+            
+            <div class="type-specimen type-specimen-dark">
+                <span class="type-label">Light on Dark</span>
+                <p class="type-sample-display">Navigating the <em>edges</em> of intelligence</p>
+            </div>
+            
+            <!-- Dark Mode Text Hierarchy -->
+            <div style="margin-top: var(--space-6); padding: var(--space-6); background: var(--navy-800); border-radius: var(--radius-lg);">
+                <p style="font-family: var(--font-ui); font-size: var(--text-xs); font-weight: 500; letter-spacing: var(--tracking-wider); text-transform: uppercase; color: var(--gold-primary); margin-bottom: var(--space-6);">Dark Mode Text Hierarchy</p>
+                
+                <div style="display: grid; gap: var(--space-6);">
+                    <!-- cream-500: Primary -->
+                    <div style="padding-bottom: var(--space-6); border-bottom: 1px solid var(--navy-600);">
+                        <p style="font-family: var(--font-ui); font-size: var(--text-xs); color: var(--cream-600); margin-bottom: var(--space-3);">cream-500 · #d4c9b8 · Primary text (display + body)</p>
+                        <p style="font-family: var(--font-display); font-size: var(--text-4xl); font-weight: 300; line-height: 1.2; color: var(--cream-500);">
+                            Navigating the <em style="font-style: italic; font-weight: 400;">edges</em> of intelligence
+                        </p>
+                        <p style="font-family: var(--font-body-primary); font-size: var(--text-lg); font-weight: 300; line-height: 1.8; color: var(--cream-500); margin-top: var(--space-4); max-width: var(--width-prose);">
+                            The most interesting discoveries happen where disciplines converge. At these boundaries—where technology meets craft, where data meets intuition—the unexpected emerges.
+                        </p>
+                    </div>
+                    
+                    <!-- cream-550: Secondary -->
+                    <div style="padding-bottom: var(--space-6); border-bottom: 1px solid var(--navy-600);">
+                        <p style="font-family: var(--font-ui); font-size: var(--text-xs); color: var(--cream-600); margin-bottom: var(--space-3);">cream-550 · #c4b9a8 · Secondary text</p>
+                        <p style="font-family: var(--font-body-primary); font-size: var(--text-base); font-weight: 300; line-height: 1.7; color: var(--cream-550); max-width: var(--width-prose);">
+                            Used for supporting text, captions, and secondary information that should recede slightly from primary content while remaining fully readable.
+                        </p>
+                    </div>
+                    
+                    <!-- cream-600: Muted -->
+                    <div>
+                        <p style="font-family: var(--font-ui); font-size: var(--text-xs); color: var(--cream-600); margin-bottom: var(--space-3);">cream-600 · #b0a593 · Muted text</p>
+                        <p style="font-family: var(--font-ui); font-size: var(--text-sm); color: var(--cream-600); max-width: var(--width-prose);">
+                            For metadata, timestamps, helper text, and other tertiary information. Use sparingly—still needs to be readable but clearly subordinate.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="subsection">
+            <h3 class="subsection-title">Body Font — Crimson Pro</h3>
+            <p class="subsection-desc">Our primary body font, optimized for screen readability with warmth and bookish character.</p>
+            
+            <div class="type-specimen">
+                <span class="type-label">Body Copy</span>
+                <p class="font-option-sample crimson" style="margin-bottom: var(--space-3);">The most interesting discoveries happen where disciplines converge. At these boundaries, the unexpected emerges. The tools that will matter tomorrow are rarely obvious today.</p>
+                <p class="type-sample-body">Warm, bookish character with subtle calligraphic qualities. Excellent italics. Ideal for long-form reading and editorial content.</p>
+            </div>
+        </div>
+        
+        <div class="subsection">
+            <h3 class="subsection-title">UI Font — DM Sans</h3>
+            <p class="subsection-desc">Reserved for small text: labels, captions, navigation, footnotes, and interface elements.</p>
+            
+            <div class="type-specimen">
+                <span class="type-label">UI Elements</span>
+                <p class="type-sample-ui" style="letter-spacing: var(--tracking-wider); text-transform: uppercase; margin-bottom: var(--space-2);">Section Label • Navigation • Footnotes</p>
+                <p class="type-sample-ui">Used sparingly for functional text that needs to recede visually while remaining highly legible at small sizes.</p>
+            </div>
+        </div>
+        
+        <div class="subsection">
+            <h3 class="subsection-title">Monospace Font — IBM Plex Mono</h3>
+            <p class="subsection-desc">Reserved for code snippets, technical references, CSS class names, and any content requiring a fixed-width typeface.</p>
+            
+            <div class="type-specimen">
+                <span class="type-label">Code & Technical</span>
+                <p class="type-sample-mono" style="margin-bottom: var(--space-2);">--font-mono: 'IBM Plex Mono', monospace;</p>
+                <p class="type-sample-mono" style="margin-bottom: var(--space-2);">.kg-image-card { max-width: 100%; }</p>
+                <p class="type-sample-mono">Used for inline <code style="background: var(--bg-secondary); padding: 2px 6px; border-radius: 3px;">code</code> and block-level code examples throughout documentation and technical content.</p>
+            </div>
+        </div>
+        
+        <div class="subsection">
+            <h3 class="subsection-title">Traditional Mandarin — Noto Serif TC</h3>
+            <p class="subsection-desc">For Traditional Chinese content and bilingual posts. Noto Serif TC (思源宋體) pairs with Crimson Pro's warmth and bookish character.</p>
+            
+            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-6); margin-top: var(--space-6);">
+                <!-- Chinese Display -->
+                <div class="component-card dark">
+                    <span class="label label-gold" style="display: block; margin-bottom: var(--space-4);">Display · 標題</span>
+                    <p style="font-family: var(--font-body-zh); font-size: var(--text-2xl); font-weight: 400; line-height: 1.6; color: var(--cream-500);">
+                        最有趣的發現往往發生在學科交匯之處
+                    </p>
+                </div>
+                
+                <!-- English Reference -->
+                <div class="component-card dark">
+                    <span class="label label-gold" style="display: block; margin-bottom: var(--space-4);">English Equivalent</span>
+                    <p style="font-family: var(--font-body-primary); font-size: var(--text-2xl); font-weight: 300; line-height: 1.6; color: var(--cream-500);">
+                        The most interesting discoveries happen where disciplines converge
+                    </p>
+                </div>
+            </div>
+            
+            <!-- Body Copy Sample -->
+            <div class="component-card dark" style="margin-top: var(--space-4);">
+                <span class="label label-gold" style="display: block; margin-bottom: var(--space-4);">Body Copy · 正文</span>
+                <p style="font-family: var(--font-body-zh); font-size: 1.375rem; font-weight: 400; line-height: 2; color: var(--cream-500); max-width: var(--width-prose);">
+                    我們相信，明天重要的工具今天很少顯而易見。它們源於實驗，源於追隨好奇心的線索，沒有預設的目的地。這就是實驗室的工作：在必要之前探索可能性。每一段都應該吸引讀者更深入地閱讀。
+                </p>
+            </div>
+            
+            <!-- Mixed Content -->
+            <div class="component-card dark" style="margin-top: var(--space-4);">
+                <span class="label label-gold" style="display: block; margin-bottom: var(--space-4);">Mixed Content · 中英混排</span>
+                <p style="font-size: 1.375rem; line-height: 2; color: var(--cream-500); max-width: var(--width-prose);">
+                    <span style="font-family: var(--font-body-primary);">ATLAS Meridia</span> <span style="font-family: var(--font-body-zh);">是一個探索人工智慧與創意技術交匯的實驗室。我們在</span> <span style="font-family: var(--font-body-primary);">San Francisco</span> <span style="font-family: var(--font-body-zh);">運營，專注於開發創新工具和解決方案。</span>
+                </p>
+            </div>
+            
+            <!-- Weight Range -->
+            <div class="component-card" style="margin-top: var(--space-4);">
+                <span class="label" style="display: block; margin-bottom: var(--space-4);">Weight Range · 字重</span>
+                <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-4);">
+                    <div>
+                        <p style="font-family: var(--font-ui); font-size: var(--text-xs); color: var(--text-muted); margin-bottom: var(--space-2);">Light 300</p>
+                        <p style="font-family: var(--font-body-zh); font-size: var(--text-2xl); font-weight: 300; color: var(--text-primary);">實驗室</p>
+                    </div>
+                    <div>
+                        <p style="font-family: var(--font-ui); font-size: var(--text-xs); color: var(--text-muted); margin-bottom: var(--space-2);">Regular 400</p>
+                        <p style="font-family: var(--font-body-zh); font-size: var(--text-2xl); font-weight: 400; color: var(--text-primary);">實驗室</p>
+                    </div>
+                    <div>
+                        <p style="font-family: var(--font-ui); font-size: var(--text-xs); color: var(--text-muted); margin-bottom: var(--space-2);">Medium 500</p>
+                        <p style="font-family: var(--font-body-zh); font-size: var(--text-2xl); font-weight: 500; color: var(--text-primary);">實驗室</p>
+                    </div>
+                    <div>
+                        <p style="font-family: var(--font-ui); font-size: var(--text-xs); color: var(--text-muted); margin-bottom: var(--space-2);">SemiBold 600</p>
+                        <p style="font-family: var(--font-body-zh); font-size: var(--text-2xl); font-weight: 600; color: var(--text-primary);">實驗室</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Implementation -->
+            <div class="component-card" style="margin-top: var(--space-4);">
+                <span class="label" style="display: block; margin-bottom: var(--space-3);">CSS Variables</span>
+                <p class="type-sample-mono" style="margin-bottom: var(--space-2);">--font-body-zh: 'Noto Serif TC', 'Songti TC', 'PMingLiU', serif;</p>
+                <p class="type-sample-mono">--font-ui-zh: 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif;</p>
+            </div>
+            
+            <div class="component-card" style="margin-top: var(--space-4);">
+                <span class="label" style="display: block; margin-bottom: var(--space-3);">Ghost Theme Integration</span>
+                <pre style="font-family: var(--font-mono); font-size: var(--text-sm); color: var(--text-secondary); line-height: var(--leading-loose); overflow-x: auto; white-space: pre-wrap;"><code><span style="color: var(--gold-primary);">/* Auto-detect Chinese content */</span>
+.post-content:lang(zh-Hant),
+.post-content:lang(zh-TW) {
+  font-family: var(--font-body-zh);
+  font-size: calc(var(--text-body) * 1.05);
+  line-height: 2;
+}
+
+<span style="color: var(--gold-primary);">/* For tagged Chinese posts */</span>
+.tag-chinese .post-content,
+.tag-中文 .post-content {
+  font-family: var(--font-body-zh);
+}</code></pre>
+            </div>
+        </div>
+        
+        <div class="subsection">
+            <h3 class="subsection-title">Body Copy in Context</h3>
+            <p class="subsection-desc">Compare body text sizes to find the optimal reading experience. Dark mode samples use lighter weight (300) and subtle letter-spacing.</p>
+            
+            <!-- 20px Sample -->
+            <div style="margin-top: var(--space-6); margin-bottom: var(--space-8);">
+                <h4 style="font-family: var(--font-ui); font-size: var(--text-sm); font-weight: 500; color: var(--gold-primary); margin-bottom: var(--space-4); letter-spacing: var(--tracking-wider); text-transform: uppercase;">20px · 1.25rem</h4>
+                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-6);">
+                    <div style="background: var(--cream-200); padding: var(--space-6); border-radius: var(--radius-md); border: 1px solid var(--cream-400);">
+                        <span class="label" style="display: block; margin-bottom: var(--space-3);">Light</span>
+                        <p style="font-family: var(--font-body-primary); font-size: 1.25rem; font-weight: 400; line-height: 1.8; color: var(--navy-700); max-width: var(--width-prose);">
+                            The most interesting discoveries happen where disciplines converge. At these boundaries—where technology meets craft, where data meets intuition—the unexpected emerges. We believe the tools that will matter tomorrow are rarely obvious today.
+                        </p>
+                    </div>
+                    <div style="background: var(--navy-800); padding: var(--space-6); border-radius: var(--radius-md);">
+                        <span class="label label-gold" style="display: block; margin-bottom: var(--space-3);">Dark</span>
+                        <p style="font-family: var(--font-body-primary); font-size: 1.25rem; font-weight: 300; letter-spacing: 0.01em; line-height: 1.8; color: var(--cream-500); max-width: var(--width-prose);">
+                            The most interesting discoveries happen where disciplines converge. At these boundaries—where technology meets craft, where data meets intuition—the unexpected emerges. We believe the tools that will matter tomorrow are rarely obvious today.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 22px Sample -->
+            <div style="margin-bottom: var(--space-8);">
+                <h4 style="font-family: var(--font-ui); font-size: var(--text-sm); font-weight: 500; color: var(--gold-primary); margin-bottom: var(--space-4); letter-spacing: var(--tracking-wider); text-transform: uppercase;">22px · 1.375rem</h4>
+                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-6);">
+                    <div style="background: var(--cream-200); padding: var(--space-6); border-radius: var(--radius-md); border: 1px solid var(--cream-400);">
+                        <span class="label" style="display: block; margin-bottom: var(--space-3);">Light</span>
+                        <p style="font-family: var(--font-body-primary); font-size: 1.375rem; font-weight: 400; line-height: 1.8; color: var(--navy-700); max-width: var(--width-prose);">
+                            The most interesting discoveries happen where disciplines converge. At these boundaries—where technology meets craft, where data meets intuition—the unexpected emerges. We believe the tools that will matter tomorrow are rarely obvious today.
+                        </p>
+                    </div>
+                    <div style="background: var(--navy-800); padding: var(--space-6); border-radius: var(--radius-md);">
+                        <span class="label label-gold" style="display: block; margin-bottom: var(--space-3);">Dark</span>
+                        <p style="font-family: var(--font-body-primary); font-size: 1.375rem; font-weight: 300; letter-spacing: 0.01em; line-height: 1.8; color: var(--cream-500); max-width: var(--width-prose);">
+                            The most interesting discoveries happen where disciplines converge. At these boundaries—where technology meets craft, where data meets intuition—the unexpected emerges. We believe the tools that will matter tomorrow are rarely obvious today.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 24px Sample -->
+            <div style="margin-bottom: var(--space-6);">
+                <h4 style="font-family: var(--font-ui); font-size: var(--text-sm); font-weight: 500; color: var(--gold-primary); margin-bottom: var(--space-4); letter-spacing: var(--tracking-wider); text-transform: uppercase;">24px · 1.5rem</h4>
+                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-6);">
+                    <div style="background: var(--cream-200); padding: var(--space-6); border-radius: var(--radius-md); border: 1px solid var(--cream-400);">
+                        <span class="label" style="display: block; margin-bottom: var(--space-3);">Light</span>
+                        <p style="font-family: var(--font-body-primary); font-size: 1.5rem; font-weight: 400; line-height: 1.8; color: var(--navy-700); max-width: var(--width-prose);">
+                            The most interesting discoveries happen where disciplines converge. At these boundaries—where technology meets craft, where data meets intuition—the unexpected emerges. We believe the tools that will matter tomorrow are rarely obvious today.
+                        </p>
+                    </div>
+                    <div style="background: var(--navy-800); padding: var(--space-6); border-radius: var(--radius-md);">
+                        <span class="label label-gold" style="display: block; margin-bottom: var(--space-3);">Dark</span>
+                        <p style="font-family: var(--font-body-primary); font-size: 1.5rem; font-weight: 300; letter-spacing: 0.01em; line-height: 1.8; color: var(--cream-500); max-width: var(--width-prose);">
+                            The most interesting discoveries happen where disciplines converge. At these boundaries—where technology meets craft, where data meets intuition—the unexpected emerges. We believe the tools that will matter tomorrow are rarely obvious today.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="component-card" style="margin-top: var(--space-6);">
+                <span class="label" style="display: block; margin-bottom: var(--space-3);">Current CSS Variables</span>
+                <p class="type-sample-mono" style="margin-bottom: var(--space-2);">--text-body: 1.25rem;      /* 20px — update to preferred size */</p>
+                <p class="type-sample-mono" style="margin-bottom: var(--space-2);">--body-weight: 400;        /* 300 in dark mode */</p>
+                <p class="type-sample-mono">--body-tracking: 0;        /* 0.01em in dark mode */</p>
+            </div>
+        </div>
+        
+        <div class="subsection">
+            <h3 class="subsection-title">Responsive Typography</h3>
+            <p class="subsection-desc">Body copy scales with screen size for optimal reading at any distance. Larger screens get larger text; mobile devices use more compact sizing.</p>
+            
+            <!-- Breakpoint Table -->
+            <div class="component-card" style="margin-top: var(--space-6);">
+                <span class="label label-gold" style="display: block; margin-bottom: var(--space-4);">Reading-Focused Pages (Posts, Articles)</span>
+                <div style="display: grid; grid-template-columns: auto 1fr 1fr 1fr; gap: var(--space-3); font-family: var(--font-ui); font-size: var(--text-sm);">
+                    <!-- Header Row -->
+                    <div style="font-weight: 500; color: var(--text-muted); padding-bottom: var(--space-2); border-bottom: 1px solid var(--border-color);">Breakpoint</div>
+                    <div style="font-weight: 500; color: var(--text-muted); padding-bottom: var(--space-2); border-bottom: 1px solid var(--border-color);">Screen</div>
+                    <div style="font-weight: 500; color: var(--text-muted); padding-bottom: var(--space-2); border-bottom: 1px solid var(--border-color);">Body Size</div>
+                    <div style="font-weight: 500; color: var(--text-muted); padding-bottom: var(--space-2); border-bottom: 1px solid var(--border-color);">Line Height</div>
+                    <!-- Mobile -->
+                    <div style="color: var(--text-secondary); padding: var(--space-2) 0;">Mobile</div>
+                    <div style="color: var(--text-muted); padding: var(--space-2) 0;">&lt; 768px</div>
+                    <div style="color: var(--text-primary); font-weight: 500; padding: var(--space-2) 0;">18px</div>
+                    <div style="color: var(--text-muted); padding: var(--space-2) 0;">1.7</div>
+                    <!-- Tablet -->
+                    <div style="color: var(--text-secondary); padding: var(--space-2) 0;">Tablet</div>
+                    <div style="color: var(--text-muted); padding: var(--space-2) 0;">768px – 1024px</div>
+                    <div style="color: var(--text-primary); font-weight: 500; padding: var(--space-2) 0;">20px</div>
+                    <div style="color: var(--text-muted); padding: var(--space-2) 0;">1.75</div>
+                    <!-- Desktop -->
+                    <div style="color: var(--text-secondary); padding: var(--space-2) 0;">Desktop</div>
+                    <div style="color: var(--text-muted); padding: var(--space-2) 0;">&gt; 1024px</div>
+                    <div style="color: var(--gold-primary); font-weight: 500; padding: var(--space-2) 0;">24px ★</div>
+                    <div style="color: var(--text-muted); padding: var(--space-2) 0;">1.8</div>
+                </div>
+            </div>
+            
+            <!-- CSS Implementation -->
+            <div class="component-card" style="margin-top: var(--space-4);">
+                <span class="label" style="display: block; margin-bottom: var(--space-3);">CSS Implementation</span>
+                <pre style="font-family: var(--font-mono); font-size: var(--text-sm); color: var(--text-secondary); line-height: var(--leading-loose); overflow-x: auto; white-space: pre-wrap;"><code><span style="color: var(--gold-primary);">/* Base mobile-first */</span>
+--text-body: 1.125rem;    <span style="color: var(--text-muted);">/* 18px */</span>
+--body-line-height: 1.7;
+
+<span style="color: var(--gold-primary);">/* Tablet */</span>
+@media (min-width: 768px) {
+  :root {
+    --text-body: 1.25rem;  <span style="color: var(--text-muted);">/* 20px */</span>
+    --body-line-height: 1.75;
+  }
+}
+
+<span style="color: var(--gold-primary);">/* Desktop */</span>
+@media (min-width: 1024px) {
+  :root {
+    --text-body: 1.5rem;   <span style="color: var(--text-muted);">/* 24px */</span>
+    --body-line-height: 1.8;
+  }
+}</code></pre>
+            </div>
+            
+            <!-- Ghost Template Targeting -->
+            <div style="margin-top: var(--space-8);">
+                <h4 style="font-family: var(--font-ui); font-size: var(--text-sm); font-weight: 500; color: var(--gold-primary); margin-bottom: var(--space-4); letter-spacing: var(--tracking-wider); text-transform: uppercase;">Ghost Template Classes</h4>
+                <p style="font-family: var(--font-body-primary); font-size: var(--text-base); color: var(--text-secondary); margin-bottom: var(--space-4); max-width: var(--width-prose);">Ghost applies template-specific classes to the <code style="font-family: var(--font-mono); font-size: 0.9em; background: var(--bg-secondary); padding: 2px 6px; border-radius: 3px;">&lt;body&gt;</code> element. Use these to apply reading-optimized typography only where it matters.</p>
+                
+                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-4);">
+                    <!-- Apply Large Body Copy -->
+                    <div class="component-card">
+                        <span class="label" style="display: block; margin-bottom: var(--space-3); color: var(--success);">✓ Apply 24px Body Copy</span>
+                        <p style="font-family: var(--font-mono); font-size: var(--text-sm); color: var(--text-secondary); line-height: var(--leading-loose);">
+                            <span style="color: var(--gold-primary);">.post-template</span> — Individual blog posts<br>
+                            <span style="color: var(--gold-primary);">.page-template</span> — Static pages<br>
+                            <span style="color: var(--gold-primary);">.tag-longform</span> — Tagged long-form content
+                        </p>
+                    </div>
+                    
+                    <!-- Keep Standard Sizing -->
+                    <div class="component-card">
+                        <span class="label" style="display: block; margin-bottom: var(--space-3); color: var(--text-muted);">○ Keep Standard Sizing</span>
+                        <p style="font-family: var(--font-mono); font-size: var(--text-sm); color: var(--text-secondary); line-height: var(--leading-loose);">
+                            <span style="color: var(--text-muted);">.home-template</span> — Homepage<br>
+                            <span style="color: var(--text-muted);">.tag-template</span> — Tag archives<br>
+                            <span style="color: var(--text-muted);">.author-template</span> — Author pages
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Ghost CSS Example -->
+            <div class="component-card" style="margin-top: var(--space-4);">
+                <span class="label" style="display: block; margin-bottom: var(--space-3);">Ghost Theme CSS</span>
+                <pre style="font-family: var(--font-mono); font-size: var(--text-sm); color: var(--text-secondary); line-height: var(--leading-loose); overflow-x: auto; white-space: pre-wrap;"><code><span style="color: var(--gold-primary);">/* Reading-focused pages only */</span>
+.post-template .post-content,
+.page-template .page-content {
+  font-size: var(--text-body);
+  font-weight: var(--body-weight);
+  letter-spacing: var(--body-tracking);
+  line-height: var(--body-line-height);
+}
+
+<span style="color: var(--gold-primary);">/* Card excerpts stay compact */</span>
+.post-card-excerpt {
+  font-size: var(--text-base);  <span style="color: var(--text-muted);">/* 18px */</span>
+  line-height: 1.6;
+}</code></pre>
+            </div>
+            
+            <!-- Fluid Typography Alternative -->
+            <div style="margin-top: var(--space-8);">
+                <h4 style="font-family: var(--font-ui); font-size: var(--text-sm); font-weight: 500; color: var(--gold-primary); margin-bottom: var(--space-4); letter-spacing: var(--tracking-wider); text-transform: uppercase;">Fluid Alternative (Optional)</h4>
+                <p style="font-family: var(--font-body-primary); font-size: var(--text-base); color: var(--text-secondary); margin-bottom: var(--space-4); max-width: var(--width-prose);">For smooth scaling without breakpoint jumps, use CSS <code style="font-family: var(--font-mono); font-size: 0.9em; background: var(--bg-secondary); padding: 2px 6px; border-radius: 3px;">clamp()</code>. The text will fluidly scale between min and max values.</p>
+                
+                <div class="component-card">
+                    <pre style="font-family: var(--font-mono); font-size: var(--text-sm); color: var(--text-secondary); line-height: var(--leading-loose); overflow-x: auto; white-space: pre-wrap;"><code><span style="color: var(--gold-primary);">/* Fluid body: 18px → 24px */</span>
+--text-body: clamp(1.125rem, 1rem + 0.75vw, 1.5rem);
+
+<span style="color: var(--gold-primary);">/* Fluid display: 32px → 56px */</span>
+--text-display: clamp(2rem, 1.5rem + 2vw, 3.5rem);</code></pre>
+                </div>
+            </div>
+        </div>
+        
+        <div class="subsection">
+            <h3 class="subsection-title">Type Scale</h3>
+            <p class="subsection-desc">A modular scale from 11px to 56px. Use display font for larger sizes, body font for base-xl, UI font for xs-sm.</p>
+            
+            <div class="type-scale">
+                <div class="type-scale-item">
+                    <span class="type-scale-label">5xl / 56px</span>
+                    <span class="type-scale-sample xxxxxl">Atlas Meridia</span>
+                </div>
+                <div class="type-scale-item">
+                    <span class="type-scale-label">4xl / 40px</span>
+                    <span class="type-scale-sample xxxxl">Atlas Meridia</span>
+                </div>
+                <div class="type-scale-item">
+                    <span class="type-scale-label">3xl / 32px</span>
+                    <span class="type-scale-sample xxxl">Atlas Meridia</span>
+                </div>
+                <div class="type-scale-item">
+                    <span class="type-scale-label">2xl / 24px</span>
+                    <span class="type-scale-sample xxl">Atlas Meridia</span>
+                </div>
+                <div class="type-scale-item">
+                    <span class="type-scale-label">xl / 22px</span>
+                    <span class="type-scale-sample xl">Atlas Meridia</span>
+                </div>
+                <div class="type-scale-item">
+                    <span class="type-scale-label">lg / 20px</span>
+                    <span class="type-scale-sample lg">Atlas Meridia</span>
+                </div>
+                <div class="type-scale-item" style="background: rgba(201, 169, 97, 0.1); border-left: 3px solid var(--gold-primary); padding-left: var(--space-4); margin-left: calc(-1 * var(--space-4));">
+                    <span class="type-scale-label" style="color: var(--gold-primary);">body / 20px ★</span>
+                    <span class="type-scale-sample" style="font-size: var(--text-body); font-family: var(--font-body-primary);">Article body copy</span>
+                </div>
+                <div class="type-scale-item">
+                    <span class="type-scale-label">base / 18px</span>
+                    <span class="type-scale-sample base">Atlas Meridia</span>
+                </div>
+                <div class="type-scale-item">
+                    <span class="type-scale-label">sm / 13px</span>
+                    <span class="type-scale-sample sm">Atlas Meridia</span>
+                </div>
+                <div class="type-scale-item">
+                    <span class="type-scale-label">xs / 11px</span>
+                    <span class="type-scale-sample xs">Atlas Meridia</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="subsection">
+            <h3 class="subsection-title">Letter Spacing (Tracking)</h3>
+            <p class="subsection-desc">Control horizontal rhythm and emphasis. Wider tracking for small caps and labels, tighter for large display text.</p>
+            
+            <div style="display: grid; gap: var(--space-4);">
+                <div class="component-card">
+                    <span class="label" style="margin-bottom: var(--space-2); display: block;">tracking-tight · -0.02em</span>
+                    <p style="font-family: var(--font-display); font-size: var(--text-3xl); letter-spacing: var(--tracking-tight); color: var(--text-primary);">Large Display Headlines</p>
+                </div>
+                <div class="component-card">
+                    <span class="label" style="margin-bottom: var(--space-2); display: block;">tracking-normal · 0</span>
+                    <p style="font-family: var(--font-body-primary); font-size: var(--text-base); letter-spacing: var(--tracking-normal); color: var(--text-primary);">Standard body text uses normal letter spacing for optimal readability at paragraph length.</p>
+                </div>
+                <div class="component-card">
+                    <span class="label" style="margin-bottom: var(--space-2); display: block;">tracking-wide · 0.05em</span>
+                    <p style="font-family: var(--font-ui); font-size: var(--text-sm); letter-spacing: var(--tracking-wide); color: var(--text-primary);">Subheadings and Medium Emphasis</p>
+                </div>
+                <div class="component-card">
+                    <span class="label" style="margin-bottom: var(--space-2); display: block;">tracking-wider · 0.1em</span>
+                    <p style="font-family: var(--font-ui); font-size: var(--text-xs); letter-spacing: var(--tracking-wider); text-transform: uppercase; color: var(--text-primary);">Section Labels and Navigation</p>
+                </div>
+                <div class="component-card">
+                    <span class="label" style="margin-bottom: var(--space-2); display: block;">tracking-widest · 0.2em</span>
+                    <p style="font-family: var(--font-ui); font-size: var(--text-xs); letter-spacing: var(--tracking-widest); text-transform: uppercase; color: var(--text-muted);">Spaced Caps · Decorative Use</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="subsection">
+            <h3 class="subsection-title">Line Height (Leading)</h3>
+            <p class="subsection-desc">Vertical rhythm affects readability and density. Tighter for headlines, looser for body text.</p>
+            
+            <div style="display: grid; gap: var(--space-4);">
+                <div class="component-card">
+                    <span class="label" style="margin-bottom: var(--space-2); display: block;">leading-tight · 1.2</span>
+                    <p style="font-family: var(--font-display); font-size: var(--text-2xl); line-height: var(--leading-tight); color: var(--text-primary); max-width: var(--width-prose);">Headlines and display text benefit from tight leading to create visual cohesion across multiple lines.</p>
+                </div>
+                <div class="component-card">
+                    <span class="label" style="margin-bottom: var(--space-2); display: block;">leading-snug · 1.4</span>
+                    <p style="font-family: var(--font-body-primary); font-size: var(--text-lg); line-height: var(--leading-snug); color: var(--text-primary); max-width: var(--width-prose);">Subheadings and introductory paragraphs use snug leading to balance density with readability.</p>
+                </div>
+                <div class="component-card">
+                    <span class="label" style="margin-bottom: var(--space-2); display: block;">leading-normal · 1.6</span>
+                    <p style="font-family: var(--font-body-primary); font-size: var(--text-base); line-height: var(--leading-normal); color: var(--text-primary); max-width: var(--width-prose);">Standard body copy at base size. This line height provides comfortable reading for extended passages without feeling too open or too dense.</p>
+                </div>
+                <div class="component-card">
+                    <span class="label" style="margin-bottom: var(--space-2); display: block;">leading-relaxed · 1.8</span>
+                    <p style="font-family: var(--font-body-primary); font-size: var(--text-base); line-height: var(--leading-relaxed); color: var(--text-primary); max-width: var(--width-prose);">More generous vertical space for situations where increased readability is prioritized, such as instructional content or accessibility considerations.</p>
+                </div>
+                <div class="component-card">
+                    <span class="label" style="margin-bottom: var(--space-2); display: block;">leading-loose · 2.0</span>
+                    <p style="font-family: var(--font-ui); font-size: var(--text-sm); line-height: var(--leading-loose); color: var(--text-primary); max-width: var(--width-prose);">Maximum spacing for small text, lists, or content that benefits from clear separation between lines.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Voice & Tone Section -->
+    <section class="guide-section" id="voice">
+        <div class="section-header">
+            <span class="section-number">05</span>
+            <h2 class="section-title">Voice & Tone</h2>
+        </div>
+        
+        <div class="subsection">
+            <h3 class="subsection-title">Brand Voice</h3>
+            <p class="subsection-desc">Our voice is the consistent personality that comes through in all communications. It doesn't change—only the tone adapts to context.</p>
+            
+            <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-4);">
+                <div class="component-card" style="text-align: center;">
+                    <span style="font-family: var(--font-display); font-size: var(--text-3xl); color: var(--gold-primary); display: block; margin-bottom: var(--space-3);">✦</span>
+                    <h4 style="font-family: var(--font-display); font-size: var(--text-lg); font-weight: 500; color: var(--text-primary); margin-bottom: var(--space-2);">Clear</h4>
+                    <p style="font-family: var(--font-body-primary); font-size: var(--text-sm); color: var(--text-muted);">We favor clarity above all. Complex ideas, simple language.</p>
+                </div>
+                <div class="component-card" style="text-align: center;">
+                    <span style="font-family: var(--font-display); font-size: var(--text-3xl); color: var(--gold-primary); display: block; margin-bottom: var(--space-3);">◈</span>
+                    <h4 style="font-family: var(--font-display); font-size: var(--text-lg); font-weight: 500; color: var(--text-primary); margin-bottom: var(--space-2);">Considered</h4>
+                    <p style="font-family: var(--font-body-primary); font-size: var(--text-sm); color: var(--text-muted);">Every word earns its place. We edit ruthlessly.</p>
+                </div>
+                <div class="component-card" style="text-align: center;">
+                    <span style="font-family: var(--font-display); font-size: var(--text-3xl); color: var(--gold-primary); display: block; margin-bottom: var(--space-3);">◇</span>
+                    <h4 style="font-family: var(--font-display); font-size: var(--text-lg); font-weight: 500; color: var(--text-primary); margin-bottom: var(--space-2);">Warm</h4>
+                    <p style="font-family: var(--font-body-primary); font-size: var(--text-sm); color: var(--text-muted);">Intellectual but never cold. We write for humans.</p>
+                </div>
+                <div class="component-card" style="text-align: center;">
+                    <span style="font-family: var(--font-display); font-size: var(--text-3xl); color: var(--gold-primary); display: block; margin-bottom: var(--space-3);">◎</span>
+                    <h4 style="font-family: var(--font-display); font-size: var(--text-lg); font-weight: 500; color: var(--text-primary); margin-bottom: var(--space-2);">Genuine</h4>
+                    <p style="font-family: var(--font-body-primary); font-size: var(--text-sm); color: var(--text-muted);">No jargon, no hype. We say what we mean.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="subsection">
+            <h3 class="subsection-title">Tone by Context</h3>
+            <p class="subsection-desc">While voice stays constant, tone shifts based on situation. Here's how we adapt.</p>
+            
+            <div style="display: grid; gap: var(--space-4); max-width: var(--width-content);">
+                <div class="component-card" style="display: grid; grid-template-columns: 140px 1fr; gap: var(--space-4); align-items: start;">
+                    <span class="label label-gold">Website / Blog</span>
+                    <div>
+                        <p style="font-family: var(--font-body-primary); font-size: var(--text-base); color: var(--text-secondary); margin-bottom: var(--space-2);">Thoughtful and exploratory. We're sharing discoveries, not selling.</p>
+                        <p style="font-family: var(--font-ui); font-size: var(--text-xs); color: var(--text-muted);"><em>Example:</em> "We've been exploring how knowledge graphs might reshape personal note-taking—here's what we've learned."</p>
+                    </div>
+                </div>
+                <div class="component-card" style="display: grid; grid-template-columns: 140px 1fr; gap: var(--space-4); align-items: start;">
+                    <span class="label label-gold">Social Media</span>
+                    <div>
+                        <p style="font-family: var(--font-body-primary); font-size: var(--text-base); color: var(--text-secondary); margin-bottom: var(--space-2);">Conversational but still substantive. Share insights, not noise.</p>
+                        <p style="font-family: var(--font-ui); font-size: var(--text-xs); color: var(--text-muted);"><em>Example:</em> "Interesting finding: the best AI prompts read like good briefs to a human collaborator."</p>
+                    </div>
+                </div>
+                <div class="component-card" style="display: grid; grid-template-columns: 140px 1fr; gap: var(--space-4); align-items: start;">
+                    <span class="label label-gold">Documentation</span>
+                    <div>
+                        <p style="font-family: var(--font-body-primary); font-size: var(--text-base); color: var(--text-secondary); margin-bottom: var(--space-2);">Direct and helpful. Clarity is kindness.</p>
+                        <p style="font-family: var(--font-ui); font-size: var(--text-xs); color: var(--text-muted);"><em>Example:</em> "To get started, create a new project folder and run the setup script."</p>
+                    </div>
+                </div>
+                <div class="component-card" style="display: grid; grid-template-columns: 140px 1fr; gap: var(--space-4); align-items: start;">
+                    <span class="label label-gold">Email</span>
+                    <div>
+                        <p style="font-family: var(--font-body-primary); font-size: var(--text-base); color: var(--text-secondary); margin-bottom: var(--space-2);">Personal and respectful of time. Get to the point gracefully.</p>
+                        <p style="font-family: var(--font-ui); font-size: var(--text-xs); color: var(--text-muted);"><em>Example:</em> "Thanks for reaching out. I'd love to hear more about what you're building."</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="subsection">
+            <h3 class="subsection-title">Writing Guidelines</h3>
+            <p class="subsection-desc">Practical rules for writing in the ATLAS Meridia voice.</p>
+            
+            <div class="component-grid">
+                <div class="component-card">
+                    <span class="label label-gold" style="display: block; margin-bottom: var(--space-4);">Do</span>
+                    <ul style="font-family: var(--font-body-primary); font-size: var(--text-sm); color: var(--text-secondary); line-height: var(--leading-relaxed); list-style: none;">
+                        <li style="margin-bottom: var(--space-2);">✓ Use active voice</li>
+                        <li style="margin-bottom: var(--space-2);">✓ Lead with the insight, not the preamble</li>
+                        <li style="margin-bottom: var(--space-2);">✓ Embrace contractions (we're, it's, you'll)</li>
+                        <li style="margin-bottom: var(--space-2);">✓ Use "we" for the company, "you" for the reader</li>
+                        <li style="margin-bottom: var(--space-2);">✓ Choose specific words over vague ones</li>
+                        <li>✓ End with something useful or thought-provoking</li>
+                    </ul>
+                </div>
+                <div class="component-card">
+                    <span class="label label-muted" style="display: block; margin-bottom: var(--space-4);">Don't</span>
+                    <ul style="font-family: var(--font-body-primary); font-size: var(--text-sm); color: var(--text-secondary); line-height: var(--leading-relaxed); list-style: none;">
+                        <li style="margin-bottom: var(--space-2);">✗ Use buzzwords or jargon without purpose</li>
+                        <li style="margin-bottom: var(--space-2);">✗ Overuse exclamation points!</li>
+                        <li style="margin-bottom: var(--space-2);">✗ Start sentences with "So," or "Basically,"</li>
+                        <li style="margin-bottom: var(--space-2);">✗ Hedge excessively (maybe, perhaps, might)</li>
+                        <li style="margin-bottom: var(--space-2);">✗ Use "leverage" when "use" works fine</li>
+                        <li>✗ Pad with filler phrases ("In order to," "It is important to note")</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Spacing Section -->
+    <section class="guide-section" id="spacing">
+        <div class="section-header">
+            <span class="section-number">06</span>
+            <h2 class="section-title">Spacing</h2>
+        </div>
+        
+        <div class="subsection">
+            <h3 class="subsection-title">Spacing Scale</h3>
+            <p class="subsection-desc">An 8px-based scale with some 4px increments for fine-tuning. Use consistently for padding, margins, and gaps.</p>
+            
+            <div class="spacing-demo">
+                <div class="spacing-item">
+                    <div class="spacing-block" style="width: 4px;"></div>
+                    <span>space-1 (4px)</span>
+                </div>
+                <div class="spacing-item">
+                    <div class="spacing-block" style="width: 8px;"></div>
+                    <span>space-2 (8px)</span>
+                </div>
+                <div class="spacing-item">
+                    <div class="spacing-block" style="width: 12px;"></div>
+                    <span>space-3 (12px)</span>
+                </div>
+                <div class="spacing-item">
+                    <div class="spacing-block" style="width: 16px;"></div>
+                    <span>space-4 (16px)</span>
+                </div>
+                <div class="spacing-item">
+                    <div class="spacing-block" style="width: 24px;"></div>
+                    <span>space-5 (24px)</span>
+                </div>
+                <div class="spacing-item">
+                    <div class="spacing-block" style="width: 32px;"></div>
+                    <span>space-6 (32px)</span>
+                </div>
+                <div class="spacing-item">
+                    <div class="spacing-block" style="width: 48px;"></div>
+                    <span>space-8 (48px)</span>
+                </div>
+                <div class="spacing-item">
+                    <div class="spacing-block" style="width: 64px;"></div>
+                    <span>space-10 (64px)</span>
+                </div>
+                <div class="spacing-item">
+                    <div class="spacing-block" style="width: 96px;"></div>
+                    <span>space-12 (96px)</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="subsection">
+            <h3 class="subsection-title">Content Widths</h3>
+            <p class="subsection-desc">Prose content should be constrained for optimal reading. Use these max-widths consistently.</p>
+            
+            <div style="margin-top: var(--space-6);">
+                <div style="max-width: var(--width-prose); background: var(--cream-400); height: 8px; margin-bottom: var(--space-3); border-radius: 4px;"></div>
+                <p style="font-family: var(--font-ui); font-size: var(--text-xs); color: var(--navy-500); margin-bottom: var(--space-6);">Prose (38rem / ~65 characters) — Body text, articles, editorials</p>
+                
+                <div style="max-width: var(--width-prose-wide); background: var(--cream-400); height: 8px; margin-bottom: var(--space-3); border-radius: 4px;"></div>
+                <p style="font-family: var(--font-ui); font-size: var(--text-xs); color: var(--navy-500); margin-bottom: var(--space-6);">Prose Wide (48rem) — Extended content, wider layouts</p>
+                
+                <div style="max-width: var(--width-content); background: var(--cream-400); height: 8px; margin-bottom: var(--space-3); border-radius: 4px;"></div>
+                <p style="font-family: var(--font-ui); font-size: var(--text-xs); color: var(--navy-500);">Content (64rem) — Grid layouts, card containers</p>
+            </div>
+        </div>
+        
+        <div class="subsection">
+            <h3 class="subsection-title">Shadows</h3>
+            <p class="subsection-desc">Subtle elevation system using navy-tinted shadows. Use sparingly to create visual hierarchy.</p>
+            
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-6); margin-top: var(--space-6);">
+                <div style="background: var(--bg-elevated); padding: var(--space-6); border-radius: var(--radius-md); box-shadow: var(--shadow-sm); text-align: center;">
+                    <p style="font-family: var(--font-ui); font-size: var(--text-sm); font-weight: 500; color: var(--text-primary); margin-bottom: var(--space-2);">shadow-sm</p>
+                    <p style="font-family: var(--font-mono); font-size: var(--text-xs); color: var(--text-muted);">0 1px 2px</p>
+                    <p style="font-family: var(--font-ui); font-size: var(--text-xs); color: var(--text-muted); margin-top: var(--space-2);">Subtle lift for cards</p>
+                </div>
+                <div style="background: var(--bg-elevated); padding: var(--space-6); border-radius: var(--radius-md); box-shadow: var(--shadow-md); text-align: center;">
+                    <p style="font-family: var(--font-ui); font-size: var(--text-sm); font-weight: 500; color: var(--text-primary); margin-bottom: var(--space-2);">shadow-md</p>
+                    <p style="font-family: var(--font-mono); font-size: var(--text-xs); color: var(--text-muted);">0 4px 12px</p>
+                    <p style="font-family: var(--font-ui); font-size: var(--text-xs); color: var(--text-muted); margin-top: var(--space-2);">Dropdowns, popovers</p>
+                </div>
+                <div style="background: var(--bg-elevated); padding: var(--space-6); border-radius: var(--radius-md); box-shadow: var(--shadow-lg); text-align: center;">
+                    <p style="font-family: var(--font-ui); font-size: var(--text-sm); font-weight: 500; color: var(--text-primary); margin-bottom: var(--space-2);">shadow-lg</p>
+                    <p style="font-family: var(--font-mono); font-size: var(--text-xs); color: var(--text-muted);">0 12px 32px</p>
+                    <p style="font-family: var(--font-ui); font-size: var(--text-xs); color: var(--text-muted); margin-top: var(--space-2);">Modals, dialogs</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="subsection">
+            <h3 class="subsection-title">Border Radius</h3>
+            <p class="subsection-desc">Minimal radius values for subtle softening. Sharp enough to feel precise, soft enough to feel approachable.</p>
+            
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-6); margin-top: var(--space-6);">
+                <div style="background: var(--gold-primary); height: 80px; border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center;">
+                    <div style="text-align: center;">
+                        <p style="font-family: var(--font-ui); font-size: var(--text-sm); font-weight: 500; color: var(--navy-800);">radius-sm</p>
+                        <p style="font-family: var(--font-mono); font-size: var(--text-xs); color: var(--navy-700);">2px</p>
+                    </div>
+                </div>
+                <div style="background: var(--gold-primary); height: 80px; border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center;">
+                    <div style="text-align: center;">
+                        <p style="font-family: var(--font-ui); font-size: var(--text-sm); font-weight: 500; color: var(--navy-800);">radius-md</p>
+                        <p style="font-family: var(--font-mono); font-size: var(--text-xs); color: var(--navy-700);">4px</p>
+                    </div>
+                </div>
+                <div style="background: var(--gold-primary); height: 80px; border-radius: var(--radius-lg); display: flex; align-items: center; justify-content: center;">
+                    <div style="text-align: center;">
+                        <p style="font-family: var(--font-ui); font-size: var(--text-sm); font-weight: 500; color: var(--navy-800);">radius-lg</p>
+                        <p style="font-family: var(--font-mono); font-size: var(--text-xs); color: var(--navy-700);">8px</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="subsection">
+            <h3 class="subsection-title">Transitions</h3>
+            <p class="subsection-desc">Three timing values for motion. Fast for micro-interactions, base for standard UI, slow for emphasis.</p>
+            
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-6); margin-top: var(--space-6);">
+                <div class="component-card" style="text-align: center;">
+                    <p style="font-family: var(--font-ui); font-size: var(--text-sm); font-weight: 500; color: var(--text-primary); margin-bottom: var(--space-2);">transition-fast</p>
+                    <p style="font-family: var(--font-mono); font-size: var(--text-xs); color: var(--text-muted); margin-bottom: var(--space-4);">150ms ease</p>
+                    <div style="width: 40px; height: 40px; background: var(--gold-primary); border-radius: var(--radius-md); margin: 0 auto; transition: transform 150ms ease, background 150ms ease; cursor: pointer;" onmouseover="this.style.transform='scale(1.1)'; this.style.background='var(--gold-light)';" onmouseout="this.style.transform='scale(1)'; this.style.background='var(--gold-primary)';"></div>
+                    <p style="font-family: var(--font-ui); font-size: var(--text-xs); color: var(--text-muted); margin-top: var(--space-3);">Hover states, toggles</p>
+                </div>
+                <div class="component-card" style="text-align: center;">
+                    <p style="font-family: var(--font-ui); font-size: var(--text-sm); font-weight: 500; color: var(--text-primary); margin-bottom: var(--space-2);">transition-base</p>
+                    <p style="font-family: var(--font-mono); font-size: var(--text-xs); color: var(--text-muted); margin-bottom: var(--space-4);">300ms ease</p>
+                    <div style="width: 40px; height: 40px; background: var(--gold-primary); border-radius: var(--radius-md); margin: 0 auto; transition: transform 300ms ease, background 300ms ease; cursor: pointer;" onmouseover="this.style.transform='scale(1.1)'; this.style.background='var(--gold-light)';" onmouseout="this.style.transform='scale(1)'; this.style.background='var(--gold-primary)';"></div>
+                    <p style="font-family: var(--font-ui); font-size: var(--text-xs); color: var(--text-muted); margin-top: var(--space-3);">Panel reveals, navigation</p>
+                </div>
+                <div class="component-card" style="text-align: center;">
+                    <p style="font-family: var(--font-ui); font-size: var(--text-sm); font-weight: 500; color: var(--text-primary); margin-bottom: var(--space-2);">transition-slow</p>
+                    <p style="font-family: var(--font-mono); font-size: var(--text-xs); color: var(--text-muted); margin-bottom: var(--space-4);">500ms ease</p>
+                    <div style="width: 40px; height: 40px; background: var(--gold-primary); border-radius: var(--radius-md); margin: 0 auto; transition: transform 500ms ease, background 500ms ease; cursor: pointer;" onmouseover="this.style.transform='scale(1.1)'; this.style.background='var(--gold-light)';" onmouseout="this.style.transform='scale(1)'; this.style.background='var(--gold-primary)';"></div>
+                    <p style="font-family: var(--font-ui); font-size: var(--text-xs); color: var(--text-muted); margin-top: var(--space-3);">Page transitions, modals</p>
+                </div>
+            </div>
+            <p style="font-family: var(--font-ui); font-size: var(--text-xs); color: var(--text-muted); text-align: center; margin-top: var(--space-4); font-style: italic;">Hover over the squares above to see each timing in action</p>
+        </div>
+    </section>
+    
+    <!-- Components Section -->
+    <section class="guide-section" id="components">
+        <div class="section-header">
+            <span class="section-number">07</span>
+            <h2 class="section-title">Components</h2>
+        </div>
+        
+        <div class="subsection">
+            <h3 class="subsection-title">Buttons</h3>
+            <p class="subsection-desc">Three button styles for different contexts. Primary for main CTAs, outline for secondary actions, ghost for dark backgrounds.</p>
+            
+            <div class="component-grid">
+                <div class="component-card">
+                    <span class="type-label">Light Background</span>
+                    <div style="display: flex; gap: var(--space-4); flex-wrap: wrap; margin-top: var(--space-4);">
+                        <button class="btn btn-primary">Primary Action</button>
+                        <button class="btn btn-outline">Secondary Action</button>
+                    </div>
+                </div>
+                <div class="component-card dark">
+                    <span class="type-label">Dark Background</span>
+                    <div style="display: flex; gap: var(--space-4); flex-wrap: wrap; margin-top: var(--space-4);">
+                        <a href="#" class="btn btn-ghost">Explore More →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="subsection">
+            <h3 class="subsection-title">Links</h3>
+            <p class="subsection-desc">Inline links use gold underlines. Subtle links for navigation and secondary text.</p>
+            
+            <div class="component-card link-examples">
+                <a href="#" class="link-inline">Inline link with gold underline</a>
+                <a href="#" class="link-subtle">Subtle navigation link</a>
+            </div>
+        </div>
+        
+        <div class="subsection">
+            <h3 class="subsection-title">Labels</h3>
+            <p class="subsection-desc">Section labels and metadata use DM Sans with wide letter-spacing.</p>
+            
+            <div class="component-grid">
+                <div class="component-card">
+                    <span class="label label-gold">Section Label</span>
+                    <p style="margin-top: var(--space-2); font-family: var(--font-ui); font-size: var(--text-xs); color: var(--navy-400);">Gold labels for section headers and emphasis</p>
+                </div>
+                <div class="component-card">
+                    <span class="label label-muted">Meta Information</span>
+                    <p style="margin-top: var(--space-2); font-family: var(--font-ui); font-size: var(--text-xs); color: var(--navy-400);">Muted labels for secondary information</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Motion Section -->
+    <section class="guide-section" id="motion">
+        <div class="section-header">
+            <span class="section-number">08</span>
+            <h2 class="section-title">Motion</h2>
+        </div>
+        
+        <div class="subsection">
+            <h3 class="subsection-title">Timing</h3>
+            <p class="subsection-desc">Three timing presets. Use fast for micro-interactions, base for most transitions, slow for larger animations. Hover to preview.</p>
+            
+            <div class="motion-demo">
+                <div class="motion-item">
+                    <div class="motion-box motion-fast"></div>
+                    <span>Fast — 150ms</span>
+                </div>
+                <div class="motion-item">
+                    <div class="motion-box motion-base"></div>
+                    <span>Base — 300ms</span>
+                </div>
+                <div class="motion-item">
+                    <div class="motion-box motion-slow"></div>
+                    <span>Slow — 500ms</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="subsection">
+            <h3 class="subsection-title">Easing</h3>
+            <p class="subsection-desc">Use standard ease for most transitions. The brand's wave motifs should use ease-in-out for smooth oscillation.</p>
+            
+            <div class="component-card">
+                <code style="font-family: monospace; font-size: var(--text-sm); color: var(--navy-600);">
+                    transition: all 300ms ease;<br>
+                    animation: wave 8s ease-in-out infinite;
+                </code>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Ghost Theme Elements Section -->
+    <section class="guide-section" id="ghost">
+        <div class="section-header">
+            <span class="section-number">09</span>
+            <h2 class="section-title">Ghost Theme Elements</h2>
+        </div>
+        
+        <p class="subsection-desc" style="max-width: var(--width-prose); margin-bottom: var(--space-8);">Ghost CMS generates specific HTML structures for content cards, membership features, and page templates. These guidelines ensure consistent ATLAS Meridia styling across all Ghost-generated elements.</p>
+        
+        <!-- Content Cards -->
+        <div class="subsection">
+            <h3 class="subsection-title">Content Cards</h3>
+            <p class="subsection-desc">Ghost's editor produces cards with <code style="font-family: monospace; font-size: 0.9em; background: var(--bg-secondary); padding: 2px 6px; border-radius: 3px;">.kg-*</code> classes. Style these to match our brand aesthetic.</p>
+            
+            <!-- Bookmark Card -->
+            <div class="component-card" style="margin-bottom: var(--space-4);">
+                <span class="label label-gold" style="display: block; margin-bottom: var(--space-4);">Bookmark Card</span>
+                <div style="border: 1px solid var(--border-color); border-radius: 4px; overflow: hidden; display: flex; max-width: 600px;">
+                    <div style="flex: 1; padding: var(--space-4);">
+                        <p style="font-family: var(--font-body-primary); font-size: var(--text-base); font-weight: 600; color: var(--text-primary); margin-bottom: var(--space-2); line-height: var(--leading-snug);">The Art of Knowledge Architecture</p>
+                        <p style="font-family: var(--font-body-primary); font-size: var(--text-sm); color: var(--text-muted); line-height: var(--leading-normal); margin-bottom: var(--space-3);">How structured information systems can transform the way we think and create.</p>
+                        <div style="display: flex; align-items: center; gap: var(--space-2);">
+                            <span style="width: 16px; height: 16px; background: var(--gold-primary); border-radius: 2px;"></span>
+                            <span style="font-family: var(--font-ui); font-size: var(--text-xs); color: var(--text-muted);">atlasm.net</span>
+                        </div>
+                    </div>
+                    <div style="width: 140px; background: linear-gradient(135deg, var(--navy-700), var(--navy-800));"></div>
+                </div>
+                <p style="font-family: var(--font-ui); font-size: var(--text-xs); color: var(--text-muted); margin-top: var(--space-3);"><code style="font-family: monospace;">.kg-bookmark-card</code> — Rich link previews with title, description, and thumbnail</p>
+            </div>
+            
+            <!-- Callout Card -->
+            <div class="component-card" style="margin-bottom: var(--space-4);">
+                <span class="label label-gold" style="display: block; margin-bottom: var(--space-4);">Callout Card</span>
+                <div style="background: var(--bg-secondary); border-left: 3px solid var(--gold-primary); padding: var(--space-4); border-radius: 0 4px 4px 0; max-width: 500px;">
+                    <p style="font-family: var(--font-body-primary); font-size: var(--text-base); color: var(--text-primary); line-height: var(--leading-relaxed);">
+                        <span style="margin-right: var(--space-2);">💡</span>
+                        This approach works best when combined with systematic documentation practices.
+                    </p>
+                </div>
+                <p style="font-family: var(--font-ui); font-size: var(--text-xs); color: var(--text-muted); margin-top: var(--space-3);"><code style="font-family: monospace;">.kg-callout-card</code> — Highlighted information with optional emoji</p>
+            </div>
+            
+            <!-- Button Card -->
+            <div class="component-card" style="margin-bottom: var(--space-4);">
+                <span class="label label-gold" style="display: block; margin-bottom: var(--space-4);">Button Card</span>
+                <div style="text-align: center; padding: var(--space-4);">
+                    <a href="#" style="display: inline-block; background: var(--gold-primary); color: var(--navy-800); font-family: var(--font-ui); font-size: var(--text-sm); font-weight: 500; padding: var(--space-3) var(--space-6); border-radius: 4px; text-decoration: none;">Explore the Lab →</a>
+                </div>
+                <p style="font-family: var(--font-ui); font-size: var(--text-xs); color: var(--text-muted); margin-top: var(--space-3);"><code style="font-family: monospace;">.kg-button-card</code> — CTA buttons within post content</p>
+            </div>
+            
+            <!-- Toggle Card -->
+            <div class="component-card" style="margin-bottom: var(--space-4);">
+                <span class="label label-gold" style="display: block; margin-bottom: var(--space-4);">Toggle Card</span>
+                <div style="border: 1px solid var(--border-color); border-radius: 4px; max-width: 500px; overflow: hidden;">
+                    <div style="display: flex; align-items: center; justify-content: space-between; padding: var(--space-4); background: var(--bg-secondary); cursor: pointer;">
+                        <span style="font-family: var(--font-body-primary); font-weight: 500; color: var(--text-primary);">What tools does ATLAS Meridia use?</span>
+                        <span style="color: var(--gold-primary); font-size: var(--text-lg);">+</span>
+                    </div>
+                    <div style="padding: var(--space-4); border-top: 1px solid var(--border-subtle);">
+                        <p style="font-family: var(--font-body-primary); font-size: var(--text-sm); color: var(--text-secondary); line-height: var(--leading-relaxed);">We work with Obsidian for knowledge management, Claude for AI collaboration, and a variety of creative tools including Midjourney and p5.js for generative work.</p>
+                    </div>
+                </div>
+                <p style="font-family: var(--font-ui); font-size: var(--text-xs); color: var(--text-muted); margin-top: var(--space-3);"><code style="font-family: monospace;">.kg-toggle-card</code> — Collapsible FAQ-style content</p>
+            </div>
+            
+            <!-- File Card -->
+            <div class="component-card">
+                <span class="label label-gold" style="display: block; margin-bottom: var(--space-4);">File Card</span>
+                <div style="display: flex; align-items: center; gap: var(--space-4); padding: var(--space-4); border: 1px solid var(--border-color); border-radius: 4px; max-width: 400px;">
+                    <div style="width: 48px; height: 48px; background: var(--navy-700); border-radius: 4px; display: flex; align-items: center; justify-content: center;">
+                        <span style="font-family: var(--font-ui); font-size: var(--text-xs); font-weight: 600; color: var(--cream-500);">PDF</span>
+                    </div>
+                    <div style="flex: 1;">
+                        <p style="font-family: var(--font-body-primary); font-weight: 500; color: var(--text-primary); margin-bottom: 2px;">Brand Guidelines v1.0</p>
+                        <p style="font-family: var(--font-ui); font-size: var(--text-xs); color: var(--text-muted);">2.4 MB</p>
+                    </div>
+                    <span style="color: var(--gold-primary);">↓</span>
+                </div>
+                <p style="font-family: var(--font-ui); font-size: var(--text-xs); color: var(--text-muted); margin-top: var(--space-3);"><code style="font-family: monospace;">.kg-file-card</code> — Downloadable file attachments</p>
+            </div>
+        </div>
+        
+        <!-- Image Width Variants -->
+        <div class="subsection">
+            <h3 class="subsection-title">Image Width Variants</h3>
+            <p class="subsection-desc">Ghost images can break out of the content container for visual impact. Define negative margins for wide/full variants.</p>
+            
+            <div style="display: grid; gap: var(--space-4);">
+                <div class="component-card">
+                    <div style="display: flex; align-items: center; gap: var(--space-4);">
+                        <div style="width: 200px; height: 80px; background: linear-gradient(135deg, var(--navy-600), var(--navy-800)); border-radius: 4px; display: flex; align-items: center; justify-content: center;">
+                            <span style="font-family: var(--font-ui); font-size: var(--text-xs); color: var(--cream-500);">Normal</span>
+                        </div>
+                        <div>
+                            <p style="font-family: var(--font-ui); font-size: var(--text-sm); font-weight: 500; color: var(--text-primary);"><code style="font-family: monospace;">.kg-width-normal</code></p>
+                            <p style="font-family: var(--font-ui); font-size: var(--text-xs); color: var(--text-muted);">Contained within prose width (~38rem)</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="component-card">
+                    <div style="display: flex; align-items: center; gap: var(--space-4);">
+                        <div style="width: 280px; height: 80px; background: linear-gradient(135deg, var(--navy-600), var(--navy-800)); border-radius: 4px; display: flex; align-items: center; justify-content: center;">
+                            <span style="font-family: var(--font-ui); font-size: var(--text-xs); color: var(--cream-500);">Wide</span>
+                        </div>
+                        <div>
+                            <p style="font-family: var(--font-ui); font-size: var(--text-sm); font-weight: 500; color: var(--text-primary);"><code style="font-family: monospace;">.kg-width-wide</code></p>
+                            <p style="font-family: var(--font-ui); font-size: var(--text-xs); color: var(--text-muted);">Breaks out to ~85vw with negative margins</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="component-card">
+                    <div style="display: flex; align-items: center; gap: var(--space-4);">
+                        <div style="width: 100%; height: 80px; background: linear-gradient(135deg, var(--navy-600), var(--navy-800)); border-radius: 0; display: flex; align-items: center; justify-content: center;">
+                            <span style="font-family: var(--font-ui); font-size: var(--text-xs); color: var(--cream-500);">Full</span>
+                        </div>
+                    </div>
+                    <p style="font-family: var(--font-ui); font-size: var(--text-sm); font-weight: 500; color: var(--text-primary); margin-top: var(--space-3);"><code style="font-family: monospace;">.kg-width-full</code></p>
+                    <p style="font-family: var(--font-ui); font-size: var(--text-xs); color: var(--text-muted);">Full viewport width (100vw), no border radius</p>
+                </div>
+            </div>
+            
+            <div class="component-card" style="margin-top: var(--space-4);">
+                <span class="type-label">CSS Implementation</span>
+                <pre style="font-family: monospace; font-size: var(--text-xs); color: var(--text-secondary); margin-top: var(--space-3); line-height: var(--leading-relaxed); overflow-x: auto; white-space: pre-wrap;"><code>.kg-width-wide {
+  position: relative;
+  width: 85vw;
+  min-width: 100%;
+  margin: auto calc(50% - 50vw);
+  transform: translateX(calc(50vw - 50%));
+}
+
+.kg-width-full {
+  position: relative;
+  width: 100vw;
+  left: 50%;
+  margin-left: -50vw;
+}</code></pre>
+            </div>
+        </div>
+        
+        <!-- Blockquotes -->
+        <div class="subsection">
+            <h3 class="subsection-title">Blockquotes</h3>
+            <p class="subsection-desc">Two blockquote styles for different emphasis levels.</p>
+            
+            <div class="component-grid">
+                <div class="component-card">
+                    <span class="label label-gold" style="display: block; margin-bottom: var(--space-4);">Standard Quote</span>
+                    <blockquote style="border-left: 3px solid var(--gold-primary); padding-left: var(--space-4); margin: 0;">
+                        <p style="font-family: var(--font-body-primary); font-size: var(--text-lg); font-style: italic; color: var(--text-primary); line-height: var(--leading-relaxed);">"The best way to predict the future is to invent it."</p>
+                    </blockquote>
+                    <p style="font-family: var(--font-ui); font-size: var(--text-xs); color: var(--text-muted); margin-top: var(--space-3);"><code style="font-family: monospace;">blockquote</code> — Left border accent</p>
+                </div>
+                
+                <div class="component-card">
+                    <span class="label label-gold" style="display: block; margin-bottom: var(--space-4);">Pull Quote (Alt)</span>
+                    <blockquote style="border: none; padding: var(--space-5); margin: 0; text-align: center; position: relative;">
+                        <span style="position: absolute; top: 0; left: 50%; transform: translateX(-50%); font-family: var(--font-display); font-size: var(--text-4xl); color: var(--gold-primary); opacity: 0.3; line-height: 1;">"</span>
+                        <p style="font-family: var(--font-display); font-size: var(--text-xl); font-weight: 300; color: var(--text-primary); line-height: var(--leading-snug);">Knowledge compounds. Systems scale. Craft endures.</p>
+                    </blockquote>
+                    <p style="font-family: var(--font-ui); font-size: var(--text-xs); color: var(--text-muted); margin-top: var(--space-3);"><code style="font-family: monospace;">.kg-blockquote-alt</code> — Centered display quote</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Gallery -->
+        <div class="subsection">
+            <h3 class="subsection-title">Gallery Card</h3>
+            <p class="subsection-desc">Multi-image galleries with responsive grid layout.</p>
+            
+            <div class="component-card">
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-2);">
+                    <div style="aspect-ratio: 4/3; background: linear-gradient(135deg, var(--navy-600), var(--navy-700)); border-radius: 4px;"></div>
+                    <div style="aspect-ratio: 4/3; background: linear-gradient(135deg, var(--navy-700), var(--navy-800)); border-radius: 4px;"></div>
+                    <div style="aspect-ratio: 4/3; background: linear-gradient(135deg, var(--navy-600), var(--navy-700)); border-radius: 4px;"></div>
+                </div>
+                <p style="font-family: var(--font-ui); font-size: var(--text-xs); color: var(--text-muted); margin-top: var(--space-3);"><code style="font-family: monospace;">.kg-gallery-card</code> — Uses <code style="font-family: monospace;">.kg-gallery-container</code>, <code style="font-family: monospace;">.kg-gallery-row</code>, <code style="font-family: monospace;">.kg-gallery-image</code></p>
+            </div>
+        </div>
+        
+        <!-- Membership UI -->
+        <div class="subsection">
+            <h3 class="subsection-title">Membership UI</h3>
+            <p class="subsection-desc">Subscription forms, CTAs, and member-specific content styling.</p>
+            
+            <!-- Subscribe Form -->
+            <div class="component-card" style="margin-bottom: var(--space-4);">
+                <span class="label label-gold" style="display: block; margin-bottom: var(--space-4);">Subscribe Form</span>
+                <div style="background: var(--navy-800); padding: var(--space-6); border-radius: 4px; max-width: 400px;">
+                    <p style="font-family: var(--font-display); font-size: var(--text-xl); font-weight: 300; color: var(--cream-200); margin-bottom: var(--space-2);">Stay in the loop</p>
+                    <p style="font-family: var(--font-body-primary); font-size: var(--text-sm); color: var(--cream-500); margin-bottom: var(--space-4);">Get occasional updates on experiments and discoveries.</p>
+                    <div style="display: flex; gap: var(--space-2);">
+                        <input type="email" placeholder="your@email.com" style="flex: 1; padding: var(--space-3); border: 1px solid var(--navy-600); background: var(--navy-700); color: var(--cream-200); border-radius: 4px; font-family: var(--font-ui); font-size: var(--text-sm);">
+                        <button style="padding: var(--space-3) var(--space-5); background: var(--gold-primary); color: var(--navy-800); border: none; border-radius: 4px; font-family: var(--font-ui); font-size: var(--text-sm); font-weight: 500; cursor: pointer;">Subscribe</button>
+                    </div>
+                </div>
+                <p style="font-family: var(--font-ui); font-size: var(--text-xs); color: var(--text-muted); margin-top: var(--space-3);"><code style="font-family: monospace;">data-members-form="subscribe"</code> — Email collection with Ghost Portal</p>
+            </div>
+            
+            <!-- Content CTA -->
+            <div class="component-card" style="margin-bottom: var(--space-4);">
+                <span class="label label-gold" style="display: block; margin-bottom: var(--space-4);">Content CTA (Upgrade Prompt)</span>
+                <div style="background: linear-gradient(135deg, var(--gold-dark), var(--gold-primary)); padding: var(--space-6); border-radius: 4px; text-align: center; max-width: 500px;">
+                    <p style="font-family: var(--font-display); font-size: var(--text-xl); font-weight: 400; color: var(--navy-800); margin-bottom: var(--space-2);">This post is for subscribers only</p>
+                    <p style="font-family: var(--font-body-primary); font-size: var(--text-sm); color: var(--navy-700); margin-bottom: var(--space-4);">Already a member? Sign in to continue reading.</p>
+                    <div style="display: flex; justify-content: center; gap: var(--space-3);">
+                        <a href="#" style="padding: var(--space-3) var(--space-5); background: var(--navy-800); color: var(--cream-200); border-radius: 4px; text-decoration: none; font-family: var(--font-ui); font-size: var(--text-sm); font-weight: 500;">Subscribe now</a>
+                        <a href="#" style="padding: var(--space-3) var(--space-5); background: transparent; color: var(--navy-700); border: 1px solid var(--navy-700); border-radius: 4px; text-decoration: none; font-family: var(--font-ui); font-size: var(--text-sm);">Sign in</a>
+                    </div>
+                </div>
+                <p style="font-family: var(--font-ui); font-size: var(--text-xs); color: var(--text-muted); margin-top: var(--space-3);"><code style="font-family: monospace;">.gh-post-upgrade-cta</code> — Appears on gated content</p>
+            </div>
+            
+            <!-- Pricing Tiers -->
+            <div class="component-card">
+                <span class="label label-gold" style="display: block; margin-bottom: var(--space-4);">Pricing Tiers</span>
+                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-4); max-width: 500px;">
+                    <div style="border: 1px solid var(--border-color); border-radius: 4px; padding: var(--space-5); text-align: center;">
+                        <p style="font-family: var(--font-ui); font-size: var(--text-xs); font-weight: 500; letter-spacing: var(--tracking-wider); text-transform: uppercase; color: var(--text-muted); margin-bottom: var(--space-2);">Free</p>
+                        <p style="font-family: var(--font-display); font-size: var(--text-3xl); font-weight: 300; color: var(--text-primary);">$0</p>
+                        <p style="font-family: var(--font-ui); font-size: var(--text-xs); color: var(--text-muted); margin-bottom: var(--space-4);">Forever</p>
+                        <button style="width: 100%; padding: var(--space-3); background: transparent; color: var(--text-primary); border: 1px solid var(--border-color); border-radius: 4px; font-family: var(--font-ui); font-size: var(--text-sm); cursor: pointer;">Sign up free</button>
+                    </div>
+                    <div style="border: 2px solid var(--gold-primary); border-radius: 4px; padding: var(--space-5); text-align: center; position: relative;">
+                        <span style="position: absolute; top: -10px; left: 50%; transform: translateX(-50%); background: var(--gold-primary); color: var(--navy-800); font-family: var(--font-ui); font-size: var(--text-xs); font-weight: 500; padding: 2px 8px; border-radius: 2px;">Recommended</span>
+                        <p style="font-family: var(--font-ui); font-size: var(--text-xs); font-weight: 500; letter-spacing: var(--tracking-wider); text-transform: uppercase; color: var(--gold-primary); margin-bottom: var(--space-2);">Member</p>
+                        <p style="font-family: var(--font-display); font-size: var(--text-3xl); font-weight: 300; color: var(--text-primary);">$9</p>
+                        <p style="font-family: var(--font-ui); font-size: var(--text-xs); color: var(--text-muted); margin-bottom: var(--space-4);">/month</p>
+                        <button style="width: 100%; padding: var(--space-3); background: var(--gold-primary); color: var(--navy-800); border: none; border-radius: 4px; font-family: var(--font-ui); font-size: var(--text-sm); font-weight: 500; cursor: pointer;">Subscribe</button>
+                    </div>
+                </div>
+                <p style="font-family: var(--font-ui); font-size: var(--text-xs); color: var(--text-muted); margin-top: var(--space-3);">Use <code style="font-family: monospace;">data-portal="signup/TIER_ID/monthly"</code> for direct tier links</p>
+            </div>
+        </div>
+        
+        <!-- Form States -->
+        <div class="subsection">
+            <h3 class="subsection-title">Form States</h3>
+            <p class="subsection-desc">Ghost adds CSS classes to forms during submission. Style loading, success, and error states.</p>
+            
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-4);">
+                <div class="component-card" style="text-align: center;">
+                    <span class="label label-muted" style="display: block; margin-bottom: var(--space-3);">Loading</span>
+                    <div style="display: inline-flex; align-items: center; gap: var(--space-2); padding: var(--space-3) var(--space-5); background: var(--gold-primary); border-radius: 4px; opacity: 0.7;">
+                        <span style="width: 12px; height: 12px; border: 2px solid var(--navy-800); border-top-color: transparent; border-radius: 50%; animation: spin 1s linear infinite;"></span>
+                        <span style="font-family: var(--font-ui); font-size: var(--text-sm); color: var(--navy-800);">Sending...</span>
+                    </div>
+                    <p style="font-family: var(--font-ui); font-size: var(--text-xs); color: var(--text-muted); margin-top: var(--space-3);"><code style="font-family: monospace;">.loading</code></p>
+                </div>
+                
+                <div class="component-card" style="text-align: center;">
+                    <span class="label label-muted" style="display: block; margin-bottom: var(--space-3);">Success</span>
+                    <div style="display: inline-flex; align-items: center; gap: var(--space-2); padding: var(--space-3) var(--space-5); background: var(--success); border-radius: 4px;">
+                        <span style="font-family: var(--font-ui); font-size: var(--text-sm); color: var(--cream-100);">✓ Check your inbox!</span>
+                    </div>
+                    <p style="font-family: var(--font-ui); font-size: var(--text-xs); color: var(--text-muted); margin-top: var(--space-3);"><code style="font-family: monospace;">.success</code></p>
+                </div>
+                
+                <div class="component-card" style="text-align: center;">
+                    <span class="label label-muted" style="display: block; margin-bottom: var(--space-3);">Error</span>
+                    <div style="display: inline-flex; align-items: center; gap: var(--space-2); padding: var(--space-3) var(--space-5); background: var(--error); border-radius: 4px;">
+                        <span style="font-family: var(--font-ui); font-size: var(--text-sm); color: var(--cream-100);">Something went wrong</span>
+                    </div>
+                    <p style="font-family: var(--font-ui); font-size: var(--text-xs); color: var(--text-muted); margin-top: var(--space-3);"><code style="font-family: monospace;">.error</code></p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Post Components -->
+        <div class="subsection">
+            <h3 class="subsection-title">Post Components</h3>
+            <p class="subsection-desc">Common elements for post listings, archives, and article pages.</p>
+            
+            <!-- Post Card -->
+            <div class="component-card" style="margin-bottom: var(--space-4);">
+                <span class="label label-gold" style="display: block; margin-bottom: var(--space-4);">Post Card</span>
+                <div style="display: grid; grid-template-columns: 200px 1fr; gap: var(--space-5); max-width: 600px; padding: var(--space-4); border: 1px solid var(--border-color); border-radius: 4px;">
+                    <div style="aspect-ratio: 16/10; background: linear-gradient(135deg, var(--navy-600), var(--navy-800)); border-radius: 4px;"></div>
+                    <div>
+                        <span style="font-family: var(--font-ui); font-size: var(--text-xs); font-weight: 500; letter-spacing: var(--tracking-wider); text-transform: uppercase; color: var(--gold-primary);">Experiments</span>
+                        <h4 style="font-family: var(--font-display); font-size: var(--text-xl); font-weight: 400; color: var(--text-primary); margin: var(--space-2) 0; line-height: var(--leading-snug);">Building Knowledge Systems with AI Assistance</h4>
+                        <p style="font-family: var(--font-body-primary); font-size: var(--text-sm); color: var(--text-muted); line-height: var(--leading-normal); margin-bottom: var(--space-3);">How Claude and Obsidian combine to create something greater than their parts.</p>
+                        <div style="display: flex; align-items: center; gap: var(--space-3);">
+                            <span style="font-family: var(--font-ui); font-size: var(--text-xs); color: var(--text-muted);">Dec 1, 2025</span>
+                            <span style="color: var(--border-color);">·</span>
+                            <span style="font-family: var(--font-ui); font-size: var(--text-xs); color: var(--text-muted);">5 min read</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Author Byline -->
+            <div class="component-card" style="margin-bottom: var(--space-4);">
+                <span class="label label-gold" style="display: block; margin-bottom: var(--space-4);">Author Byline</span>
+                <div style="display: flex; align-items: center; gap: var(--space-4);">
+                    <div style="width: 48px; height: 48px; background: linear-gradient(135deg, var(--navy-600), var(--navy-700)); border-radius: 50%;"></div>
+                    <div>
+                        <p style="font-family: var(--font-body-primary); font-weight: 500; color: var(--text-primary); margin-bottom: 2px;">Kenny Liu</p>
+                        <p style="font-family: var(--font-ui); font-size: var(--text-xs); color: var(--text-muted);">Founder, ATLAS Meridia · Dec 1, 2025</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Tag Badge -->
+            <div class="component-card" style="margin-bottom: var(--space-4);">
+                <span class="label label-gold" style="display: block; margin-bottom: var(--space-4);">Tag Badges</span>
+                <div style="display: flex; flex-wrap: wrap; gap: var(--space-2);">
+                    <a href="#" style="font-family: var(--font-ui); font-size: var(--text-xs); font-weight: 500; letter-spacing: var(--tracking-wide); text-transform: uppercase; color: var(--gold-primary); background: rgba(201, 169, 97, 0.1); padding: var(--space-1) var(--space-3); border-radius: 2px; text-decoration: none;">AI</a>
+                    <a href="#" style="font-family: var(--font-ui); font-size: var(--text-xs); font-weight: 500; letter-spacing: var(--tracking-wide); text-transform: uppercase; color: var(--text-muted); background: var(--bg-secondary); padding: var(--space-1) var(--space-3); border-radius: 2px; text-decoration: none;">Knowledge</a>
+                    <a href="#" style="font-family: var(--font-ui); font-size: var(--text-xs); font-weight: 500; letter-spacing: var(--tracking-wide); text-transform: uppercase; color: var(--text-muted); background: var(--bg-secondary); padding: var(--space-1) var(--space-3); border-radius: 2px; text-decoration: none;">Systems</a>
+                </div>
+                <p style="font-family: var(--font-ui); font-size: var(--text-xs); color: var(--text-muted); margin-top: var(--space-3);">Primary tag uses gold accent; secondary tags use muted style</p>
+            </div>
+            
+            <!-- Pagination -->
+            <div class="component-card">
+                <span class="label label-gold" style="display: block; margin-bottom: var(--space-4);">Pagination</span>
+                <div style="display: flex; align-items: center; justify-content: center; gap: var(--space-4);">
+                    <a href="#" style="font-family: var(--font-ui); font-size: var(--text-sm); color: var(--text-muted); text-decoration: none; display: flex; align-items: center; gap: var(--space-2);">← Newer</a>
+                    <span style="font-family: var(--font-ui); font-size: var(--text-sm); color: var(--text-muted);">Page 2 of 5</span>
+                    <a href="#" style="font-family: var(--font-ui); font-size: var(--text-sm); color: var(--text-primary); text-decoration: none; display: flex; align-items: center; gap: var(--space-2);">Older →</a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Navigation -->
+        <div class="subsection">
+            <h3 class="subsection-title">Navigation</h3>
+            <p class="subsection-desc">Header and footer navigation patterns.</p>
+            
+            <div class="component-card" style="margin-bottom: var(--space-4);">
+                <span class="label label-gold" style="display: block; margin-bottom: var(--space-4);">Header Navigation</span>
+                <div style="display: flex; align-items: center; justify-content: space-between; padding: var(--space-4) var(--space-6); background: var(--bg-secondary); border-radius: 4px;">
+                    <p style="font-family: var(--font-display); font-size: var(--text-lg); font-weight: 500; letter-spacing: 0.05em; color: var(--text-primary);">ATLAS <span style="font-weight: 300; font-style: italic;">Meridia</span></p>
+                    <nav style="display: flex; align-items: center; gap: var(--space-6);">
+                        <a href="#" style="font-family: var(--font-ui); font-size: var(--text-xs); font-weight: 500; letter-spacing: var(--tracking-wider); text-transform: uppercase; color: var(--text-primary); text-decoration: none;">Lab</a>
+                        <a href="#" style="font-family: var(--font-ui); font-size: var(--text-xs); font-weight: 500; letter-spacing: var(--tracking-wider); text-transform: uppercase; color: var(--text-muted); text-decoration: none;">About</a>
+                        <a href="#" style="font-family: var(--font-ui); font-size: var(--text-xs); font-weight: 500; letter-spacing: var(--tracking-wider); text-transform: uppercase; color: var(--text-muted); text-decoration: none;">Archive</a>
+                        <a href="#" style="font-family: var(--font-ui); font-size: var(--text-sm); color: var(--navy-800); background: var(--gold-primary); padding: var(--space-2) var(--space-4); border-radius: 4px; text-decoration: none;">Subscribe</a>
+                    </nav>
+                </div>
+            </div>
+            
+            <div class="component-card dark">
+                <span class="label label-gold" style="display: block; margin-bottom: var(--space-4);">Footer</span>
+                <div style="padding: var(--space-6); text-align: center;">
+                    <p style="font-family: var(--font-display); font-size: var(--text-lg); font-weight: 500; letter-spacing: 0.05em; color: var(--cream-500); margin-bottom: var(--space-4);">ATLAS <span style="font-weight: 300; font-style: italic;">Meridia</span></p>
+                    <nav style="display: flex; justify-content: center; gap: var(--space-6); margin-bottom: var(--space-4);">
+                        <a href="#" style="font-family: var(--font-ui); font-size: var(--text-xs); color: var(--cream-500); text-decoration: none;">Lab</a>
+                        <a href="#" style="font-family: var(--font-ui); font-size: var(--text-xs); color: var(--cream-500); text-decoration: none;">About</a>
+                        <a href="#" style="font-family: var(--font-ui); font-size: var(--text-xs); color: var(--cream-500); text-decoration: none;">Archive</a>
+                        <a href="#" style="font-family: var(--font-ui); font-size: var(--text-xs); color: var(--cream-500); text-decoration: none;">RSS</a>
+                    </nav>
+                    <p style="font-family: var(--font-ui); font-size: var(--text-xs); color: var(--navy-400);">© 2025 ATLAS Meridia LLC</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- CSS Class Reference -->
+        <div class="subsection">
+            <h3 class="subsection-title">Ghost Class Reference</h3>
+            <p class="subsection-desc">Quick reference for Ghost-generated CSS classes that need custom styling.</p>
+            
+            <div class="component-card">
+                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-4); font-family: monospace; font-size: var(--text-xs);">
+                    <div>
+                        <p style="font-weight: 600; color: var(--gold-primary); margin-bottom: var(--space-2);">Content Cards</p>
+                        <p style="color: var(--text-muted); line-height: var(--leading-loose);">
+                            .kg-image-card<br>
+                            .kg-gallery-card<br>
+                            .kg-bookmark-card<br>
+                            .kg-button-card<br>
+                            .kg-callout-card<br>
+                            .kg-toggle-card<br>
+                            .kg-file-card<br>
+                            .kg-audio-card<br>
+                            .kg-video-card<br>
+                            .kg-product-card<br>
+                            .kg-header-card<br>
+                            .kg-signup-card
+                        </p>
+                    </div>
+                    <div>
+                        <p style="font-weight: 600; color: var(--gold-primary); margin-bottom: var(--space-2);">Image Widths</p>
+                        <p style="color: var(--text-muted); line-height: var(--leading-loose);">
+                            .kg-width-normal<br>
+                            .kg-width-wide<br>
+                            .kg-width-full
+                        </p>
+                        
+                        <p style="font-weight: 600; color: var(--gold-primary); margin: var(--space-4) 0 var(--space-2);">Forms</p>
+                        <p style="color: var(--text-muted); line-height: var(--leading-loose);">
+                            [data-members-form]<br>
+                            [data-members-email]<br>
+                            .loading<br>
+                            .success<br>
+                            .error
+                        </p>
+                        
+                        <p style="font-weight: 600; color: var(--gold-primary); margin: var(--space-4) 0 var(--space-2);">Membership</p>
+                        <p style="color: var(--text-muted); line-height: var(--leading-loose);">
+                            .gh-post-upgrade-cta<br>
+                            [data-portal]
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer style="padding: var(--space-8) var(--space-6); background: var(--navy-800); text-align: center;">
+        <p style="font-family: var(--font-display); font-size: var(--text-sm); color: var(--cream-500); opacity: 0.7;">ATLAS Meridia LLC — Brand Style Guide v1.3</p>
+    </footer>
+    
+    <script>
+        // Theme Toggle Functionality
+        const themeToggle = document.getElementById('themeToggle');
+        const html = document.documentElement;
+        
+        // Check for saved theme preference or default to light
+        const savedTheme = localStorage.getItem('atlas-theme') || 'dark';
+        html.setAttribute('data-theme', savedTheme);
+        
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('atlas-theme', newTheme);
+        });
+        
+        // Keyboard accessibility for theme toggle
+        themeToggle.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                themeToggle.click();
+            }
+        });
+        
+        // Smooth scroll for nav links (fallback for browsers without CSS scroll-behavior)
+        document.querySelectorAll('.guide-nav a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+                
+                if (targetElement) {
+                    const navHeight = document.querySelector('.guide-nav').offsetHeight;
+                    const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - navHeight - 20;
+                    
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Active nav state on scroll
+        const sections = document.querySelectorAll('.guide-section[id]');
+        const navLinks = document.querySelectorAll('.guide-nav a[href^="#"]');
+        
+        function updateActiveNav() {
+            const navHeight = document.querySelector('.guide-nav').offsetHeight;
+            let current = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - navHeight - 100;
+                const sectionBottom = sectionTop + section.offsetHeight;
+                
+                if (window.pageYOffset >= sectionTop && window.pageYOffset < sectionBottom) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        }
+        
+        window.addEventListener('scroll', updateActiveNav);
+        updateActiveNav(); // Initial call
+    </script>
+</body>
+</html>
