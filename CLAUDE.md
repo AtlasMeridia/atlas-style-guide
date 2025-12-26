@@ -43,6 +43,11 @@ npx tsc --noEmit
   - `outlets.json` - Outlet configurations
 - `types/tokens.ts` - TypeScript interfaces
 - `public/archive/` - Historical HTML style guides (v1.1–v3.1)
+- `public/aesthetic/` - Reference images for visual direction
+- `aesthetic/` - Subjective design direction documentation (mood, motifs)
+  - `print/stationery.md` - Letterhead visual direction
+- `assets-local/` - **Git-ignored** large production files (PSDs, AIs)
+  - `stationery/` - Letterhead design assets (PSDs, AIs, PDFs)
 
 ## Key Files
 
@@ -100,9 +105,18 @@ This app uses the same ATLAS Meridia tokens it edits (dogfooding):
 ## Outlets
 
 - **Web**: Primary outlet, uses tokens directly as CSS custom properties
-- **Print**: Business cards and stationery via MOO (placeholder status)
+- **Print**: Business cards and stationery
   - CMYK color guidance provided
-  - Specific products TBD
+  - Stationery: half-letter (5.5"×8.5"), dotted grid, active
+
+## Aesthetic Direction
+
+The `aesthetic/` directory contains subjective, impressionistic design notes—mood, motifs, visual philosophy—distinct from the structured tokens in `data/tokens.json`.
+
+- `aesthetic/print/stationery.md` - Visual direction for letterhead (ginkgo, wrens, botanical line art)
+- `public/aesthetic/` - Reference images viewable via app
+
+Large production assets (PSDs, AIs) are stored in `assets-local/stationery/` (git-ignored)
 
 ## Related Projects
 
