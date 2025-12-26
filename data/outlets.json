@@ -43,14 +43,26 @@
       "type": "print",
       "description": "Letterhead, envelopes, and note cards",
       "specs": {
+        "dimensions": {
+          "letterhead": {
+            "width": "5.5in",
+            "height": "8.5in",
+            "format": "half-letter"
+          },
+          "envelope": {
+            "width": "varies",
+            "height": "varies"
+          }
+        },
+        "grid": {
+          "type": "dotted",
+          "spacing": "0.25in",
+          "color": "#CCCCCC"
+        },
         "colorSpace": "CMYK",
-        "resolution": "300dpi",
-        "vendor": {
-          "name": "MOO",
-          "notes": "Product selection TBD"
-        }
+        "resolution": "300dpi"
       },
-      "status": "placeholder"
+      "status": "active"
     }
   ]
 }
