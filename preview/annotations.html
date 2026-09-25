@@ -9,21 +9,21 @@
   html, body { margin: 0; height: 100%; background: var(--mn-ink); color: var(--mn-paper); font-family: var(--font-mono); }
   body { padding: 22px; display: flex; flex-direction: column; gap: 14px; }
   .wrap { display: grid; grid-template-columns: 56px 1fr 220px; gap: 0; border: 1px solid var(--mn-hairline); flex: 1; }
-  .gutter { border-right: 1px solid var(--mn-hairline); padding: 16px 0; display: flex; flex-direction: column; gap: 14px; align-items: center; font-size: 10px; color: var(--mn-muted); letter-spacing: 0.1em; }
+  .gutter { border-right: 1px solid var(--mn-hairline); padding: 16px 0; display: flex; flex-direction: column; gap: 14px; align-items: center; font-size: var(--text-2xs); color: var(--mn-muted); letter-spacing: 0.1em; }
   .gutter .n { color: var(--mn-rust); }
   .gutter .mark { color: var(--mn-acid); font-size: 14px; }
 
   .body { padding: 16px 22px; font-family: 'Fraunces', serif; font-size: 16px; line-height: 1.55; color: var(--mn-paper); border-right: 1px solid var(--mn-hairline); }
   .body p { margin: 0 0 10px; }
   .body p.b1 { font-size: 22px; font-weight: 400; font-variation-settings: 'opsz' 144; line-height: 1.35; }
-  .body p.b1::first-letter { font-weight: 900; font-size: 1.2em; color: var(--mn-acid); }
-  .body p em { color: var(--mn-acid); font-style: normal; }
+  .body p.b1::first-letter { font-weight: 900; font-size: 1.2em; color: var(--mn-rust); }
+  .body p em { color: var(--accent-text); font-style: normal; }
   .body p s { color: var(--mn-rust); text-decoration: line-through; text-decoration-thickness: 1px; }
   .body p .ins { color: var(--mn-paper); background: rgba(43,224,200,0.12); padding: 0 2px; border-bottom: 1px solid var(--mn-acid); }
   .body p .cut { background: var(--mn-oxblood); color: var(--mn-paper); padding: 0 2px; }
 
   .notes { padding: 16px 16px; display: flex; flex-direction: column; gap: 14px; background: var(--mn-ink-2); }
-  .note { border-top: 1px solid var(--mn-hairline); padding-top: 10px; font-size: 10px; letter-spacing: 0.08em; color: var(--mn-bone); line-height: 1.55; }
+  .note { border-top: 1px solid var(--mn-hairline); padding-top: 10px; font-size: var(--text-2xs); letter-spacing: 0.08em; color: var(--mn-bone); line-height: 1.55; }
   .note:first-child { border-top: 0; padding-top: 0; }
   .note .k { color: var(--mn-acid); text-transform: uppercase; letter-spacing: 0.2em; margin-right: 6px; }
   .note .k.r { color: var(--mn-rust); }
@@ -57,7 +57,7 @@
     </div>
   </div>
 
-  <div style="display:flex;justify-content:space-between;font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:var(--mn-bone);">
+  <div style="display:flex;justify-content:space-between;font-size: var(--text-2xs);letter-spacing:0.15em;text-transform:uppercase;color:var(--mn-bone);">
     <span>edits: <span class="mn-num" style="color:var(--mn-paper)">03</span> · accepted <span class="mn-num" style="color:var(--mn-acid)">02</span> · open <span class="mn-num" style="color:var(--mn-rust)">01</span></span>
     <span>atlas-meridia / minerali · margin speaks</span>
   </div>

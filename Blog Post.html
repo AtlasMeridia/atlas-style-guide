@@ -1,430 +1,15 @@
 <!doctype html>
-<!-- @dsCard group="Templates" name="Blog Post" subtitle="Long-form template — graphite default, drop cap, sticky progress, mobile-first" viewport="800x2400" -->
+<!-- @dsCard group="Templates" name="Blog Post" subtitle="Long-form template — graphite default, drop cap, rust emphasis, sticky progress" viewport="800x2400" -->
 <html data-theme="graphite">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Memory is a contract — kennyliu.io</title>
 <link rel="stylesheet" href="colors_and_type.css">
+<link rel="stylesheet" href="blog-post.css">
 <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
-<style>
-  /* ───────────────────────────────────────────────────────
-     Theming. Three grounds; one accent system.
-     ─────────────────────────────────────────────────────── */
-  :root {
-    --bp-acid:      #2be0c8;
-    --bp-rust:      #c75a2a;
-    --bp-oxblood:   #3a0f10;
-  }
-
-  /* Graphite — the new default. Lifted enough to read; dark enough to feel nocturnal. */
-  html[data-theme="graphite"] {
-    --bp-bg:        #1a1a1d;
-    --bp-bg-2:      #202024;
-    --bp-rule:      #2e2e33;
-    --bp-rule-soft: #26262a;
-    --bp-paper:     #ecdfc8;
-    --bp-bone:      #b6ab93;
-    --bp-muted:     #7a7266;
-    --bp-deep:      #14141700;
-    --bp-mark-bg:   rgba(43,224,200,0.12);
-  }
-  /* Cream — daylight reading. */
-  html[data-theme="cream"] {
-    --bp-bg:        #f3f0ea;
-    --bp-bg-2:      #f8f6f1;
-    --bp-rule:      #d0c8bb;
-    --bp-rule-soft: #e3ddd0;
-    --bp-paper:     #2a2620;
-    --bp-bone:      #6b6356;
-    --bp-muted:     #8e8678;
-    --bp-mark-bg:   rgba(199,90,42,0.10);
-  }
-
-  html, body { margin: 0; background: var(--bp-bg); color: var(--bp-paper); }
-  body {
-    font-family: 'JetBrains Mono', ui-monospace, monospace;
-    -webkit-font-smoothing: antialiased;
-    text-rendering: optimizeLegibility;
-  }
-
-  /* ─── Top bar (slug). Sticky, hairline-thin, mono. ─── */
-  .bp-bar {
-    position: sticky; top: 0; z-index: 50;
-    display: flex; justify-content: space-between; align-items: center;
-    padding: 10px 22px;
-    border-bottom: 1px solid var(--bp-rule);
-    background: color-mix(in srgb, var(--bp-bg) 88%, transparent);
-    font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
-    color: var(--bp-bone);
-  }
-  .bp-bar .mark { display: flex; align-items: baseline; gap: 6px; }
-  .bp-bar .mark .a { color: var(--bp-bone); letter-spacing: 0.22em; }
-  .bp-bar .mark .slash { color: var(--bp-acid); font-weight: 700; font-size: 12px; }
-  .bp-bar .mark .b {
-    font-family: 'Fraunces', serif;
-    font-variation-settings: 'opsz' 144, 'WONK' 1;
-    font-weight: 900; font-style: italic;
-    font-size: 17px; letter-spacing: -0.02em;
-    color: var(--bp-paper); text-transform: none;
-  }
-  .bp-bar .right { color: var(--bp-acid); display: flex; gap: 14px; align-items: center; }
-  .bp-bar .right .toc { color: var(--bp-bone); cursor: pointer; }
-  .bp-bar .right .toc:hover { color: var(--bp-paper); }
-
-  /* Reading-progress hairline under the bar. */
-  .bp-progress {
-    position: sticky; top: 36px; z-index: 49;
-    height: 1px; background: transparent;
-  }
-  .bp-progress i {
-    display: block; height: 1px; width: 0%;
-    background: var(--bp-acid);
-    transition: width 80ms linear;
-  }
-
-  /* ─── Article frame ─── */
-  .bp-article {
-    --bp-prose: 38rem;   /* 608px — the canonical prose column */
-    --bp-wide:  46rem;   /* 736px — the marginalia column */
-    --bp-pad-x: 22px;
-    margin: 0 auto;
-    padding: 32px var(--bp-pad-x) 80px;
-    max-width: var(--bp-wide);
-    box-sizing: border-box;
-  }
-
-  /* ─── Masthead ─── */
-  .bp-eyebrow {
-    font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase;
-    color: var(--bp-rust); margin-bottom: 18px;
-    display: flex; gap: 14px; align-items: baseline; flex-wrap: wrap;
-  }
-  .bp-eyebrow .acid { color: var(--bp-acid); }
-  .bp-eyebrow .bone { color: var(--bp-bone); }
-
-  .bp-title {
-    font-family: 'Fraunces', serif;
-    font-variation-settings: 'opsz' 144, 'WONK' 1, 'SOFT' 0;
-    font-weight: 900; font-style: italic;
-    font-size: clamp(40px, 8vw, 88px);
-    line-height: 0.88;
-    letter-spacing: -0.04em;
-    color: var(--bp-paper);
-    margin: 0 0 18px;
-    text-wrap: balance;
-  }
-  .bp-title em { color: var(--bp-acid); font-style: italic; }
-
-  .bp-deck {
-    font-family: 'Fraunces', serif;
-    font-style: normal; font-weight: 400;
-    font-variation-settings: 'opsz' 72, 'WONK' 0;
-    font-size: clamp(18px, 2.6vw, 22px);
-    line-height: 1.4;
-    color: var(--bp-bone);
-    margin: 0 0 28px;
-    max-width: 36ch;
-    text-wrap: pretty;
-  }
-  .bp-deck em { color: var(--bp-acid); font-style: normal; font-weight: 600; }
-
-  .bp-colophon {
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-    border-top: 1px solid var(--bp-rule);
-    border-bottom: 1px solid var(--bp-rule);
-    padding: 12px 0;
-    gap: 16px;
-    font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
-    color: var(--bp-bone);
-  }
-  .bp-colophon .k { display: block; color: var(--bp-muted); margin-bottom: 4px; font-size: 9px; }
-  .bp-colophon .v { color: var(--bp-paper); font-weight: 400; }
-  .bp-colophon .v.acid { color: var(--bp-acid); }
-  .bp-colophon .v.italic {
-    font-family: 'Fraunces', serif; font-style: normal; font-size: 13px;
-    text-transform: none; letter-spacing: -0.005em;
-  }
-
-  /* ─── Prose ─── */
-  .bp-prose {
-    margin: 32px auto 0;
-    max-width: var(--bp-prose);
-    font-family: var(--font-body);
-    font-weight: 400;
-    font-size: var(--bp-body, 19px);
-    line-height: var(--bp-leading, 1.65);
-    color: var(--bp-paper);
-    letter-spacing: 0.005em;
-  }
-  .bp-prose p,
-  .bp-prose ul, .bp-prose ol,
-  .bp-prose blockquote,
-  .bp-prose pre,
-  .bp-prose figure,
-  .bp-prose hr,
-  .bp-prose .pull,
-  .bp-prose .bp-aside { margin: 0; }
-  .bp-prose p { text-wrap: pretty; }
-  .bp-prose > * + * { margin-top: 1.1em; }
-  /* Clear the floated drop cap so the next paragraph doesn't ride up against it. */
-  .bp-prose .lead.drop-cap { overflow: hidden; }
-  .bp-prose .lead.drop-cap + p { margin-top: 1.4em; }
-  .bp-prose > h2 + * { margin-top: 0.5em; }
-  .bp-prose > h3 + * { margin-top: 0.4em; }
-  .bp-prose em { color: var(--bp-acid); font-style: normal; font-weight: 600; }
-  .bp-prose strong { color: var(--bp-paper); font-weight: 600; }
-  .bp-prose s { color: var(--bp-rust); text-decoration: line-through; text-decoration-thickness: 1px; }
-  .bp-prose mark { background: var(--bp-mark-bg); color: var(--bp-paper); padding: 0 2px; }
-  .bp-prose a {
-    color: var(--bp-paper);
-    text-decoration: underline;
-    text-decoration-color: color-mix(in srgb, var(--bp-acid) 60%, transparent);
-    text-decoration-thickness: 1px;
-    text-underline-offset: 0.18em;
-    transition: text-decoration-color 120ms;
-  }
-  .bp-prose a:hover { text-decoration-color: var(--bp-acid); }
-
-  /* Drop cap — only on the lead paragraph (controlled by class). */
-  .bp-prose .lead.drop-cap::first-letter {
-    font-family: 'Fraunces', serif;
-    font-variation-settings: 'opsz' 144, 'WONK' 1;
-    font-weight: 900; font-style: normal;
-    font-size: 4.6em; line-height: 0.82;
-    color: var(--bp-acid);
-    float: left;
-    padding: 0.05em 0.12em 0 0;
-  }
-
-  .bp-prose h2 {
-    font-family: 'Fraunces', serif;
-    font-variation-settings: 'opsz' 72, 'WONK' 0;
-    font-weight: 700; font-style: normal;
-    font-size: clamp(26px, 4.2vw, 36px);
-    line-height: 1.05; letter-spacing: -0.025em;
-    color: var(--bp-paper);
-    margin: 1.8em 0 0.4em;
-    text-wrap: balance;
-  }
-  .bp-prose h2 em { color: var(--bp-acid); }
-  .bp-prose h2::before {
-    content: attr(data-n);
-    display: block;
-    font-family: 'JetBrains Mono', monospace;
-    font-style: normal; font-weight: 500;
-    font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
-    color: var(--bp-rust);
-    margin-bottom: 8px;
-  }
-
-  .bp-prose h3 {
-    font-family: 'Fraunces', serif;
-    font-variation-settings: 'opsz' 72, 'WONK' 0;
-    font-weight: 600; font-style: normal;
-    font-size: clamp(20px, 2.6vw, 22px);
-    line-height: 1.25; color: var(--bp-paper);
-    margin: 1.4em 0 0.2em;
-  }
-
-  .bp-prose ul, .bp-prose ol { padding-left: 1.4em; margin: 1.1em 0; }
-  .bp-prose li { margin: 0.4em 0; }
-  .bp-prose ul li::marker { color: var(--bp-acid); }
-  .bp-prose ol li::marker { color: var(--bp-rust); font-family: 'JetBrains Mono', monospace; font-size: 0.85em; }
-
-  .bp-prose blockquote {
-    margin: 1.6em 0;
-    padding: 4px 0 4px 18px;
-    border-left: 2px solid var(--bp-acid);
-    font-family: 'Fraunces', serif;
-    font-style: normal; font-weight: 400;
-    font-variation-settings: 'opsz' 72, 'WONK' 0;
-    font-size: 1.12em; line-height: 1.45;
-    color: var(--bp-paper);
-  }
-  .bp-prose blockquote cite {
-    display: block;
-    margin-top: 8px;
-    font-family: 'JetBrains Mono', monospace; font-style: normal;
-    font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
-    color: var(--bp-bone);
-  }
-  .bp-prose blockquote cite::before { content: '— '; color: var(--bp-rust); }
-
-  .bp-prose code {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.86em;
-    color: var(--bp-acid);
-    background: var(--bp-bg-2);
-    padding: 1px 5px;
-    border: 1px solid var(--bp-rule-soft);
-  }
-  .bp-prose pre {
-    margin: 1.4em 0;
-    padding: 14px 16px;
-    background: var(--bp-bg-2);
-    border: 1px solid var(--bp-rule);
-    overflow-x: auto;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 13px; line-height: 1.6; color: var(--bp-bone);
-  }
-  .bp-prose pre code { background: transparent; border: 0; padding: 0; color: inherit; }
-  .bp-prose pre .h { color: var(--bp-acid); }
-  .bp-prose pre .w { color: var(--bp-paper); }
-  .bp-prose pre .c { color: var(--bp-muted); }
-
-  .bp-prose hr {
-    border: 0;
-    text-align: center;
-    margin: 2.4em auto;
-    color: var(--bp-rust);
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 12px; letter-spacing: 1em;
-  }
-  .bp-prose hr::before { content: '· · ·'; }
-
-  /* ─── Pull quote (full-bleed within prose) ─── */
-  .bp-prose .pull {
-    margin: 1.8em 0;
-    padding: 18px 0;
-    border-top: 1px solid var(--bp-rule);
-    border-bottom: 1px solid var(--bp-rule);
-    font-family: 'Fraunces', serif;
-    font-style: normal; font-weight: 600;
-    font-variation-settings: 'opsz' 72, 'WONK' 0;
-    font-size: clamp(22px, 3.4vw, 28px);
-    line-height: 1.25;
-    letter-spacing: -0.01em;
-    color: var(--bp-paper);
-    text-wrap: balance;
-  }
-  .bp-prose .pull em { color: var(--bp-acid); font-style: normal; font-weight: 700; }
-
-  /* ─── Margin notes (desktop only). Footnoted on mobile via CSS swap. ─── */
-  .bp-aside {
-    position: relative;
-  }
-  .bp-aside .note {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 12px; line-height: 1.55;
-    color: var(--bp-bone);
-    border-left: 1px solid var(--bp-acid);
-    padding: 6px 0 6px 12px;
-    margin: 1em 0;
-    letter-spacing: 0.005em;
-  }
-  .bp-aside .note .k {
-    color: var(--bp-acid);
-    text-transform: uppercase; letter-spacing: 0.18em;
-    font-size: 10px; margin-right: 6px;
-  }
-  .bp-aside .note .k.r { color: var(--bp-rust); }
-
-  @media (min-width: 920px) {
-    .bp-aside .note {
-      position: absolute;
-      left: calc(var(--bp-prose) + 24px);
-      top: 0;
-      width: 14rem;
-      margin: 0;
-      border-left: 1px solid var(--bp-rule);
-      padding-left: 12px;
-    }
-  }
-
-  /* ─── Figure / image ─── */
-  .bp-prose figure {
-    margin: 1.8em 0;
-    border: 1px solid var(--bp-rule);
-    background: var(--bp-bg-2);
-  }
-  .bp-prose figure .ph {
-    aspect-ratio: 16 / 9;
-    background:
-      repeating-linear-gradient(45deg, transparent 0 8px, var(--bp-rule-soft) 8px 9px),
-      var(--bp-bg-2);
-    border-bottom: 1px solid var(--bp-rule);
-    display: flex; align-items: center; justify-content: center;
-    color: var(--bp-muted);
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
-  }
-  .bp-prose figure figcaption {
-    padding: 10px 14px;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 11px; letter-spacing: 0.04em;
-    color: var(--bp-bone);
-    line-height: 1.5;
-  }
-  .bp-prose figure figcaption b {
-    color: var(--bp-rust); font-weight: 400;
-    text-transform: uppercase; letter-spacing: 0.18em; font-size: 10px;
-    margin-right: 8px;
-  }
-
-  /* ─── Footer / colophon ─── */
-  .bp-footer {
-    max-width: var(--bp-prose);
-    margin: 56px auto 0;
-    padding-top: 22px;
-    border-top: 1px solid var(--bp-rule);
-    display: grid; gap: 14px;
-    font-size: 11px; line-height: 1.6;
-    color: var(--bp-bone);
-  }
-  .bp-footer .row { display: flex; justify-content: space-between; gap: 18px; flex-wrap: wrap; }
-  .bp-footer .row .k { color: var(--bp-muted); text-transform: uppercase; letter-spacing: 0.18em; font-size: 10px; }
-  .bp-footer .row .v { color: var(--bp-paper); font-family: 'Fraunces', serif; font-style: normal; font-size: 14px; }
-  .bp-footer .rev {
-    border: 1px solid var(--bp-rule); padding: 10px 12px;
-    font-family: 'JetBrains Mono', monospace; font-size: 10px;
-    letter-spacing: 0.04em; color: var(--bp-bone);
-  }
-  .bp-footer .rev b { color: var(--bp-acid); font-weight: 400; }
-  .bp-footer .rev .r { color: var(--bp-rust); }
-  .bp-footer .next {
-    border-top: 1px solid var(--bp-rule);
-    padding-top: 18px; margin-top: 4px;
-    display: flex; justify-content: space-between; align-items: baseline; gap: 16px;
-  }
-  .bp-footer .next .lbl {
-    font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.2em;
-    text-transform: uppercase; color: var(--bp-rust);
-  }
-  .bp-footer .next .ttl {
-    font-family: 'Fraunces', serif; font-style: normal; font-weight: 500;
-    font-variation-settings: 'opsz' 72, 'WONK' 0;
-    font-size: clamp(20px, 3vw, 26px); letter-spacing: -0.02em;
-    color: var(--bp-paper);
-    text-decoration: none;
-  }
-  .bp-footer .next .ttl:hover { color: var(--bp-acid); }
-
-  /* Prevent body text wrapping under the floating drop cap on small screens */
-  @media (max-width: 720px) {
-    .bp-prose .lead.drop-cap { overflow: hidden; }
-  }
-  /* ─── Mobile: collapse marginalia, tighten chrome ─── */
-  @media (max-width: 720px) {
-    .bp-article { padding: 22px 18px 60px; }
-    .bp-bar { padding: 10px 16px; font-size: 9px; letter-spacing: 0.16em; }
-    .bp-bar .right .toc { display: none; }
-    .bp-colophon { grid-template-columns: 1fr 1fr; gap: 10px; padding: 10px 0; }
-    .bp-prose { font-size: var(--bp-body-mobile, 17px); line-height: 1.6; }
-    .bp-prose .lead.drop-cap::first-letter { font-size: 4em; }
-    /* Margin notes inline with their own glyph — function over flair. */
-    .bp-aside .note { font-size: 11.5px; }
-  }
-
-  /* ─── Accessibility ─── */
-  :focus-visible { outline: 2px solid var(--bp-acid); outline-offset: 3px; }
-  ::selection { background: var(--bp-acid); color: var(--bp-bg); }
-  @media (prefers-reduced-motion: reduce) {
-    .bp-progress i { transition: none; }
-  }
-</style>
 </head>
 <body>
 
@@ -442,22 +27,22 @@
   <article class="bp-article">
 
     <div class="bp-eyebrow">
-      <span class="acid">▚ journal · 04</span>
+      <span class="lead-in"><span class="glyph">▚</span> journal · 04</span>
       <span>· first principles</span>
       <span class="bone">· may 2026</span>
     </div>
 
     <h1 class="bp-title">Memory is a <em>contract,</em><br>not a feature.</h1>
-    <p class="bp-deck" style="font-weight: 500;">
+    <p class="bp-deck">
       The software I want to use keeps score for me, not against me — and it
       hands the receipts back, <em>unprompted,</em> when they matter.
     </p>
 
     <div class="bp-colophon">
-      <div><span class="k">Author</span><span class="v italic">Kenny Liu</span></div>
+      <div><span class="k">Author</span><span class="v name">Kenny Liu</span></div>
       <div><span class="k">Published</span><span class="v">May 1, 2026</span></div>
       <div><span class="k">Read</span><span class="v">11 min · 2,409 words</span></div>
-      <div><span class="k">Filed</span><span class="v acid">first-principles</span></div>
+      <div><span class="k">Filed</span><span class="v link">first-principles</span></div>
       <div><span class="k">Series</span><span class="v">Manifesto · 01 of 04</span></div>
     </div>
 
@@ -473,7 +58,7 @@
         Everything else is a wrapper around one.
       </p>
 
-      <p style="margin: 8px 0px 0px">
+      <p>
         Hermes — the agent I've been building since the winter — does not
         autocomplete. It <em>indexes.</em> Every journal entry, every unsent
         letter, every half-formed note becomes part of a single ledger that
@@ -501,7 +86,7 @@
         <aside class="note"><span class="k">▚ note</span>This is why I won't ship a cloud sync. Not because the cloud is unsafe — because the cloud is <em>convenient,</em> and convenience is what trains a system to lie about what it kept.</aside>
       </div>
 
-      <p class="pull" style="font-weight: 700; letter-spacing: 0px">
+      <p class="pull">
         An archive that lets you delete is not an archive. It is a draft.
         The difference is whether you expect the ledger to have an
         <em>opinion.</em>
@@ -593,13 +178,13 @@
       <div class="next">
         <div>
           <span class="lbl">· next in series</span><br>
-          <a class="ttl" href="#" style="font-weight: 900">02 · Silence is the default state</a>
+          <a class="ttl" href="#">02 · Silence is the default state</a>
         </div>
-        <span class="lbl" style="color:var(--bp-bone)">↗</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
       </div>
       <div class="row" style="border-top:1px solid var(--bp-rule); padding-top:14px; margin-top:8px;">
         <span class="k">© 2026 · kennyliu.io</span>
-        <span class="k" style="color:var(--bp-acid)">▚ contains opinions</span>
+        <span class="k mark"><span class="glyph">▚</span> contains opinions</span>
       </div>
     </footer>
 
@@ -628,10 +213,10 @@
   <script type="text/babel">
     const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
       "theme": "graphite",
-      "width": "wide",
-      "size": "larger",
-      "leading": "tight",
-      "dropCap": false
+      "width": "prose",
+      "size": "standard",
+      "leading": "normal",
+      "dropCap": true
     }/*EDITMODE-END*/;
 
     function App() {
@@ -645,9 +230,9 @@
       React.useEffect(() => {
         const root = document.documentElement;
         root.style.setProperty('--bp-body',
-          t.size === 'larger' ? '21px' : '19px');
+          t.size === 'larger' ? '22px' : '20px');
         root.style.setProperty('--bp-body-mobile',
-          t.size === 'larger' ? '18.5px' : '17px');
+          t.size === 'larger' ? '19px' : '18px');
         root.style.setProperty('--bp-leading',
           t.leading === 'tight' ? '1.55' : t.leading === 'generous' ? '1.78' : '1.65');
       }, [t.size, t.leading]);
@@ -689,9 +274,14 @@
       );
     }
 
-    const root = ReactDOM.createRoot(document.createElement('div'));
-    document.body.appendChild(root._internalRoot.containerInfo);
-    root.render(<App />);
+    // The Tweaks panel is a Claude Design editing aid. It loads only when the
+    // page is served over http(s); opened from disk, the static CSS defaults
+    // above already render the documented template.
+    if (typeof useTweaks === 'function') {
+      const mount = document.createElement('div');
+      document.body.appendChild(mount);
+      ReactDOM.createRoot(mount).render(<App />);
+    }
   </script>
 </body>
 </html>

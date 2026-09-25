@@ -6,7 +6,7 @@
 
 The earlier warm "paper-and-ink with amber spot" base system has been **retired** — do not use navy / cream / amber-gold, Cormorant Garamond, Lora, DM Sans, or IBM Plex Mono.
 
-**Version:** 6.0 (June 2026) — single source `--ds-version` in `colors_and_type.css`. **Source of truth:** this README + `colors_and_type.css`.
+**Version:** 6.1 (September 2026) — single source `--ds-version` in `colors_and_type.css`. **Source of truth:** this README + `colors_and_type.css`. 6.1 is the calmer pass: see [Changelog](#changelog).
 
 ---
 
@@ -78,7 +78,10 @@ The aesthetic is **ink ground, paper text, square and flat**. Mono sets the voic
 
 - **One ground, three depths** (raw tokens, theme-independent). Ink `#07080a` → ink-2 `#0d0e11` → ink-3 `#111317`, used directly by terminals, cards, and modals. The default theme (**graphite**) lifts the *page* to `#1a1a1d` so long text reads without strain.
 - **Paper, not white.** `--mn-paper #e6ddc8` primary text, `--mn-bone #b8ad93` secondary, `--mn-chalk #f4ecd9` emphatic.
-- **Two warm signals + one cut.** **Rust** `--mn-rust #c75a2a` is the primary signal — links, drop caps, accents. **Oxblood** `--mn-oxblood #3a0f10` is a deep warm fill. **Acid** `--mn-acid #2be0c8` is *the cut* — use it on **≤15%** of any surface (active state, a single emphatic word, the prompt glyph). It is a knife, not a fill.
+- **Two warm signals + one cut.** **Rust** `--mn-rust #c75a2a` is the primary signal — links, emphasis, drop caps, rules. Set rust *text* with `--accent-text` (lifted to pass AA on graphite); `--accent` is for fills, borders, and large marks. **Oxblood** `--mn-oxblood #3a0f10` is a deep warm fill. **Acid** `--mn-acid #2be0c8` is *the cut* — a knife, not a fill:
+  - **Acid is for:** a live or active state (selected tab, running meter, focus ring, selection), the prompt glyph (`▚`, `∴`, the cursor), the wordmark slash, and **one** word in a display hero.
+  - **Acid is not for:** links, body emphasis, code, slugs and kickers, headings, list markers, or static numbers.
+  - **Budget:** ≤15% of an internal or editorial surface, ≤5% of an external business surface. At most one `.mn-btn.acid` per surface.
 - **Dividers are hairlines.** `--mn-hairline #1c1e22`, always 1px. Cards at rest use a hairline border, never a shadow.
 - **No gradients in product UI.** Solid fills only.
 
@@ -87,7 +90,7 @@ The aesthetic is **ink ground, paper text, square and flat**. Mono sets the voic
 Tokens come in two layers; using the wrong one is the easiest way to break a theme:
 
 - **Raw brand tokens** (`--mn-ink`, `--mn-paper`, `--mn-rust`, `--mn-acid` …) are **theme-independent** — they hold the same value in every theme. Use them **only** for brand-fixed marks that must not change between grounds: the logo, the acid cut, a terminal surface that is always deep ink.
-- **Semantic tokens** (`--bg-primary`, `--bg-elevated`, `--text-primary`, `--text-secondary`, `--text-muted`, `--border-color`, `--accent`, `--accent-cut`) are **per-theme**. Use them for everything that must adapt — body text, page grounds, borders, links. **Set text with `--text-primary` / `--text-secondary`, never with `--mn-paper`**, or the surface won't flip in cream.
+- **Semantic tokens** (`--bg-primary`, `--bg-elevated`, `--text-primary`, `--text-secondary`, `--text-muted`, `--border-color`, `--accent`, `--accent-text`, `--accent-cut`) are **per-theme**. Use them for everything that must adapt — body text, page grounds, borders, links. **Set text with `--text-primary` / `--text-secondary`, never with `--mn-paper`**, or the surface won't flip in cream.
 
 ### Themes
 
@@ -96,24 +99,40 @@ Set `data-theme` on `<html>`. Two scopes, both in `colors_and_type.css`:
 - **`graphite`** — the default (`:root`). Lifted ground, nocturnal but readable. The single dark ground.
 - **`cream`** (alias `light`) — daylight paper reading. The variant, never the default.
 
+### Contrast
+
+Every text token clears WCAG AA (4.5:1) against `--bg-primary` and `--bg-elevated` in both themes. Keep it that way when adding tokens.
+
+| Token | Graphite | Cream |
+| --- | --- | --- |
+| `--text-primary` | 12.9 | 13.2 |
+| `--text-secondary` | 7.8 | 6.6 |
+| `--text-muted` | 5.0 | 4.6 |
+| `--accent-text` (rust) | 5.0 | 5.3 |
+| `--accent-cut` (acid) | 10.4 | 4.6 |
+
+`--accent` on graphite is 4.1:1. That's fine for drop caps, rules, and fills, but not for small text, so small rust text uses `--accent-text`.
+
 For a user-facing switch, ship `theme-toggle.js` (see below) rather than wiring `data-theme` by hand. (A surface that genuinely needs the deepest `#07080a` ink uses the raw `--mn-ink` token directly — there is no longer a separate `dark` theme.)
 
 ### Typography
 
 Four faces, each with one job:
 
-- **Fraunces — display only.** Heroes, `h1`–`h3`, drop caps, stat values. Driven by optical size; the display hero uses `opsz 144`, `WONK 1`, weight 900 **italic** with tight `-0.04em` tracking and `0.86` leading.
-- **Literata — body & long-form reading.** `--font-body`, ~20px (`--text-body`), low `opsz` (~28) at weight ~340. The reading face for prose, leads, and templates.
-- **JetBrains Mono — the voice.** Every UI label, button, slug, and number is mono caps. `--font-ui` *is* the mono.
+- **Fraunces — display only.** Heroes, `h1`–`h3`, drop caps, stat values. Two settings, never mixed:
+  - **The hero** (`.display` / `.mn-display`): `opsz 144`, `WONK 1`, weight 900 **italic**, `-0.04em` tracking, `0.86` leading.
+  - **Headings** (`h1`–`h3`): automatic optical size, `WONK 0`, weight 700, `-0.02em` (h1, h2) / `-0.01em` (h3). The hero cut at heading sizes collapses word spaces, so don't use it there.
+- **Literata — body & long-form reading.** `--font-body` is the `body` default. Weight 340 on graphite, 380 on cream (`--body-weight`); `.prose` sets 20px at `opsz 28`.
+- **JetBrains Mono — the voice of the chrome.** Buttons, inputs, labels, nav, table heads, slugs, and numbers are mono (the base styles set this on those elements). `--font-ui` *is* the mono. For operator surfaces, put `.mn-chrome` on the app shell so mono becomes the default inside it.
 - **Noto Serif TC — CJK.** Traditional Chinese for the Living Archive.
-- **Italic is reserved, not a texture.** Only the **Display XL hero** (`.display` / `.mn-display`) is italic — plus the **ampersand glyph**. Everything else is roman; use extra **weight** (800–900) where it needs presence.
-- **One emphasis channel, never stacked.** Emphasis is color alone (`em` → accent), or weight when it must survive grayscale/print. Don't combine signals.
-- **Type scale tops out hard.** `5xl` 88px, `4xl` 64px. Body reading size is 20px.
+- **Italic is reserved, not a texture.** Only the display hero, the wordmark and monogram, and the ampersand are italic. Everything else is roman; use weight where it needs presence.
+- **One emphasis channel, never stacked.** `em` is color alone (`--accent-text`), `strong` is weight alone. Never both on one word. `.prose` applies this.
+- **Type scale tops out hard.** `5xl` 88px, `4xl` 64px. Body reading size is 20px. The floor is `--text-2xs` (11px), for mono caps labels only; running text stays at 12px or larger.
 - **Drop caps** open long-form articles — rust, Fraunces roman, ~4.5em, float left. The hallmark of the reading surface.
 
 ### Spacing & layout
 
-- **8px rhythm** (`--mn-u`). The `--space-*` scale runs 4 · 8 · 12 · 16 · 24 · 32 · 48 · 64 · 96 · 128 · 160 — no odd values.
+- **8px rhythm** (`--mn-u`), with a 4px half-step for tight chrome. The `--space-*` scale runs 4 · 8 · 12 · 16 · 24 · 32 · 48 · 64 · 96 · 128 · 160 — no odd values.
 - **Prose column 608px** (`--width-prose`), wide 832px, max container 1280px.
 - Generous vertical rhythm — section gaps are 48px or 96px, not 24px.
 
@@ -121,11 +140,11 @@ Four faces, each with one job:
 
 - **Square.** `--border-radius` and `-sm` are `0`; only large containers get a 2px concession (`-lg`).
 - **Flat.** Shadows exist (`sm` / default / `lg`) but are **reserved for modals and popovers** — everything at rest uses a 1px hairline.
-- **Fast or none.** `--transition-fast` 120ms, `--transition-base` 250ms, `--transition-slow` 380ms with `cubic-bezier(0.16, 1, 0.3, 1)` — the house curve. No spring, no bounce, no parallax. Fade + translate are the default entrance, never scale-from-0.
+- **Fast or none.** `--transition-fast` 120ms, `--transition-base` 250ms, `--transition-slow` 380ms with `cubic-bezier(0.16, 1, 0.3, 1)` — the house curve. No spring, no bounce, no parallax. Fade + translate are the default entrance, never scale-from-0. Under `prefers-reduced-motion` the transition tokens drop to 0ms.
 
 ### Hover & press
 
-- **Buttons invert.** `.mn-btn` is transparent with a 1px `currentColor` border; on hover it fills paper, text goes ink. The acid variant inverts the other way.
+- **Buttons invert.** `.mn-btn` is transparent with a 1px `currentColor` border; on hover it fills paper, text goes ink. `.acid` inverts the other way (one per surface), `.ghost` recedes, `.danger` uses `--error`.
 - **Links** deepen their rust underline on hover (45% → 100%).
 
 ---
@@ -150,17 +169,25 @@ Print work uses ginkgo, wren, chrysanthemum, and ink-wash sailboat line art. Pro
 
 ## Index
 
-- `colors_and_type.css` — **the** stylesheet: tokens, two themes, base element styles, and the `.mn-*` primitive classes. Link this first; it is the only stylesheet.
+- `colors_and_type.css` — **the** stylesheet: tokens, two themes, base element styles, and the `.mn-*` primitive classes. Link this first.
+- `blog-post.css` — long-form template styles shared by both blog templates; link it after the token file. Every color resolves through the semantic tokens.
 - `README.md` — this file; the source of truth on voice, color, type, themes, motion, iconography.
 - `SKILL.md` — agent skill manifest (short operator's note; defers to this README).
 - `assets/` — logos, marks. Copy out, don't hotlink.
 - `theme-toggle.js` — self-mounting `<theme-toggle>` graphite ⇄ cream switch.
 - `fonts/README.md` — the four-family load table.
 - `preview/` — one-purpose card specimens (colors, type, spacing, components, brand).
-- `Blog Post.html` / `Blog Post (EN-中).html` — long-form templates (graphite default, drop cap, Literata body).
+- `Blog Post.html` / `Blog Post (EN-中).html` — long-form templates (graphite default, drop cap, Literata body, rust emphasis). Both work from disk; the Tweaks panel only loads when served over http(s).
 - `preview/external-business.html` — calmer `cream` specimen for consulting, service, and credibility pages.
 - `v1/` — archived pre-Minerali Next.js style-guide app. Reference only; do not start new work from it unless explicitly asked.
 - `_source/` — original zip import preserved for provenance.
+- `_ds_manifest.json`, `_ds_bundle.js`, `_adherence.oxlintrc.json`, `.thumbnail`, `tweaks-panel.jsx` — Claude Design export metadata and the Tweaks editing aid. Keep them for round-tripping through Claude Design; nothing else depends on them.
+- `_dev/`, `BACKLOG.md` — working notes and task list (see `AGENTS.md`).
+
+## Changelog
+
+- **6.1 (September 2026): calmer.** Headings use automatic optical size at weight 700 instead of the hero cut, so word spaces don't collapse. `body` defaults to Literata, with mono set on the chrome elements, and `.mn-chrome` covers operator shells. Literata's 300–600 weights now load, so the 340/380 body weights actually render. Every text token meets AA: new `--accent-text` on graphite, deeper acid, muted, and secondary on cream. Acid is off slugs, `code`, links, and body emphasis. New `--text-2xs` 11px floor, `.mn-btn.danger`, and reduced motion. The blog templates share `blog-post.css` and read theme tokens, with no second palette.
+- **6.0 (June 2026).** Minerali replaces the navy / cream / amber base system; v1 archived.
 
 ## Caveats
 

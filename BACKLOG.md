@@ -7,9 +7,9 @@ Tasks explicitly approved for unattended automated dispatch by the capacity-burn
 ## Now
 
 ## Next
-- [ ] kennyliu.io (`~/Projects/headless-atlas/app/globals.css`): carries Minerali values under legacy `--color-navy-*` / `--color-cream-*` names; migrate to the semantic tokens. Do this from that project, not here.
-- [ ] Robotica media-review (`~/Projects/robotica/apps/media-review/web/tokens.css`): v6.0 copy whose header the minerali→robotica rename sweep changed to "ROBOTICA"; refresh from the current stylesheet in that project.
-- [ ] `atlas-meridia-design` skill wrapper (`~/Projects/AtlasCortex-Support/skills/claude/atlas-meridia-design/`): `ui_kits/` still teaches the retired navy / amber system; remove or rebuild on the current system.
+- [ ] kennyliu.io (`~/Projects/headless-atlas/app/globals.css`): carries Minerali values under legacy `--color-navy-*` / `--color-cream-*` names; migrate to the semantic tokens and pick up the v6.1 contrast values. Do this from that project, not here.
+- [ ] Robotica media-review (`~/Projects/robotica/apps/media-review/web/tokens.css`): v6.0 copy whose header the minerali→robotica rename sweep changed to "ROBOTICA"; refresh to v6.1 from that project.
+- [ ] `atlas-meridia-design` skill wrapper (`~/Projects/AtlasCortex-Support/skills/claude/atlas-meridia-design/`): `ui_kits/` still teaches the retired navy / amber system; remove or rebuild on v6.1.
 
 ## Blocked
 - [ ] ⏸ Waiting on Kenny — botanical motif source files (ginkgo, wren, chrysanthemum, ink-wash sailboat) for stationery specimens — 2026-09-25
@@ -22,4 +22,5 @@ Tasks explicitly approved for unattended automated dispatch by the capacity-burn
 
 ## Done
 - [x] Commit the Minerali v6 migration as a baseline (v1 archived) — 2026-09-25
+- [x] v6.1 calmer pass: heading optical sizing, Literata body default, AA contrast, acid rule enforced, 11px floor, shared `blog-post.css` — 2026-09-25
 - [x] Project scaffolding: `CLAUDE.md`, `BACKLOG.md`, `_dev/` — 2026-09-25

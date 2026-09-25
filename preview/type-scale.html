@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- @dsCard group="Type" name="Type Scale" subtitle="10 steps · 12px → 88px" viewport="700x300" -->
+<!-- @dsCard group="Type" name="Type Scale" subtitle="11 steps · 11px → 88px · 2xs is mono caps only" viewport="700x300" -->
 <html data-theme="graphite">
 <head>
 <meta charset="utf-8">
@@ -8,15 +8,17 @@
 <style>
   html, body { margin: 0; height: 100%; }
   body { padding: 18px 22px; display: flex; flex-direction: column; gap: 6px; }
-  .tag { font-family: var(--font-ui); font-size: 10px; color: var(--text-muted); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 4px; }
-  .row { display: grid; grid-template-columns: 60px 60px 1fr; align-items: baseline; gap: 14px; padding: 2px 0; border-bottom: 1px dashed rgba(255,255,255,0.04); }
-  .k { font-family: var(--font-mono); font-size: 10px; color: var(--accent); }
-  .px { font-family: var(--font-mono); font-size: 10px; color: var(--text-muted); text-align: right; }
+  .tag { font-family: var(--font-ui); font-size: var(--text-2xs); color: var(--text-muted); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 4px; }
+  .row { display: grid; grid-template-columns: 60px 60px 1fr; align-items: baseline; gap: 14px; padding: 2px 0; border-bottom: 1px solid var(--border-color); }
+  .k { font-family: var(--font-mono); font-size: var(--text-2xs); color: var(--accent-text); }
+  .px { font-family: var(--font-mono); font-size: var(--text-2xs); color: var(--text-muted); text-align: right; }
   .sp { font-family: var(--font-display); color: var(--text-primary); line-height: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .sp.caps { font-family: var(--font-ui); letter-spacing: var(--tracking-caps); text-transform: uppercase; }
 </style>
 </head>
 <body>
-  <div class="tag">Type scale · 10 steps · 12px → 88px</div>
+  <div class="tag">Type scale · 11 steps · 11px → 88px · 4xl / 5xl in display</div>
+  <div class="row"><span class="k">2xs</span><span class="px">11px</span><span class="sp caps" style="font-size:var(--text-2xs)">Atlas Meridia · labels only</span></div>
   <div class="row"><span class="k">xs</span><span class="px">12px</span><span class="sp" style="font-size:12px">Atlas Meridia</span></div>
   <div class="row"><span class="k">sm</span><span class="px">14px</span><span class="sp" style="font-size:14px">Atlas Meridia</span></div>
   <div class="row"><span class="k">base</span><span class="px">18px</span><span class="sp" style="font-size:18px">Atlas Meridia</span></div>

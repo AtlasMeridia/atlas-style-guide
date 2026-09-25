@@ -10,23 +10,23 @@
   body { padding: 22px; display: flex; flex-direction: column; gap: 14px; }
   .frame { border: 1px solid var(--mn-hairline); flex: 1; display: grid; grid-template-rows: auto 1fr auto; }
   .hd { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; border-bottom: 1px solid var(--mn-hairline); }
-  .hd .cell { padding: 10px 14px; border-right: 1px solid var(--mn-hairline); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--mn-bone); display: flex; flex-direction: column; gap: 4px; }
+  .hd .cell { padding: 10px 14px; border-right: 1px solid var(--mn-hairline); font-size: var(--text-2xs); letter-spacing: 0.18em; text-transform: uppercase; color: var(--mn-bone); display: flex; flex-direction: column; gap: 4px; }
   .hd .cell:last-child { border-right: 0; }
   .hd .v { font-family: var(--font-display); font-variation-settings: 'opsz' 144, 'WONK' 1; font-weight: 900; font-style: normal; font-size: 34px; line-height: 0.9; color: var(--mn-paper); letter-spacing: -0.03em; }
   .hd .v.acid { color: var(--mn-acid); }
   .hd .v.rust { color: var(--mn-rust); }
-  .hd .v .unit { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--mn-muted); font-style: normal; font-weight: 400; margin-left: 6px; vertical-align: 6px; }
-  .hd .delta { font-size: 10px; color: var(--mn-acid); letter-spacing: 0.1em; }
+  .hd .v .unit { font-family: var(--font-mono); font-size: var(--text-2xs); letter-spacing: 0.15em; text-transform: uppercase; color: var(--mn-muted); font-style: normal; font-weight: 400; margin-left: 6px; vertical-align: 6px; }
+  .hd .delta { font-size: var(--text-2xs); color: var(--mn-bone); letter-spacing: 0.1em; }
   .hd .delta.down { color: var(--mn-rust); }
 
   .tbl { font-size: 11px; overflow: hidden; display: flex; flex-direction: column; }
-  .trow { display: grid; grid-template-columns: 30px 1.2fr 1fr 80px 100px 90px 80px; border-bottom: 1px solid var(--mn-hairline); align-items: center; }
-  .trow.th { color: var(--mn-muted); text-transform: uppercase; letter-spacing: 0.15em; font-size: 9px; background: var(--mn-ink-2); }
+  .trow { display: grid; grid-template-columns: 44px 1.2fr 1fr 80px 100px 90px 80px; border-bottom: 1px solid var(--mn-hairline); align-items: center; }
+  .trow.th { color: var(--mn-muted); text-transform: uppercase; letter-spacing: 0.15em; font-size: var(--text-2xs); background: var(--mn-ink-2); }
   .trow .c { padding: 9px 12px; border-right: 1px solid var(--mn-hairline); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .trow .c:last-child { border-right: 0; }
   .trow .n { color: var(--mn-muted); }
   .trow .name { color: var(--mn-paper); font-family: 'Fraunces', serif; font-style: normal; font-weight: 600; font-size: 14px; letter-spacing: -0.01em; }
-  .trow .tag { font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--mn-bone); }
+  .trow .tag { font-size: var(--text-2xs); letter-spacing: 0.15em; text-transform: uppercase; color: var(--mn-bone); }
   .trow .tag .dot { display: inline-block; width: 6px; height: 6px; background: currentColor; margin-right: 6px; vertical-align: 1px; }
   .trow .tag.acid { color: var(--mn-acid); }
   .trow .tag.rust { color: var(--mn-rust); }
@@ -37,10 +37,10 @@
   .trow .spark i.on { background: var(--mn-paper); }
   .trow .spark i.hot { background: var(--mn-acid); }
   .trow .spark i.bad { background: var(--mn-rust); }
-  .trow .score { text-align: right; font-size: 14px; font-family: 'Fraunces', serif; font-style: normal; color: var(--mn-acid); letter-spacing: -0.01em; font-weight: 700; }
-  .trow .score.low { color: var(--mn-rust); }
+  .trow .score { text-align: right; font-size: 14px; font-family: var(--font-display); font-style: normal; font-variant-numeric: tabular-nums; color: var(--mn-paper); letter-spacing: -0.01em; font-weight: 700; }
+  .trow .score.low { color: var(--accent-text); }
 
-  .fd { display: flex; justify-content: space-between; padding: 9px 14px; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--mn-muted); border-top: 1px solid var(--mn-hairline); }
+  .fd { display: flex; justify-content: space-between; padding: 9px 14px; font-size: var(--text-2xs); letter-spacing: 0.15em; text-transform: uppercase; color: var(--mn-muted); border-top: 1px solid var(--mn-hairline); }
   .fd .acid { color: var(--mn-acid); }
 </style>
 </head>

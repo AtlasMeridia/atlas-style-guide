@@ -1,18 +1,20 @@
 /* ═══════════════════════════════════════════════════════════════
-   MINERALI  ·  v6.0 · nocturnal  ·  house style
+   MINERALI  ·  v6.1 · nocturnal  ·  house style
    Single source of truth for all design tokens, themes, base
    element styles, and the .mn-* primitive classes.
    Graphite is the default ground. No gradients. No blurs. No bounce.
+   v6.1 — calmer: headings set by optical size, Literata as the
+   default body face, AA contrast on every text token, 11px floor.
    ═══════════════════════════════════════════════════════════════ */
 
 /* Fonts — Google Fonts CDN. Fraunces (display), Literata (body / reading),
    JetBrains Mono (UI / mono), Noto Serif TC (CJK for Living Archive). */
-@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Literata:ital,opsz,wght@0,7..72,400..600;1,7..72,400..600&family=JetBrains+Mono:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Noto+Serif+TC:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Literata:ital,opsz,wght@0,7..72,300..600;1,7..72,300..600&family=JetBrains+Mono:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Noto+Serif+TC:wght@300;400;500;600&display=swap');
 
 :root {
   /* Design-system identity — the single canonical version string.
      Reference var(--ds-version) anywhere a build/spec label is shown. */
-  --ds-version: "6.0"; /* @kind other */
+  --ds-version: "6.1"; /* @kind other */
 
   /* ─────────────────────────────────────────────────────────────
      COLOR — ink ground, paper text, two warm signals + one cut
@@ -52,6 +54,7 @@
   --font-chinese: 'Noto Serif TC', serif; /* @kind font */
 
   /* Type scale (rem, against 16px root) */
+  --text-2xs:  0.6875rem; /* 11px — mono caps labels only; the floor */
   --text-xs:   0.75rem;   /* 12px — legal, footnotes */
   --text-sm:   0.875rem;  /* 14px — captions, labels */
   --text-base: 1.125rem;  /* 18px — UI text */
@@ -65,17 +68,20 @@
 
   /* Line heights */
   --leading-tight:   0.86;  /* Fraunces display wonk */
+  --leading-heading: 1.1;   /* h1 */
   --leading-snug:    1.2;   /* Headlines */
   --leading-normal:  1.5;   /* UI text */
   --leading-relaxed: 1.6;   /* Body prose */
 
   /* Letter spacing */
-  --tracking-tight: -0.04em; /* display */
-  --tracking-body:  -0.01em;
+  --tracking-tight:   -0.04em;  /* display hero only */
+  --tracking-heading: -0.02em;  /* h1, h2 */
+  --tracking-snug:    -0.01em;  /* h3, pull quotes */
+  --tracking-body:    -0.01em;
   --tracking-caps:   0.14em; /* mono caps — buttons, slugs */
 
   /* ─────────────────────────────────────────────────────────────
-     RHYTHM — 8px base. No odd values.
+     RHYTHM — 8px base, 4px half-step for tight chrome. No odd values.
      ───────────────────────────────────────────────────────────── */
   --mn-u:    8px;
   --space-1:  0.25rem;  /* 4px  */
@@ -131,18 +137,18 @@
   --bg-primary:     #1a1a1d;
   --bg-deep:        #141417;
   --bg-elevated:    #202024;
-  --text-primary:   #ecdfc8;
-  --text-secondary: #b6ab93;
-  --text-muted:     #7a7266;
+  --text-primary:   var(--mn-paper);   /* 12.9:1 */
+  --text-secondary: var(--mn-bone);    /*  7.8:1 */
+  --text-muted:     #90887c;           /*  5.0:1 — AA at caption sizes */
   --border-color:   #2e2e33;
 
-  --accent:      var(--mn-rust);  /* warm signal: links, drop caps, accents */
-  --accent-cut:  var(--mn-acid);  /* the cut: <=15% surfaces, active marks */
-  --accent-text: var(--mn-rust);
+  --accent:      var(--mn-rust);  /* warm signal: fills, rules, drop caps (large) */
+  --accent-cut:  var(--mn-acid);  /* the cut: active state, prompt glyph, one word */
+  --accent-text: #d56b35;         /* rust lifted to 5.0:1 for links and emphasis */
 
   --success: var(--mn-acid);
-  --warning: var(--mn-rust);
-  --error:   #d65a3f;
+  --warning: var(--accent-text);
+  --error:   #e0675a;
 
   --body-weight:   340;
   --body-tracking: 0;
@@ -154,16 +160,16 @@
   --bg-primary:     #f3f0ea;
   --bg-deep:        #fbf9f5;
   --bg-elevated:    #f8f6f1;
-  --text-primary:   #2a2620;
-  --text-secondary: #6b6356;
-  --text-muted:     #8e8678;
+  --text-primary:   #2a2620;   /* 13.2:1 */
+  --text-secondary: #5c5447;   /*  6.6:1 */
+  --text-muted:     #736b5d;   /*  4.6:1 — AA at caption sizes */
   --border-color:   #d0c8bb;
 
-  --accent:      #a8431d;   /* rust deepened for contrast on paper */
-  --accent-cut:  #0f9e8b;   /* acid deepened for contrast on paper */
+  --accent:      #a8431d;   /* rust deepened for contrast on paper (5.3:1) */
+  --accent-cut:  #0f7a67;   /* acid deepened for contrast on paper (4.6:1) */
   --accent-text: #a8431d;
 
-  --success: #0f9e8b;
+  --success: #0f7a67;
   --warning: #a8431d;
   --error:   #b3402b;
 
@@ -175,36 +181,49 @@
    BASE ELEMENT STYLES
    ═══════════════════════════════════════════════════════════════ */
 
+/* Sentences read in Literata; chrome speaks in mono. Operator
+   surfaces put .mn-chrome (or font-family: var(--font-ui)) on the
+   app shell to make mono the default inside it. */
 body {
   background: var(--bg-primary);
   color: var(--text-primary);
-  font-family: var(--font-ui);
+  font-family: var(--font-body);
+  font-weight: var(--body-weight);
   font-size: var(--text-base);
   line-height: var(--leading-normal);
 }
 
+button, input, select, textarea, label, nav, th, kbd, samp, pre {
+  font-family: var(--font-ui);
+}
+
+/* Headings follow their optical size; the opsz-144 wonk cut and
+   -0.04em tracking belong to the display hero alone. */
 h1, .h1, h2, .h2, h3, .h3 {
   font-family: var(--font-display);
-  font-variation-settings: 'opsz' 144, 'SOFT' 0, 'WONK' 1;
-  font-weight: 800;
+  font-optical-sizing: auto;
+  font-variation-settings: 'SOFT' 0, 'WONK' 0;
+  font-weight: 700;
   font-style: normal;
   line-height: var(--leading-snug);
-  letter-spacing: var(--tracking-tight);
+  letter-spacing: var(--tracking-heading);
   color: var(--text-primary);
   margin: 0 0 var(--space-4);
+  text-wrap: balance;
 }
-h1, .h1 { font-size: var(--text-3xl); }
+h1, .h1 { font-size: var(--text-3xl); line-height: var(--leading-heading); }
 h2, .h2 { font-size: var(--text-2xl); }
-h3, .h3 { font-size: var(--text-xl); }
+h3, .h3 { font-size: var(--text-xl); letter-spacing: var(--tracking-snug); }
 
 h4, .h4 {
   font-family: var(--font-ui);
   font-weight: 700;
-  font-size: var(--text-base);
+  font-size: var(--text-sm);
   letter-spacing: var(--tracking-caps);
   text-transform: uppercase;
   line-height: var(--leading-snug);
   color: var(--text-primary);
+  margin: 0 0 var(--space-3);
 }
 
 .display {
@@ -229,6 +248,11 @@ h4, .h4 {
   letter-spacing: var(--body-tracking);
   color: var(--text-secondary);
 }
+/* One emphasis channel: em is color, strong is weight. Never both. */
+.prose em,
+.body-text em   { font-style: normal; color: var(--accent-text); }
+.prose strong,
+.body-text strong { font-weight: 600; color: var(--text-primary); }
 
 .lead {
   font-family: var(--font-body);
@@ -257,8 +281,9 @@ h4, .h4 {
 
 code, .code {
   font-family: var(--font-mono);
+  font-weight: 400;
   font-size: 0.9em;
-  color: var(--accent-cut);
+  color: var(--text-primary);
   background: var(--bg-elevated);
   padding: 0.15em 0.4em;
   border: 1px solid var(--border-color);
@@ -310,21 +335,23 @@ hr {
    PRIMITIVE CLASSES — the .mn-* layer
    ═══════════════════════════════════════════════════════════════ */
 
-/* Slug / kicker — mono caps, the system's voice. Theme-aware. */
+/* Slug / kicker — mono caps, the system's voice. Theme-aware.
+   Quiet text; the acid lives only in the .glyph. */
 .mn-slug {
   font-family: var(--font-mono);
-  font-size: 10px;
-  letter-spacing: 0.2em;
+  font-weight: 400;
+  font-size: var(--text-2xs);
+  letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--accent-cut);
+  color: var(--text-secondary);
   display: flex;
   justify-content: space-between;
   align-items: center;
   border-bottom: 1px solid var(--border-color);
   padding-bottom: 8px;
 }
-.mn-slug .right { color: var(--text-secondary); }
-.mn-slug .glyph { color: var(--accent); }
+.mn-slug .right { color: var(--text-muted); }
+.mn-slug .glyph { color: var(--accent-cut); }
 
 /* Hairline — 1px. The knife is paper; the rule is hairline. */
 .mn-knife    { height: 1px; background: var(--text-primary); }
@@ -349,22 +376,23 @@ hr {
   padding: 1px 6px;
   border: 1px solid currentColor;
   font-family: var(--font-mono);
-  font-size: 10px;
+  font-weight: 400;
+  font-size: var(--text-2xs);
   letter-spacing: 0.1em;
   text-transform: uppercase;
   line-height: 1.3;
   vertical-align: 2px;
 }
 .mn-tag.acid  { color: var(--accent-cut); }
-.mn-tag.rust  { color: var(--accent); }
+.mn-tag.rust  { color: var(--accent-text); }
 .mn-tag.paper { color: var(--text-primary); }
 .mn-tag.bone  { color: var(--text-secondary); }
 
-/* Button — square, 1px, inverts on hover */
+/* Button — square, 1px, inverts on hover. At most one .acid per surface. */
 .mn-btn {
   font-family: var(--font-mono);
   font-weight: 700;
-  font-size: 11px;
+  font-size: var(--text-2xs);
   letter-spacing: 0.14em;
   text-transform: uppercase;
   padding: 10px 14px;
@@ -383,9 +411,23 @@ hr {
 .mn-btn.acid:hover { background: var(--bg-primary); color: var(--accent-cut); }
 .mn-btn.ghost { color: var(--text-secondary); border-color: var(--border-color); }
 .mn-btn.ghost:hover { color: var(--text-primary); border-color: var(--text-primary); background: transparent; }
+.mn-btn.danger { color: var(--error); }
+.mn-btn.danger:hover { background: var(--error); color: var(--bg-primary); border-color: var(--error); }
 
 /* Mono number — tabular, never centred */
 .mn-num {
   font-family: var(--font-mono);
   font-variant-numeric: tabular-nums;
+}
+
+/* Operator shell — mono becomes the default voice inside it. */
+.mn-chrome { font-family: var(--font-ui); font-weight: 400; }
+
+/* Fast or none: honour reduced motion everywhere tokens are used. */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --transition-fast: 0ms linear;
+    --transition-base: 0ms linear;
+    --transition-slow: 0ms linear;
+  }
 }

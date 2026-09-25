@@ -20,8 +20,8 @@
   .c3 { bottom: -1px; left: -1px; border-bottom: 1px solid var(--mn-acid); border-left: 1px solid var(--mn-acid); }
   .c4 { bottom: -1px; right: -1px; border-bottom: 1px solid var(--mn-acid); border-right: 1px solid var(--mn-acid); }
 
-  .markers { position: absolute; inset: 0; padding: 14px; display: flex; justify-content: space-between; font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--mn-muted); pointer-events: none; }
-  .cols { position: absolute; top: 14px; left: 14px; right: 14px; display: grid; grid-template-columns: repeat(12, 1fr); gap: 0; font-size: 9px; letter-spacing: 0.1em; color: var(--mn-muted); }
+  .markers { position: absolute; inset: 0; padding: 14px; display: flex; justify-content: space-between; font-size: var(--text-2xs); letter-spacing: 0.2em; text-transform: uppercase; color: var(--mn-muted); pointer-events: none; }
+  .cols { position: absolute; top: 38px; left: 14px; right: 14px; display: grid; grid-template-columns: repeat(12, 1fr); gap: 0; font-size: var(--text-2xs); letter-spacing: 0.1em; color: var(--mn-muted); }
   .cols span { padding: 0 4px; border-right: 1px solid var(--mn-hairline); }
   .cols span:first-child { color: var(--mn-acid); }
   .cols span:last-child { border-right: 0; }
@@ -37,13 +37,13 @@
     letter-spacing: -0.03em; color: var(--mn-paper);
   }
   .block h em { color: var(--mn-acid); }
-  .block p { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--mn-bone); margin: 10px 0 0; }
+  .block p { font-family: var(--font-mono); font-size: var(--text-2xs); letter-spacing: 0.12em; text-transform: uppercase; color: var(--mn-bone); margin: 10px 0 0; }
 
   .ghost {
     position: absolute; top: 72px; right: 14px;
     width: calc(100%/12 * 3); height: 180px;
     border: 1px dashed var(--mn-rust); display: flex; align-items: center; justify-content: center;
-    color: var(--mn-rust); font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--mn-rust); font-size: var(--text-2xs); letter-spacing: 0.2em; text-transform: uppercase;
   }
   .ghost::before, .ghost::after {
     content: ''; position: absolute; background: var(--mn-rust);
@@ -53,13 +53,13 @@
   .caption {
     position: absolute; left: 14px; bottom: 14px; right: 14px;
     display: flex; justify-content: space-between;
-    font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--mn-bone);
+    font-size: var(--text-2xs); letter-spacing: 0.15em; text-transform: uppercase; color: var(--mn-bone);
   }
   .caption .acid { color: var(--mn-acid); }
   .caption .rust { color: var(--mn-rust); }
   .measure {
     position: absolute; bottom: 58px; left: 14px; right: 14px; height: 16px;
-    display: flex; align-items: center; font-size: 9px; letter-spacing: 0.15em; color: var(--mn-muted); text-transform: uppercase;
+    display: flex; align-items: center; font-size: var(--text-2xs); letter-spacing: 0.15em; color: var(--mn-muted); text-transform: uppercase;
   }
   .measure .bar { flex: 1; height: 1px; background: var(--mn-acid); margin: 0 8px; }
 </style>

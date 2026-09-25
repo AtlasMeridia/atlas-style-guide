@@ -65,23 +65,23 @@
           }
           button {
             font: inherit;
-            font-size: 10px;
+            font-size: var(--text-2xs, 11px);
             font-weight: 700;
             letter-spacing: 0.16em;
             text-transform: uppercase;
             padding: 8px 12px 7px;
             border: 0;
             background: transparent;
-            color: var(--text-muted, #7a7266);
+            color: var(--text-muted, #90887c);
             cursor: pointer;
             position: relative;
-            transition: color 120ms linear, background 120ms linear;
+            transition: color var(--transition-fast, 120ms linear), background var(--transition-fast, 120ms linear);
           }
           button + button { border-left: 1px solid var(--border-color, #2e2e33); }
-          button:hover { color: var(--text-primary, #ecdfc8); }
+          button:hover { color: var(--text-primary, #e6ddc8); }
           button[aria-pressed="true"] {
-            color: var(--text-primary, #ecdfc8);
-            background: color-mix(in srgb, var(--text-primary, #ecdfc8) 7%, transparent);
+            color: var(--text-primary, #e6ddc8);
+            background: color-mix(in srgb, var(--text-primary, #e6ddc8) 7%, transparent);
           }
           button[aria-pressed="true"]::after {
             content: "";

@@ -17,63 +17,63 @@
   aside .mark .b { font-family: var(--font-display); font-variation-settings: 'opsz' 144, 'WONK' 1; font-weight: 900; font-style: italic; font-size: 22px; color: var(--mn-paper); letter-spacing: -0.02em; }
 
   aside .sect { padding: 0 0; border-top: 1px solid var(--mn-hairline); padding-top: 12px; }
-  aside .lbl { padding: 0 18px 6px; font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--mn-muted); display: flex; justify-content: space-between; }
+  aside .lbl { padding: 0 18px 6px; font-size: var(--text-2xs); letter-spacing: 0.2em; text-transform: uppercase; color: var(--mn-muted); display: flex; justify-content: space-between; }
   aside .lbl .n { color: var(--mn-rust); }
   aside nav a { display: flex; justify-content: space-between; padding: 6px 18px; color: var(--mn-bone); text-decoration: none; border-left: 2px solid transparent; font-size: 12px; letter-spacing: 0.02em; }
   aside nav a:hover { color: var(--mn-paper); border-left-color: var(--mn-hairline); }
   aside nav a.on { color: var(--mn-paper); border-left-color: var(--mn-acid); background: var(--mn-ink-2); }
-  aside nav a .c { color: var(--mn-muted); font-size: 10px; }
+  aside nav a .c { color: var(--mn-muted); font-size: var(--text-2xs); }
   aside nav a.on .c { color: var(--mn-acid); }
 
-  aside .pin { margin-top: auto; padding: 12px 18px; border-top: 1px solid var(--mn-hairline); font-size: 10px; color: var(--mn-muted); letter-spacing: 0.1em; line-height: 1.6; }
+  aside .pin { margin-top: auto; padding: 12px 18px; border-top: 1px solid var(--mn-hairline); font-size: var(--text-2xs); color: var(--mn-muted); letter-spacing: 0.1em; line-height: 1.6; }
   aside .pin .dot { display: inline-block; width: 6px; height: 6px; background: var(--mn-acid); margin-right: 6px; vertical-align: 1px; }
-  aside .pin .user { color: var(--mn-paper); text-transform: none; font-family: 'Fraunces', serif; font-style: italic; font-size: 13px; letter-spacing: 0; }
+  aside .pin .user { color: var(--mn-paper); text-transform: none; font-family: var(--font-body); font-style: normal; font-size: 13px; letter-spacing: 0; }
 
   /* Main */
   main { display: flex; flex-direction: column; min-width: 0; }
-  .bar { display: flex; justify-content: space-between; align-items: center; padding: 10px 20px; border-bottom: 1px solid var(--mn-hairline); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--mn-bone); }
+  .bar { display: flex; justify-content: space-between; align-items: center; padding: 10px 20px; border-bottom: 1px solid var(--mn-hairline); font-size: var(--text-2xs); letter-spacing: 0.18em; text-transform: uppercase; color: var(--mn-bone); }
   .bar .crumb span { color: var(--mn-muted); }
   .bar .crumb b { color: var(--mn-paper); font-weight: 400; }
   .bar .crumb .slash { color: var(--mn-acid); margin: 0 6px; }
-  .bar .state { color: var(--mn-acid); display: flex; gap: 14px; align-items: center; }
+  .bar .state { color: var(--mn-bone); display: flex; gap: 14px; align-items: center; }
   .bar .state .dot { width: 6px; height: 6px; background: var(--mn-acid); display: inline-block; margin-right: 6px; vertical-align: 1px; }
 
   .canvas { flex: 1; padding: 24px 28px; overflow: hidden; display: flex; flex-direction: column; gap: 16px; }
   .title { font-family: 'Fraunces', serif; font-variation-settings: 'opsz' 144, 'WONK' 1; font-weight: 900; font-style: italic; font-size: 48px; line-height: 0.92; letter-spacing: -0.035em; color: var(--mn-paper); margin: 0; }
   .title em { color: var(--mn-acid); }
-  .sub { font-size: 10px; letter-spacing: 0.2em; color: var(--mn-rust); text-transform: uppercase; }
+  .sub { font-size: var(--text-2xs); letter-spacing: 0.2em; color: var(--mn-rust); text-transform: uppercase; }
 
   .msg { border-top: 1px solid var(--mn-hairline); padding-top: 14px; display: grid; grid-template-columns: 90px 1fr; gap: 14px; }
-  .msg .meta { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--mn-muted); line-height: 1.6; }
-  .msg .meta b { color: var(--mn-acid); font-weight: 400; display: block; }
+  .msg .meta { font-size: var(--text-2xs); letter-spacing: 0.12em; text-transform: uppercase; color: var(--mn-muted); line-height: 1.6; }
+  .msg .meta b { color: var(--mn-paper); font-weight: 400; display: block; }
   .msg .meta b.paper { color: var(--mn-paper); }
-  .msg .text { font-family: 'Fraunces', serif; font-size: 17px; line-height: 1.5; color: var(--mn-paper); }
-  .msg .text em { color: var(--mn-acid); font-style: italic; }
-  .msg .text s { color: var(--mn-rust); text-decoration: line-through; text-decoration-thickness: 1px; }
+  .msg .text { font-family: var(--font-body); font-weight: var(--body-weight); font-size: 17px; line-height: 1.55; color: var(--mn-paper); }
+  .msg .text em { color: var(--accent-text); font-style: normal; }
+  .msg .text s { color: var(--mn-muted); text-decoration: line-through; text-decoration-thickness: 1px; }
 
   .input { margin-top: auto; border: 1px solid var(--mn-hairline); background: var(--mn-ink-2); padding: 12px 14px; display: flex; gap: 12px; align-items: center; }
-  .input .glyph { color: var(--mn-acid); font-family: var(--font-display); font-style: italic; font-size: 22px; font-weight: 900; }
-  .input .txt { flex: 1; font-family: 'Fraunces', serif; font-style: italic; font-size: 16px; color: var(--mn-bone); }
+  .input .glyph { color: var(--mn-acid); font-family: var(--font-display); font-style: normal; font-size: 22px; font-weight: 900; }
+  .input .txt { flex: 1; font-family: var(--font-body); font-style: normal; font-size: 16px; color: var(--mn-bone); }
   .input .txt .cursor { display: inline-block; width: 7px; height: 16px; background: var(--mn-acid); vertical-align: -2px; animation: b 1s steps(2) infinite; }
   @keyframes b { 50% { opacity: 0; } }
-  .input .hint { font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--mn-muted); }
+  .input .hint { font-size: var(--text-2xs); letter-spacing: 0.15em; text-transform: uppercase; color: var(--mn-muted); }
   .input .hint b { color: var(--mn-paper); font-weight: 400; }
 
   /* Right rail */
   .rail { border-left: 1px solid var(--mn-hairline); padding: 18px 18px; display: flex; flex-direction: column; gap: 18px; font-size: 11px; overflow: hidden; }
   .rail .block { border: 1px solid var(--mn-hairline); padding: 12px 14px; }
-  .rail .block .h { font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--mn-bone); display: flex; justify-content: space-between; margin-bottom: 8px; }
-  .rail .block .h .n { color: var(--mn-acid); }
-  .rail .block .v { font-family: 'Fraunces', serif; font-variation-settings: 'opsz' 72, 'WONK' 1; font-weight: 700; font-style: italic; font-size: 28px; line-height: 1; letter-spacing: -0.02em; color: var(--mn-paper); }
-  .rail .block.big .v { font-size: 40px; color: var(--mn-acid); }
-  .rail .block .cap { font-size: 10px; letter-spacing: 0.12em; color: var(--mn-muted); text-transform: uppercase; margin-top: 6px; }
+  .rail .block .h { font-size: var(--text-2xs); letter-spacing: 0.2em; text-transform: uppercase; color: var(--mn-bone); display: flex; justify-content: space-between; margin-bottom: 8px; }
+  .rail .block .h .n { color: var(--mn-paper); }
+  .rail .block .v { font-family: var(--font-display); font-variation-settings: 'opsz' 72, 'WONK' 0; font-weight: 700; font-style: normal; font-size: 28px; line-height: 1; letter-spacing: -0.02em; color: var(--mn-paper); }
+  .rail .block.big .v { font-size: 40px; color: var(--mn-paper); }
+  .rail .block .cap { font-size: var(--text-2xs); letter-spacing: 0.12em; color: var(--mn-muted); text-transform: uppercase; margin-top: 6px; }
   .rail .block .bar { height: 3px; background: var(--mn-hairline); margin-top: 8px; position: relative; }
   .rail .block .bar i { position: absolute; inset: 0; width: 62%; background: var(--mn-acid); }
-  .rail .list { font-size: 11px; color: var(--mn-bone); line-height: 1.7; font-family: 'Fraunces', serif; font-style: italic; }
+  .rail .list { font-size: 13px; color: var(--mn-bone); line-height: 1.6; font-family: var(--font-body); font-style: normal; }
   .rail .list .row { display: flex; justify-content: space-between; border-bottom: 1px solid var(--mn-hairline); padding: 4px 0; }
-  .rail .list .row b { color: var(--mn-paper); font-weight: 400; font-style: normal; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.1em; }
-  .rail .list .row b.acid { color: var(--mn-acid); }
-  .rail .list .row b.rust { color: var(--mn-rust); }
+  .rail .list .row b { color: var(--mn-paper); font-weight: 400; font-style: normal; font-family: var(--font-mono); font-size: var(--text-2xs); letter-spacing: 0.1em; }
+  .rail .list .row b.acid { color: var(--mn-acid); }  /* live values only */
+  .rail .list .row b.rust { color: var(--accent-text); }
 </style>
 </head>
 <body>
@@ -122,7 +122,7 @@
           <span>conf. 0.91</span>
         </div>
         <div class="text">
-          <em>"I'm done with it. I keep saying yes out of a feeling that used to be loyalty and is now just habit. The gate is closing behind me whether I walk through or not."</em>
+          "I'm done with it. I keep saying yes out of a feeling that used to be loyalty and is now just habit. The gate is closing behind me whether I walk through or not."
         </div>
       </div>
 
@@ -156,7 +156,7 @@
       <div class="h"><span>threads · open</span><span class="n">07</span></div>
       <div class="list">
         <div class="row">the half-letter to Lin<b class="rust">4d</b></div>
-        <div class="row">the gate, closing<b class="acid">raised</b></div>
+        <div class="row">the gate, closing<b class="rust">raised</b></div>
         <div class="row">march 18 thesis<b>32d</b></div>
         <div class="row">aeon · session 04-17<b>3d</b></div>
         <div class="row">meridia thesis, draft III<b>11d</b></div>
@@ -166,9 +166,9 @@
       <div class="h"><span>session · now</span><span class="n">⌘K</span></div>
       <div class="list" style="color:var(--mn-bone)">
         <div class="row" style="border:0;padding:2px 0;">started<b>09:14:22</b></div>
-        <div class="row" style="border:0;padding:2px 0;">writes<b class="acid">14</b></div>
+        <div class="row" style="border:0;padding:2px 0;">writes<b>14</b></div>
         <div class="row" style="border:0;padding:2px 0;">burns<b class="rust">0</b></div>
-        <div class="row" style="border:0;padding:2px 0;">local only<b class="acid">yes</b></div>
+        <div class="row" style="border:0;padding:2px 0;">local only<b>yes</b></div>
       </div>
     </div>
   </div>

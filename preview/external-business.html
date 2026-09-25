@@ -3,44 +3,45 @@
 <html data-theme="cream">
 <head>
 <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Minerali — external business</title>
 <link rel="stylesheet" href="../colors_and_type.css">
 <style>
   * { box-sizing: border-box; }
   html, body { margin: 0; min-height: 100%; }
-  body { background: var(--bg-primary); color: var(--text-primary); font-family: var(--font-ui); }
+  body { background: var(--bg-primary); color: var(--text-primary); }
   .site { min-height: 100vh; border-top: 3px solid var(--accent); }
   .wrap { width: min(100% - 40px, var(--width-full)); margin: 0 auto; }
   header, section, footer { border-top: 1px solid var(--border-color); }
   header { border-top: 0; border-bottom: 1px solid var(--border-color); }
   .nav { min-height: 68px; display: flex; align-items: center; justify-content: space-between; gap: var(--space-4); }
   .mark { display: inline-flex; align-items: baseline; gap: 8px; text-decoration: none; }
-  .mark .atlas { font-family: var(--font-ui); font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--text-secondary); }
+  .mark .atlas { font-family: var(--font-ui); font-size: var(--text-2xs); letter-spacing: 0.22em; text-transform: uppercase; color: var(--text-secondary); }
   .mark .slash { color: var(--accent-cut); font-family: var(--font-mono); font-weight: 700; }
   .mark .name { font-family: var(--font-display); font-variation-settings: 'opsz' 96, 'WONK' 1; font-weight: 900; font-style: italic; font-size: 24px; color: var(--text-primary); }
-  .links { display: flex; align-items: center; gap: var(--space-5); font-family: var(--font-ui); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; }
+  .links { display: flex; align-items: center; gap: var(--space-5); font-family: var(--font-ui); font-size: var(--text-2xs); letter-spacing: 0.12em; text-transform: uppercase; }
   .links a { color: var(--text-secondary); text-decoration: none; }
-  .links a:hover { color: var(--accent); }
-  .hero { min-height: 74vh; display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.95fr); align-items: center; gap: var(--space-10); padding: var(--space-12) 0 var(--space-8); }
-  .eyebrow { font-family: var(--font-ui); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin: 0 0 var(--space-4); }
-  h1 { max-width: 780px; font-size: var(--text-5xl); line-height: 0.9; margin-bottom: var(--space-5); }
+  .links a:hover { color: var(--accent-text); }
+  .hero { min-height: min(74vh, 720px); display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.95fr); align-items: center; gap: var(--space-10); padding: var(--space-12) 0 var(--space-8); }
+  .eyebrow { font-family: var(--font-ui); font-size: var(--text-2xs); letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent-text); margin: 0 0 var(--space-4); }
+  h1 { max-width: 780px; font-size: var(--text-5xl); line-height: 0.95; letter-spacing: -0.03em; margin-bottom: var(--space-5); }
   .lead { max-width: 620px; color: var(--text-secondary); margin: 0 0 var(--space-6); }
   .actions { display: flex; flex-wrap: wrap; gap: var(--space-3); align-items: center; }
   .mn-btn.primary { background: var(--accent); border-color: var(--accent); color: var(--bg-primary); }
   .mn-btn.primary:hover { background: var(--text-primary); border-color: var(--text-primary); }
   .signal-panel, .three, .fit-list { border: 1px solid var(--border-color); background: var(--bg-elevated); }
-  .signal-head { display: flex; justify-content: space-between; gap: var(--space-4); border-bottom: 1px solid var(--border-color); padding: var(--space-4); font-family: var(--font-ui); font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-muted); }
-  .signal-head b { color: var(--accent); font-weight: 700; }
+  .signal-head { display: flex; justify-content: space-between; gap: var(--space-4); border-bottom: 1px solid var(--border-color); padding: var(--space-4); font-family: var(--font-ui); font-size: var(--text-2xs); letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-muted); }
+  .signal-head b { color: var(--accent-text); font-weight: 700; }
   .signal-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .metric { min-height: 140px; padding: var(--space-5); border-right: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color); }
   .metric:nth-child(2n) { border-right: 0; }
   .metric:nth-last-child(-n + 2) { border-bottom: 0; }
-  .metric .k, .tile .n, .fit-list b { font-family: var(--font-ui); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); }
+  .metric .k, .tile .n, .fit-list b { font-family: var(--font-ui); font-size: var(--text-2xs); letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent-text); }
   .metric .k { color: var(--text-muted); margin-bottom: var(--space-3); }
-  .metric .v { font-family: var(--font-display); font-variation-settings: 'opsz' 96, 'WONK' 1; font-weight: 900; font-size: 46px; line-height: 1; color: var(--text-primary); }
+  .metric .v { font-family: var(--font-display); font-variation-settings: 'opsz' 96, 'WONK' 0; font-weight: 800; font-variant-numeric: tabular-nums; font-size: 46px; line-height: 1; color: var(--text-primary); }
   .metric .v.cut { color: var(--accent-cut); }
   .metric p, .tile p, .fit-list span, .cta p { color: var(--text-secondary); line-height: 1.55; }
-  .metric p { margin: var(--space-3) 0 0; font-size: 13px; }
+  .metric p { margin: var(--space-3) 0 0; font-size: var(--text-sm); }
   section { padding: var(--space-10) 0; }
   .section-head { display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: var(--space-8); align-items: start; margin-bottom: var(--space-8); }
   .section-head h2 { font-size: var(--text-3xl); margin: 0; }
@@ -58,7 +59,7 @@
   .cta { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: var(--space-8); align-items: end; padding-bottom: var(--space-12); }
   .cta h2 { max-width: 760px; margin-bottom: var(--space-4); }
   .cta p { max-width: 640px; margin: 0; }
-  footer { padding: var(--space-5) 0; color: var(--text-muted); font-family: var(--font-ui); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; }
+  footer { padding: var(--space-5) 0; color: var(--text-muted); font-family: var(--font-ui); font-size: var(--text-2xs); letter-spacing: 0.14em; text-transform: uppercase; }
   @media (max-width: 900px) {
     .hero, .section-head, .proof, .cta { grid-template-columns: 1fr; }
     .three, .signal-grid { grid-template-columns: 1fr; }
@@ -126,13 +127,13 @@
 
       <section id="contact">
         <div class="wrap cta">
-          <div><p class="eyebrow">Start small</p><h2>Bring one messy workflow. We will decide whether it deserves an agent.</h2><p>The first conversation should name the work, the people touching it, the data it depends on, and what breaks when it is wrong.</p></div>
+          <div><p class="eyebrow">Start small</p><h2>Bring one messy workflow. I'll tell you whether it deserves an agent.</h2><p>The first conversation should name the work, the people touching it, the data it depends on, and what breaks when it is wrong.</p></div>
           <a class="mn-btn primary" href="mailto:hey@kennyliu.io">Email Kenny</a>
         </div>
       </section>
     </main>
 
-    <footer><div class="wrap">Minerali v6 · external business profile · kennyliu.io</div></footer>
+    <footer><div class="wrap">Minerali v6.1 · external business profile · kennyliu.io</div></footer>
   </div>
 </body>
 </html>

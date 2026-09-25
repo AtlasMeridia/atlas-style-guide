@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- @dsCard group="Spacing" name="Spacing Scale" subtitle="4px base · 11 steps" viewport="700x180" -->
+<!-- @dsCard group="Spacing" name="Spacing Scale" subtitle="8px rhythm · 4px half-step · 11 steps" viewport="700x180" -->
 <html data-theme="graphite">
 <head>
 <meta charset="utf-8">
@@ -8,15 +8,15 @@
 <style>
   html, body { margin: 0; height: 100%; }
   body { padding: 22px; display: flex; flex-direction: column; gap: 12px; }
-  .tag { font-family: var(--font-ui); font-size: 10px; color: var(--text-muted); letter-spacing: 0.1em; text-transform: uppercase; }
+  .tag { font-family: var(--font-ui); font-size: var(--text-2xs); color: var(--text-muted); letter-spacing: 0.1em; text-transform: uppercase; }
   .row { display: flex; align-items: flex-end; gap: 10px; }
   .col { display: flex; flex-direction: column; align-items: center; gap: 6px; }
   .box { background: color-mix(in srgb, var(--accent) 35%, transparent); border: 1px solid color-mix(in srgb, var(--accent) 50%, transparent); border-radius: 2px; }
-  .k { font-family: var(--font-mono); font-size: 10px; color: var(--text-muted); }
+  .k { font-family: var(--font-mono); font-size: var(--text-2xs); color: var(--text-muted); }
 </style>
 </head>
 <body>
-  <div class="tag">Spacing · 4px base · 11 steps</div>
+  <div class="tag">Spacing · 8px rhythm · 4px half-step · 11 steps</div>
   <div class="row" id="row"></div>
 <script>
 const s = [['1',4],['2',8],['3',12],['4',16],['5',24],['6',32],['8',48],['10',64],['12',96]];
