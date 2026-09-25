@@ -1,0 +1,391 @@
+/* ═══════════════════════════════════════════════════════════════
+   MINERALI  ·  v6.0 · nocturnal  ·  house style
+   Single source of truth for all design tokens, themes, base
+   element styles, and the .mn-* primitive classes.
+   Graphite is the default ground. No gradients. No blurs. No bounce.
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Fonts — Google Fonts CDN. Fraunces (display), Literata (body / reading),
+   JetBrains Mono (UI / mono), Noto Serif TC (CJK for Living Archive). */
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Literata:ital,opsz,wght@0,7..72,400..600;1,7..72,400..600&family=JetBrains+Mono:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Noto+Serif+TC:wght@300;400;500;600&display=swap');
+
+:root {
+  /* Design-system identity — the single canonical version string.
+     Reference var(--ds-version) anywhere a build/spec label is shown. */
+  --ds-version: "6.0"; /* @kind other */
+
+  /* ─────────────────────────────────────────────────────────────
+     COLOR — ink ground, paper text, two warm signals + one cut
+     These raw tokens are theme-independent. Per-theme grounds are
+     set under [data-theme="…"] below; :root defaults to graphite.
+     ───────────────────────────────────────────────────────────── */
+
+  /* Ground (deep → elevated) — used directly by terminals/cards */
+  --mn-ink:      #07080a;   /* deepest ground (dark theme) */
+  --mn-ink-2:    #0d0e11;   /* elevated: terminals, cards */
+  --mn-ink-3:    #111317;   /* modals */
+  --mn-hairline: #1c1e22;   /* 1px rule — the only divider */
+
+  /* Paper (text on dark) */
+  --mn-bone:     #b8ad93;   /* muted paper — secondary text */
+  --mn-paper:    #e6ddc8;   /* primary text */
+  --mn-chalk:    #f4ecd9;   /* emphatic paper */
+
+  /* Warm signals */
+  --mn-oxblood:  #3a0f10;   /* deep warm fill */
+  --mn-rust:     #c75a2a;   /* primary signal — links, accents */
+
+  /* The cut — use <=15% of any surface. A cut, not a fill. */
+  --mn-acid:     #2be0c8;
+
+  /* Muted ancillaries for state */
+  --mn-muted:    #6f675a;
+  --mn-smoke:    #3b3a37;
+
+  /* ─────────────────────────────────────────────────────────────
+     TYPE
+     ───────────────────────────────────────────────────────────── */
+  --font-display: 'Fraunces', Georgia, serif;        /* @kind font */
+  --font-body:    'Literata', Georgia, serif;        /* @kind font */ /* bookish reading serif, paired with Fraunces display */
+  --font-ui:      'JetBrains Mono', ui-monospace, monospace; /* @kind font */ /* UI chrome is mono caps */
+  --font-mono:    'JetBrains Mono', ui-monospace, monospace; /* @kind font */
+  --font-chinese: 'Noto Serif TC', serif; /* @kind font */
+
+  /* Type scale (rem, against 16px root) */
+  --text-xs:   0.75rem;   /* 12px — legal, footnotes */
+  --text-sm:   0.875rem;  /* 14px — captions, labels */
+  --text-base: 1.125rem;  /* 18px — UI text */
+  --text-body: 1.25rem;   /* 20px — primary reading size */
+  --text-lg:   1.5rem;    /* 24px — lead paragraphs */
+  --text-xl:   1.75rem;   /* 28px — subheadings */
+  --text-2xl:  2.25rem;   /* 36px — section titles */
+  --text-3xl:  3rem;      /* 48px — page titles */
+  --text-4xl:  4rem;      /* 64px — hero headlines */
+  --text-5xl:  5.5rem;    /* 88px — display */
+
+  /* Line heights */
+  --leading-tight:   0.86;  /* Fraunces display wonk */
+  --leading-snug:    1.2;   /* Headlines */
+  --leading-normal:  1.5;   /* UI text */
+  --leading-relaxed: 1.6;   /* Body prose */
+
+  /* Letter spacing */
+  --tracking-tight: -0.04em; /* display */
+  --tracking-body:  -0.01em;
+  --tracking-caps:   0.14em; /* mono caps — buttons, slugs */
+
+  /* ─────────────────────────────────────────────────────────────
+     RHYTHM — 8px base. No odd values.
+     ───────────────────────────────────────────────────────────── */
+  --mn-u:    8px;
+  --space-1:  0.25rem;  /* 4px  */
+  --space-2:  0.5rem;   /* 8px  */
+  --space-3:  0.75rem;  /* 12px */
+  --space-4:  1rem;     /* 16px */
+  --space-5:  1.5rem;   /* 24px */
+  --space-6:  2rem;     /* 32px */
+  --space-8:  3rem;     /* 48px */
+  --space-10: 4rem;     /* 64px */
+  --space-12: 6rem;     /* 96px */
+  --space-16: 8rem;     /* 128px */
+  --space-20: 10rem;    /* 160px */
+
+  /* ─────────────────────────────────────────────────────────────
+     LAYOUT
+     ───────────────────────────────────────────────────────────── */
+  --width-prose: 38rem;  /* 608px — article body */
+  --width-wide:  52rem;  /* 832px — wide content */
+  --width-full:  80rem;  /* 1280px — max container */
+
+  /* ─────────────────────────────────────────────────────────────
+     MOTION — fast or none.
+     ───────────────────────────────────────────────────────────── */
+  --transition-fast: 120ms linear;                        /* @kind other */
+  --transition-base: 250ms cubic-bezier(0.16, 1, 0.3, 1); /* @kind other */
+  --transition-slow: 380ms cubic-bezier(0.16, 1, 0.3, 1); /* @kind other */
+  --ease-out-expo:   cubic-bezier(0.16, 1, 0.3, 1);       /* @kind other */
+
+  /* ─────────────────────────────────────────────────────────────
+     EFFECTS — square & flat. Hairlines, not shadows.
+     ───────────────────────────────────────────────────────────── */
+  --border-radius-sm: 0;
+  --border-radius:    0;
+  --border-radius-lg: 2px;  /* the only concession — large containers */
+
+  /* Shadows reserved for modals/popovers only; everything at rest
+     uses a 1px --mn-hairline border instead. */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.25);
+  --shadow:    0 8px 24px rgba(0, 0, 0, 0.45);
+  --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.6);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   THEMES — graphite (default) · cream (daylight)
+   Each maps the generic semantic aliases so token-driven surfaces
+   resolve without referencing raw scale values.
+   ═══════════════════════════════════════════════════════════════ */
+
+/* GRAPHITE — the default. Lifted enough to read, dark enough to feel nocturnal. */
+:root,
+[data-theme="graphite"] {
+  --bg-primary:     #1a1a1d;
+  --bg-deep:        #141417;
+  --bg-elevated:    #202024;
+  --text-primary:   #ecdfc8;
+  --text-secondary: #b6ab93;
+  --text-muted:     #7a7266;
+  --border-color:   #2e2e33;
+
+  --accent:      var(--mn-rust);  /* warm signal: links, drop caps, accents */
+  --accent-cut:  var(--mn-acid);  /* the cut: <=15% surfaces, active marks */
+  --accent-text: var(--mn-rust);
+
+  --success: var(--mn-acid);
+  --warning: var(--mn-rust);
+  --error:   #d65a3f;
+
+  --body-weight:   340;
+  --body-tracking: 0;
+}
+
+/* CREAM — daylight reading. The variant, never the default. */
+[data-theme="cream"],
+[data-theme="light"] {
+  --bg-primary:     #f3f0ea;
+  --bg-deep:        #fbf9f5;
+  --bg-elevated:    #f8f6f1;
+  --text-primary:   #2a2620;
+  --text-secondary: #6b6356;
+  --text-muted:     #8e8678;
+  --border-color:   #d0c8bb;
+
+  --accent:      #a8431d;   /* rust deepened for contrast on paper */
+  --accent-cut:  #0f9e8b;   /* acid deepened for contrast on paper */
+  --accent-text: #a8431d;
+
+  --success: #0f9e8b;
+  --warning: #a8431d;
+  --error:   #b3402b;
+
+  --body-weight:   380;
+  --body-tracking: 0;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   BASE ELEMENT STYLES
+   ═══════════════════════════════════════════════════════════════ */
+
+body {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-ui);
+  font-size: var(--text-base);
+  line-height: var(--leading-normal);
+}
+
+h1, .h1, h2, .h2, h3, .h3 {
+  font-family: var(--font-display);
+  font-variation-settings: 'opsz' 144, 'SOFT' 0, 'WONK' 1;
+  font-weight: 800;
+  font-style: normal;
+  line-height: var(--leading-snug);
+  letter-spacing: var(--tracking-tight);
+  color: var(--text-primary);
+  margin: 0 0 var(--space-4);
+}
+h1, .h1 { font-size: var(--text-3xl); }
+h2, .h2 { font-size: var(--text-2xl); }
+h3, .h3 { font-size: var(--text-xl); }
+
+h4, .h4 {
+  font-family: var(--font-ui);
+  font-weight: 700;
+  font-size: var(--text-base);
+  letter-spacing: var(--tracking-caps);
+  text-transform: uppercase;
+  line-height: var(--leading-snug);
+  color: var(--text-primary);
+}
+
+.display {
+  font-family: var(--font-display);
+  font-variation-settings: 'opsz' 144, 'SOFT' 0, 'WONK' 1;
+  font-weight: 900;
+  font-style: italic;
+  font-size: var(--text-5xl);
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-tight);
+  color: var(--text-primary);
+}
+.display em { color: var(--accent-cut); font-style: italic; }
+
+.prose,
+.body-text {
+  font-family: var(--font-body);
+  font-variation-settings: 'opsz' 28;
+  font-weight: var(--body-weight);
+  font-size: var(--text-body);
+  line-height: var(--leading-relaxed);
+  letter-spacing: var(--body-tracking);
+  color: var(--text-secondary);
+}
+
+.lead {
+  font-family: var(--font-body);
+  font-variation-settings: 'opsz' 40;
+  font-weight: 400;
+  font-style: normal;
+  font-size: var(--text-lg);
+  line-height: var(--leading-relaxed);
+  color: var(--text-secondary);
+}
+
+.ui-label,
+.meta {
+  font-family: var(--font-ui);
+  font-weight: 500;
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+  letter-spacing: 0.01em;
+}
+
+.caption {
+  font-family: var(--font-ui);
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+}
+
+code, .code {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  color: var(--accent-cut);
+  background: var(--bg-elevated);
+  padding: 0.15em 0.4em;
+  border: 1px solid var(--border-color);
+}
+
+a {
+  color: var(--accent-text);
+  text-decoration: underline;
+  text-decoration-color: color-mix(in srgb, var(--accent) 45%, transparent);
+  text-underline-offset: 0.15em;
+  transition: text-decoration-color var(--transition-fast);
+}
+a:hover { text-decoration-color: var(--accent); }
+
+blockquote {
+  border-left: 2px solid var(--accent);
+  padding-left: var(--space-5);
+  font-style: normal;
+  color: var(--text-secondary);
+}
+
+hr {
+  border: 0;
+  border-top: 1px solid var(--border-color);
+  margin: var(--space-8) 0;
+}
+
+/* Drop cap — hallmark long-form treatment. Rust, display face. */
+.drop-cap::first-letter {
+  font-family: var(--font-display);
+  font-variation-settings: 'opsz' 144, 'WONK' 1;
+  font-size: 4.5em;
+  float: left;
+  line-height: 0.78;
+  padding: 0.05em 0.12em 0 0;
+  color: var(--accent);
+  font-weight: 900;
+  font-style: normal;
+}
+
+::selection { background: var(--accent-cut); color: var(--mn-ink); }
+
+:focus-visible {
+  outline: 2px solid var(--accent-cut);
+  outline-offset: 2px;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   PRIMITIVE CLASSES — the .mn-* layer
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Slug / kicker — mono caps, the system's voice. Theme-aware. */
+.mn-slug {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent-cut);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 8px;
+}
+.mn-slug .right { color: var(--text-secondary); }
+.mn-slug .glyph { color: var(--accent); }
+
+/* Hairline — 1px. The knife is paper; the rule is hairline. */
+.mn-knife    { height: 1px; background: var(--text-primary); }
+.mn-hairline { height: 1px; background: var(--border-color); }
+
+/* Display — Fraunces opsz 144 wonk */
+.mn-display {
+  font-family: var(--font-display);
+  font-variation-settings: 'opsz' 144, 'SOFT' 0, 'WONK' 1;
+  font-weight: 900;
+  font-style: italic;
+  line-height: 0.86;
+  letter-spacing: -0.04em;
+  color: var(--text-primary);
+  margin: 0;
+}
+.mn-display em { color: var(--accent-cut); font-style: italic; }
+
+/* Tag — inline metadata, the voice's side-channel */
+.mn-tag {
+  display: inline-block;
+  padding: 1px 6px;
+  border: 1px solid currentColor;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  line-height: 1.3;
+  vertical-align: 2px;
+}
+.mn-tag.acid  { color: var(--accent-cut); }
+.mn-tag.rust  { color: var(--accent); }
+.mn-tag.paper { color: var(--text-primary); }
+.mn-tag.bone  { color: var(--text-secondary); }
+
+/* Button — square, 1px, inverts on hover */
+.mn-btn {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 10px 14px;
+  border: 1px solid currentColor;
+  background: transparent;
+  color: var(--text-primary);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  transition: var(--transition-fast);
+  border-radius: 0;
+}
+.mn-btn:hover { background: var(--text-primary); color: var(--bg-primary); }
+.mn-btn.acid  { background: var(--accent-cut); color: var(--bg-primary); border-color: var(--accent-cut); }
+.mn-btn.acid:hover { background: var(--bg-primary); color: var(--accent-cut); }
+.mn-btn.ghost { color: var(--text-secondary); border-color: var(--border-color); }
+.mn-btn.ghost:hover { color: var(--text-primary); border-color: var(--text-primary); background: transparent; }
+
+/* Mono number — tabular, never centred */
+.mn-num {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}

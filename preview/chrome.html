@@ -1,0 +1,176 @@
+<!doctype html>
+<!-- @dsCard group="Components" name="App Chrome" subtitle="Hermes shell · sidebar + conversation + composer · acid prompt" viewport="1100x640" -->
+<html>
+<head>
+<meta charset="utf-8">
+<title>Minerali — app chrome</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  html, body { margin: 0; height: 100%; background: var(--mn-ink); color: var(--mn-paper); font-family: var(--font-mono); overflow: hidden; }
+  body { display: grid; grid-template-columns: 240px 1fr 280px; height: 100%; }
+
+  /* Sidebar */
+  aside { background: #05060a; border-right: 1px solid var(--mn-hairline); padding: 18px 0; display: flex; flex-direction: column; gap: 18px; font-size: 11px; }
+  aside .mark { padding: 0 18px; display: flex; align-items: baseline; gap: 6px; }
+  aside .mark .a { font-size: 11px; letter-spacing: 0.2em; color: var(--mn-bone); text-transform: uppercase; }
+  aside .mark .slash { color: var(--mn-acid); font-weight: 700; }
+  aside .mark .b { font-family: var(--font-display); font-variation-settings: 'opsz' 144, 'WONK' 1; font-weight: 900; font-style: italic; font-size: 22px; color: var(--mn-paper); letter-spacing: -0.02em; }
+
+  aside .sect { padding: 0 0; border-top: 1px solid var(--mn-hairline); padding-top: 12px; }
+  aside .lbl { padding: 0 18px 6px; font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--mn-muted); display: flex; justify-content: space-between; }
+  aside .lbl .n { color: var(--mn-rust); }
+  aside nav a { display: flex; justify-content: space-between; padding: 6px 18px; color: var(--mn-bone); text-decoration: none; border-left: 2px solid transparent; font-size: 12px; letter-spacing: 0.02em; }
+  aside nav a:hover { color: var(--mn-paper); border-left-color: var(--mn-hairline); }
+  aside nav a.on { color: var(--mn-paper); border-left-color: var(--mn-acid); background: var(--mn-ink-2); }
+  aside nav a .c { color: var(--mn-muted); font-size: 10px; }
+  aside nav a.on .c { color: var(--mn-acid); }
+
+  aside .pin { margin-top: auto; padding: 12px 18px; border-top: 1px solid var(--mn-hairline); font-size: 10px; color: var(--mn-muted); letter-spacing: 0.1em; line-height: 1.6; }
+  aside .pin .dot { display: inline-block; width: 6px; height: 6px; background: var(--mn-acid); margin-right: 6px; vertical-align: 1px; }
+  aside .pin .user { color: var(--mn-paper); text-transform: none; font-family: 'Fraunces', serif; font-style: italic; font-size: 13px; letter-spacing: 0; }
+
+  /* Main */
+  main { display: flex; flex-direction: column; min-width: 0; }
+  .bar { display: flex; justify-content: space-between; align-items: center; padding: 10px 20px; border-bottom: 1px solid var(--mn-hairline); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--mn-bone); }
+  .bar .crumb span { color: var(--mn-muted); }
+  .bar .crumb b { color: var(--mn-paper); font-weight: 400; }
+  .bar .crumb .slash { color: var(--mn-acid); margin: 0 6px; }
+  .bar .state { color: var(--mn-acid); display: flex; gap: 14px; align-items: center; }
+  .bar .state .dot { width: 6px; height: 6px; background: var(--mn-acid); display: inline-block; margin-right: 6px; vertical-align: 1px; }
+
+  .canvas { flex: 1; padding: 24px 28px; overflow: hidden; display: flex; flex-direction: column; gap: 16px; }
+  .title { font-family: 'Fraunces', serif; font-variation-settings: 'opsz' 144, 'WONK' 1; font-weight: 900; font-style: italic; font-size: 48px; line-height: 0.92; letter-spacing: -0.035em; color: var(--mn-paper); margin: 0; }
+  .title em { color: var(--mn-acid); }
+  .sub { font-size: 10px; letter-spacing: 0.2em; color: var(--mn-rust); text-transform: uppercase; }
+
+  .msg { border-top: 1px solid var(--mn-hairline); padding-top: 14px; display: grid; grid-template-columns: 90px 1fr; gap: 14px; }
+  .msg .meta { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--mn-muted); line-height: 1.6; }
+  .msg .meta b { color: var(--mn-acid); font-weight: 400; display: block; }
+  .msg .meta b.paper { color: var(--mn-paper); }
+  .msg .text { font-family: 'Fraunces', serif; font-size: 17px; line-height: 1.5; color: var(--mn-paper); }
+  .msg .text em { color: var(--mn-acid); font-style: italic; }
+  .msg .text s { color: var(--mn-rust); text-decoration: line-through; text-decoration-thickness: 1px; }
+
+  .input { margin-top: auto; border: 1px solid var(--mn-hairline); background: var(--mn-ink-2); padding: 12px 14px; display: flex; gap: 12px; align-items: center; }
+  .input .glyph { color: var(--mn-acid); font-family: var(--font-display); font-style: italic; font-size: 22px; font-weight: 900; }
+  .input .txt { flex: 1; font-family: 'Fraunces', serif; font-style: italic; font-size: 16px; color: var(--mn-bone); }
+  .input .txt .cursor { display: inline-block; width: 7px; height: 16px; background: var(--mn-acid); vertical-align: -2px; animation: b 1s steps(2) infinite; }
+  @keyframes b { 50% { opacity: 0; } }
+  .input .hint { font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--mn-muted); }
+  .input .hint b { color: var(--mn-paper); font-weight: 400; }
+
+  /* Right rail */
+  .rail { border-left: 1px solid var(--mn-hairline); padding: 18px 18px; display: flex; flex-direction: column; gap: 18px; font-size: 11px; overflow: hidden; }
+  .rail .block { border: 1px solid var(--mn-hairline); padding: 12px 14px; }
+  .rail .block .h { font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--mn-bone); display: flex; justify-content: space-between; margin-bottom: 8px; }
+  .rail .block .h .n { color: var(--mn-acid); }
+  .rail .block .v { font-family: 'Fraunces', serif; font-variation-settings: 'opsz' 72, 'WONK' 1; font-weight: 700; font-style: italic; font-size: 28px; line-height: 1; letter-spacing: -0.02em; color: var(--mn-paper); }
+  .rail .block.big .v { font-size: 40px; color: var(--mn-acid); }
+  .rail .block .cap { font-size: 10px; letter-spacing: 0.12em; color: var(--mn-muted); text-transform: uppercase; margin-top: 6px; }
+  .rail .block .bar { height: 3px; background: var(--mn-hairline); margin-top: 8px; position: relative; }
+  .rail .block .bar i { position: absolute; inset: 0; width: 62%; background: var(--mn-acid); }
+  .rail .list { font-size: 11px; color: var(--mn-bone); line-height: 1.7; font-family: 'Fraunces', serif; font-style: italic; }
+  .rail .list .row { display: flex; justify-content: space-between; border-bottom: 1px solid var(--mn-hairline); padding: 4px 0; }
+  .rail .list .row b { color: var(--mn-paper); font-weight: 400; font-style: normal; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.1em; }
+  .rail .list .row b.acid { color: var(--mn-acid); }
+  .rail .list .row b.rust { color: var(--mn-rust); }
+</style>
+</head>
+<body>
+  <aside>
+    <div class="mark"><span class="a">ATLAS</span><span class="slash">/</span><span class="b">Hermes</span></div>
+    <div class="sect">
+      <div class="lbl"><span>· today</span><span class="n">04.20</span></div>
+      <nav>
+        <a class="on" href="#"><span>contradictions</span><span class="c">3</span></a>
+        <a href="#"><span>unresolved</span><span class="c">7</span></a>
+        <a href="#"><span>unsent</span><span class="c">4</span></a>
+        <a href="#"><span>will surface</span><span class="c">12</span></a>
+      </nav>
+    </div>
+    <div class="sect">
+      <div class="lbl"><span>· archive</span><span class="n">cold</span></div>
+      <nav>
+        <a href="#"><span>journal</span><span class="c">14,208</span></a>
+        <a href="#"><span>letters</span><span class="c">602</span></a>
+        <a href="#"><span>margins</span><span class="c">1,104</span></a>
+        <a href="#"><span>the Liu family</span><span class="c">—</span></a>
+      </nav>
+    </div>
+    <div class="pin">
+      <div><span class="dot"></span>listening <span style="color:var(--mn-paper)">· local</span></div>
+      <div class="user">k. liu · nocturnal</div>
+    </div>
+  </aside>
+
+  <main>
+    <div class="bar">
+      <div class="crumb"><span>hermes</span><span class="slash">/</span><b>contradictions</b><span class="slash">/</span><span>03 · march 18 — april 19</span></div>
+      <div class="state"><span><span class="dot"></span>indexing · 0.84</span><span style="color:var(--mn-bone)">⌥K</span></div>
+    </div>
+
+    <div class="canvas">
+      <div>
+        <div class="sub">· contradiction 03 · raised twice</div>
+        <h1 class="title">You said <em>"I'm done with it."</em><br>You are not, it seems, done.</h1>
+      </div>
+
+      <div class="msg">
+        <div class="meta">
+          <b>mar · 18</b>
+          <b class="paper">journal</b>
+          <span>conf. 0.91</span>
+        </div>
+        <div class="text">
+          <em>"I'm done with it. I keep saying yes out of a feeling that used to be loyalty and is now just habit. The gate is closing behind me whether I walk through or not."</em>
+        </div>
+      </div>
+
+      <div class="msg">
+        <div class="meta">
+          <b style="color:var(--mn-rust)">apr · 19</b>
+          <b class="paper">unsent letter</b>
+          <span>conf. 0.72</span>
+        </div>
+        <div class="text">
+          "…so I told Wei <s>I would take the call</s> <em>I'd think about taking the call</em>, which we both understood to mean I would, and which I did, and I am now writing you from the other side of that, uncertain who I lied to more."
+        </div>
+      </div>
+
+      <div class="input">
+        <span class="glyph">∴</span>
+        <span class="txt">what do you want me to do with this<span class="cursor"></span></span>
+        <span class="hint"><b>↵</b> file · <b>⌥↵</b> acknowledge · <b>⌘.</b> quiet</span>
+      </div>
+    </div>
+  </main>
+
+  <div class="rail">
+    <div class="block big">
+      <div class="h"><span>memory pressure</span><span class="n">live</span></div>
+      <div class="v">low</div>
+      <div class="bar"><i></i></div>
+      <div class="cap">62% · of 2 GB local</div>
+    </div>
+    <div class="block">
+      <div class="h"><span>threads · open</span><span class="n">07</span></div>
+      <div class="list">
+        <div class="row">the half-letter to Lin<b class="rust">4d</b></div>
+        <div class="row">the gate, closing<b class="acid">raised</b></div>
+        <div class="row">march 18 thesis<b>32d</b></div>
+        <div class="row">aeon · session 04-17<b>3d</b></div>
+        <div class="row">meridia thesis, draft III<b>11d</b></div>
+      </div>
+    </div>
+    <div class="block">
+      <div class="h"><span>session · now</span><span class="n">⌘K</span></div>
+      <div class="list" style="color:var(--mn-bone)">
+        <div class="row" style="border:0;padding:2px 0;">started<b>09:14:22</b></div>
+        <div class="row" style="border:0;padding:2px 0;">writes<b class="acid">14</b></div>
+        <div class="row" style="border:0;padding:2px 0;">burns<b class="rust">0</b></div>
+        <div class="row" style="border:0;padding:2px 0;">local only<b class="acid">yes</b></div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

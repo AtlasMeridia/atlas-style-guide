@@ -1,0 +1,469 @@
+<!doctype html>
+<html lang="en" data-theme="graphite">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Minerali — streamline proposal</title>
+<link rel="stylesheet" href="colors_and_type.css">
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; }
+  body {
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    padding: clamp(28px, 5vw, 72px) clamp(20px, 5vw, 56px) 120px;
+  }
+  .wrap { max-width: 940px; margin: 0 auto; }
+
+  /* Masthead */
+  .masthead {
+    display: flex; justify-content: space-between; align-items: baseline;
+    font-family: var(--font-mono);
+    font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--text-muted);
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 12px; margin-bottom: clamp(32px, 6vw, 56px);
+  }
+  .masthead .lead-mark { color: var(--accent-cut); }
+  .masthead .right { color: var(--text-secondary); }
+
+  /* Hero */
+  .hero { margin-bottom: clamp(40px, 7vw, 72px); }
+  .hero .kicker {
+    font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.22em;
+    text-transform: uppercase; color: var(--accent); margin: 0 0 18px;
+  }
+  .hero .display {
+    font-size: clamp(44px, 8vw, 84px);
+    line-height: 1.2;
+    margin: 0 0 44px; max-width: 16ch;
+  }
+  .hero .lead { max-width: 60ch; }
+  .hero .lead strong { color: var(--text-primary); font-weight: 600; }
+
+  /* Scoreboard */
+  .scoreboard {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    border: 1px solid var(--border-color);
+    margin: 0 0 clamp(48px, 8vw, 88px);
+  }
+  .stat { padding: 22px 22px 20px; border-right: 1px solid var(--border-color); }
+  .stat:last-child { border-right: 0; }
+  .stat .fig {
+    font-family: var(--font-display);
+    font-variation-settings: 'opsz' 144, 'SOFT' 0, 'WONK' 1;
+    font-weight: 800; font-style: normal;
+    font-size: clamp(40px, 6vw, 60px); line-height: 0.9;
+    letter-spacing: -0.03em; color: var(--text-primary);
+  }
+  .stat .fig .unit { font-size: 0.4em; color: var(--text-muted); letter-spacing: 0; }
+  .stat .lbl {
+    font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--text-secondary);
+    margin-top: 12px; line-height: 1.5;
+  }
+  .stat .lbl b { color: var(--accent); font-weight: 500; }
+
+  /* Section heads */
+  .sec-head {
+    display: flex; align-items: baseline; gap: 16px;
+    margin: clamp(56px, 9vw, 96px) 0 28px;
+    border-bottom: 1px solid var(--border-color); padding-bottom: 14px;
+  }
+  .sec-head .n {
+    font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.16em;
+    color: var(--text-muted); white-space: nowrap;
+  }
+  .sec-head h2 { margin: 0; }
+
+  /* Finding cards */
+  .finding {
+    border: 1px solid var(--border-color);
+    background: var(--bg-elevated);
+    padding: clamp(22px, 3.5vw, 34px);
+    margin-bottom: 18px;
+  }
+  .finding .top {
+    display: flex; align-items: center; gap: 14px; flex-wrap: wrap;
+    margin-bottom: 18px;
+  }
+  .finding .id {
+    font-family: var(--font-display);
+    font-variation-settings: 'opsz' 144, 'WONK' 1;
+    font-weight: 800; font-size: 30px; line-height: 1;
+    color: var(--text-muted); letter-spacing: -0.02em;
+  }
+  .finding h3 { margin: 0; flex: 1 1 240px; }
+  .finding .issue {
+    font-family: var(--font-body); font-variation-settings: 'opsz' 24;
+    font-weight: var(--body-weight); font-size: 17px; line-height: 1.62;
+    color: var(--text-secondary); margin: 0 0 18px; max-width: 72ch;
+  }
+  .finding .issue strong { color: var(--text-primary); font-weight: 600; }
+  .finding .issue em { color: var(--accent); font-style: normal; }
+  .finding .issue code {
+    font-size: 0.85em; padding: 0.1em 0.35em;
+  }
+
+  /* evidence list */
+  .evidence {
+    list-style: none; margin: 0 0 20px; padding: 16px 0 0;
+    border-top: 1px solid var(--border-color);
+    display: flex; flex-direction: column; gap: 9px;
+  }
+  .evidence li {
+    font-family: var(--font-mono); font-size: 12px; line-height: 1.55;
+    color: var(--text-muted); letter-spacing: 0.01em;
+    padding-left: 18px; position: relative;
+  }
+  .evidence li::before {
+    content: "·"; position: absolute; left: 4px; top: -1px;
+    color: var(--accent-cut); font-size: 16px;
+  }
+  .evidence li b { color: var(--text-secondary); font-weight: 500; }
+
+  /* recommend block */
+  .rec {
+    display: flex; gap: 14px; align-items: flex-start;
+    padding-top: 18px; border-top: 1px solid var(--border-color);
+  }
+  .rec .tag-rec {
+    font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.16em;
+    text-transform: uppercase; color: var(--accent-cut);
+    padding: 3px 8px; border: 1px solid var(--accent-cut);
+    white-space: nowrap; line-height: 1.3; margin-top: 2px;
+  }
+  .rec p {
+    margin: 0; font-family: var(--font-body); font-variation-settings: 'opsz' 22;
+    font-size: 16px; line-height: 1.6; color: var(--text-primary);
+    font-weight: var(--body-weight); max-width: 70ch;
+  }
+  .rec p strong { font-weight: 600; }
+
+  /* phase plan */
+  .phases { margin-top: 8px; }
+  .phase {
+    display: grid; grid-template-columns: 92px 1fr auto;
+    gap: 20px; align-items: baseline;
+    padding: 22px 0; border-bottom: 1px solid var(--border-color);
+  }
+  .phase:first-child { border-top: 1px solid var(--border-color); }
+  .phase .pn {
+    font-family: var(--font-display);
+    font-variation-settings: 'opsz' 144, 'WONK' 1;
+    font-weight: 800; font-size: 38px; line-height: 0.9;
+    color: var(--accent); letter-spacing: -0.02em;
+  }
+  .phase .pbody h4 { margin: 0 0 6px; color: var(--text-primary); }
+  .phase .pbody p {
+    margin: 0; font-family: var(--font-body); font-variation-settings: 'opsz' 22;
+    font-size: 15px; line-height: 1.55; color: var(--text-secondary);
+    font-weight: var(--body-weight); max-width: 64ch;
+  }
+  .phase .risk {
+    font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.14em;
+    text-transform: uppercase; white-space: nowrap; padding-top: 6px;
+  }
+  .risk.low  { color: var(--accent-cut); }
+  .risk.call { color: var(--accent); }
+
+  /* closing */
+  .closing {
+    margin-top: clamp(56px, 9vw, 88px);
+    border: 1px solid var(--accent);
+    padding: clamp(28px, 4vw, 40px);
+  }
+  .closing h2 { margin: 0 0 14px; }
+  .closing p {
+    font-family: var(--font-body); font-variation-settings: 'opsz' 24;
+    font-size: 17px; line-height: 1.62; color: var(--text-secondary);
+    font-weight: var(--body-weight); max-width: 68ch; margin: 0 0 22px;
+  }
+  .closing p strong { color: var(--text-primary); font-weight: 600; }
+  .qlist { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 14px; }
+  .qlist li {
+    display: flex; gap: 14px; align-items: baseline;
+    font-family: var(--font-body); font-variation-settings: 'opsz' 22;
+    font-size: 16px; line-height: 1.55; color: var(--text-primary);
+    font-weight: var(--body-weight);
+    padding-bottom: 14px; border-bottom: 1px solid var(--border-color);
+  }
+  .qlist li:last-child { border-bottom: 0; padding-bottom: 0; }
+  .qlist .qn {
+    font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.16em;
+    color: var(--accent-cut); white-space: nowrap;
+  }
+  .qlist .mine { display: block; margin-top: 4px; color: var(--text-muted);
+    font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; }
+  .qlist .mine b { color: var(--accent); font-weight: 500; }
+
+  @media (max-width: 720px) {
+    .scoreboard { grid-template-columns: repeat(2, 1fr); }
+    .stat:nth-child(2) { border-right: 0; }
+    .stat:nth-child(1), .stat:nth-child(2) { border-bottom: 1px solid var(--border-color); }
+    .phase { grid-template-columns: 60px 1fr; }
+    .phase .risk { grid-column: 2; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="masthead">
+    <span><span class="lead-mark">MINERALI</span> · SYSTEM AUDIT</span>
+    <span class="right">v6.0 · JUN 2026 · 7 findings</span>
+  </div>
+
+  <header class="hero">
+    <p class="kicker">Streamline · optimize · pare down</p>
+    <h1 class="display">Less to keep <em>in sync</em>.</h1>
+    <p class="lead">The system is sound — the ink-and-paper direction holds. What weighs it down is <strong>drift</strong>: docs that disagree with the code, three names for one system, and a megabyte of stale exports at the root. Below: seven findings, evidence for each, and a four-phase plan ordered by risk. Nothing here changes the look — it makes the system smaller, truer, and harder to misread.</p>
+  </header>
+
+  <div class="scoreboard">
+    <div class="stat">
+      <div class="fig">4</div>
+      <div class="lbl">fonts loaded —<br><b>docs say 3</b></div>
+    </div>
+    <div class="stat">
+      <div class="fig">3</div>
+      <div class="lbl">names for<br><b>one system</b></div>
+    </div>
+    <div class="stat">
+      <div class="fig">1.3<span class="unit"> mb</span></div>
+      <div class="lbl">stale bundles<br><b>at the root</b></div>
+    </div>
+    <div class="stat">
+      <div class="fig">25</div>
+      <div class="lbl">specimen cards —<br><b>8 are brand</b></div>
+    </div>
+  </div>
+
+  <!-- ============ FINDINGS ============ -->
+  <div class="sec-head">
+    <span class="n">01 / 07</span>
+    <h2>The font story contradicts itself</h2>
+  </div>
+
+  <div class="finding">
+    <div class="top">
+      <span class="id">A</span>
+      <h3>Four faces are wired; the docs describe three</h3>
+      <span class="mn-tag acid">Fix now</span>
+    </div>
+    <p class="issue">The stylesheet and the lint config — the two enforced sources — load and allow <strong>four</strong> families and set <code>--font-body: 'Literata'</code> as the reading face. But the README, SKILL, and even the fonts table all still say <em>"Fraunces is display and body"</em> and barely mention Literata. The Literata decision only lives in a leftover scratch file. An agent following the prose will set body text in the wrong face every time.</p>
+    <ul class="evidence">
+      <li><b>colors_and_type.css</b> — @import loads Fraunces · Literata · JetBrains Mono · Noto Serif TC; <code>--font-body</code> = Literata</li>
+      <li><b>_adherence.oxlintrc.json</b> — allow-list is the same four (including Literata)</li>
+      <li><b>README.md / SKILL.md</b> — "Fraunces is the face — display <em>and</em> body"; Literata never named</li>
+      <li><b>fonts/README.md</b> — says "three families," omits a Literata row, yet its token note lists <code>--font-body (Literata)</code></li>
+    </ul>
+    <div class="rec">
+      <span class="tag-rec">Recommend</span>
+      <p><strong>Keep Literata</strong> — it is the deliberate reading-face pick (you A/B'd five serifs and wired it + linted it). Update all three docs to state the truth: <strong>four fonts</strong> — Fraunces for display only, Literata for body, JetBrains Mono for UI/mono, Noto Serif TC for CJK. State the body face once. (If you'd rather run three, drop Literata from the CSS and lint and revert body to low-opsz Fraunces — but that discards the test you already ran.)</p>
+    </div>
+  </div>
+
+  <div class="sec-head">
+    <span class="n">02 / 07</span>
+    <h2>One system, three names</h2>
+  </div>
+
+  <div class="finding">
+    <div class="top">
+      <span class="id">B</span>
+      <h3>"Minerali," "ATLAS Meridia," and "Remix" all mean the system</h3>
+      <span class="mn-tag rust">Decide</span>
+    </div>
+    <p class="issue">The README rebrands the system to <strong>Minerali</strong> and says <em>"Remix"</em> is now just the house style — retire the label. But the project title, the manifest namespace, two root filenames, and every Brand card still carry "ATLAS Meridia" and/or "Remix." Products (ATLAS / Meridia, Hermes, Aeon) correctly keep their names; the <strong>system</strong> name is what's unsettled.</p>
+    <ul class="evidence">
+      <li><b>namespace</b> — <code>ATLASMeridiaDesignSystemRemix_23cc54</code></li>
+      <li><b>root files</b> — "ATLAS Meridia - Remix Design System.html", "ATLAS Hermes - Remix Chrome.html"</li>
+      <li><b>cards</b> — "Remix — Hero", "Remix — Voice", "Remix — Palette" … (×7)</li>
+      <li><b>tokens</b> — every custom property is prefixed <code>--rmx-</code> (Remix)</li>
+      <li><b>domain</b> — README says <code>kennyliu.io</code>; SKILL &amp; project say <code>kennyliu.io</code></li>
+    </ul>
+    <div class="rec">
+      <span class="tag-rec">Recommend</span>
+      <p>Lock <strong>Minerali</strong> as the system name; keep ATLAS / Hermes / Aeon as products; retire "Remix" as a label in filenames, card names, namespace, and docs. <strong>Leave the <code>--rmx-</code> token prefix as-is</strong> — renaming it touches every token in every file for zero user-visible gain; treat it as a legacy prefix, or schedule a mechanical rename later. Fix the domain to <code>kennyliu.io</code> everywhere.</p>
+    </div>
+  </div>
+
+  <div class="sec-head">
+    <span class="n">03 / 07</span>
+    <h2>A megabyte of dead weight</h2>
+  </div>
+
+  <div class="finding">
+    <div class="top">
+      <span class="id">C</span>
+      <h3>Stale exports, a scratch file, and legacy kits sit at the root</h3>
+      <span class="mn-tag paper">Cleanup</span>
+    </div>
+    <p class="issue">Five artifacts are pure ballast — not referenced, not carded, or rendering against <em>retired</em> tokens. They make the project look bigger than it is and silently drift away from the source of truth.</p>
+    <ul class="evidence">
+      <li><b>ATLAS Meridia - Remix Design System.html</b> — 647 KB inlined snapshot of the system page; not carded</li>
+      <li><b>ATLAS Hermes - Remix Chrome.html</b> — 635 KB inlined bundle; duplicates <code>preview/remix-chrome.html</code></li>
+      <li><b>Reading Face Options.html</b> — 9 KB scratch; loads 5 non-system serifs; the decision is already made</li>
+      <li><b>ui_kits/web · ui_kits/app</b> — 888 lines on <b>retired base tokens</b>; de-carded; README itself says "rebuild or remove"</li>
+      <li><b>uploads/CleanShot…png</b> — stray screenshot; confirm then remove</li>
+    </ul>
+    <div class="rec">
+      <span class="tag-rec">Recommend</span>
+      <p><strong>Delete the two bundles</strong> (re-export on demand — they're outputs, not sources) and the scratch file. <strong>Decide on the legacy kits:</strong> rebuild as proper Remix specimens or delete them — as-is they teach the retired palette. That's ~1.3 MB and 1,300+ lines gone with no loss to the system.</p>
+    </div>
+  </div>
+
+  <div class="sec-head">
+    <span class="n">04 / 07</span>
+    <h2>The token model has a theming trap</h2>
+  </div>
+
+  <div class="finding">
+    <div class="top">
+      <span class="id">D</span>
+      <h3>The SKILL points authors at tokens that break theming</h3>
+      <span class="mn-tag acid">Fix now</span>
+    </div>
+    <p class="issue">There are two token layers: raw brand tokens (<code>--rmx-paper</code>, theme-independent) and semantic tokens (<code>--text-primary</code>, per-theme). That's fine — but SKILL rule #3 tells authors to set <strong>text</strong> with <code>--rmx-paper</code> / <code>--rmx-bone</code>. Those don't flip in the cream theme, so any surface built that way <em>silently fails</em> daylight mode. The skill is steering people toward the bug.</p>
+    <ul class="evidence">
+      <li><b>SKILL.md rule #3</b> — "Build on ink/graphite with <code>--rmx-paper</code> / <code>--rmx-bone</code> text"</li>
+      <li><b>aliases</b> — <code>--font-ui</code> ≡ <code>--font-mono</code> (identical); <code>--success</code> ≡ <code>--accent-cut</code>; <code>--warning</code> ≡ <code>--accent</code></li>
+    </ul>
+    <div class="rec">
+      <span class="tag-rec">Recommend</span>
+      <p>Set one rule and put it in the README: <strong>raw <code>--rmx-*</code> only for brand-fixed marks</strong> (the logo, the acid cut); <strong>semantic <code>--text-* / --bg-* / --border-*</code> for everything that must theme.</strong> Fix SKILL rule #3 to use <code>--text-primary / --text-secondary</code>. Either collapse the duplicate alias tokens or label them as intentional — don't leave them ambiguous.</p>
+    </div>
+  </div>
+
+  <div class="sec-head">
+    <span class="n">05 / 07</span>
+    <h2>The brand shelf is overstocked</h2>
+  </div>
+
+  <div class="finding">
+    <div class="top">
+      <span class="id">E</span>
+      <h3>Eight brand cards, with three heroes and a redundant index</h3>
+      <span class="mn-tag rust">Consolidate</span>
+    </div>
+    <p class="issue">Of 25 cards, 8 are Brand. Three of them — Hero, Manifesto, Specimen — are the same editorial hero composition shown three ways. And "Remix — Index" is a 1440×2200 contact sheet that re-renders the other specimens, when the Design System tab grid <em>is already the index</em>. Every extra specimen is one more thing to keep on-palette as the system evolves.</p>
+    <ul class="evidence">
+      <li><b>overlap</b> — remix-hero · remix-manifesto · remix-specimen all read as one composition</li>
+      <li><b>Remix — Index</b> — 2,200px tall; duplicates content the card grid already shows</li>
+    </ul>
+    <div class="rec">
+      <span class="tag-rec">Recommend</span>
+      <p>Drop "Remix — Index." Keep <strong>one</strong> hero (the strongest of the three), plus wordmark, monogram, voice, and icons — Brand goes from 8 to ~5. Fewer, sharper specimens; less surface to keep in sync.</p>
+    </div>
+  </div>
+
+  <div class="sec-head">
+    <span class="n">06 / 07</span>
+    <h2>Two nocturnal themes that nearly overlap</h2>
+  </div>
+
+  <div class="finding">
+    <div class="top">
+      <span class="id">F</span>
+      <h3>Graphite and dark differ mostly in ground depth</h3>
+      <span class="mn-tag rust">Decide</span>
+    </div>
+    <p class="issue">Three themes ship: <strong>graphite</strong> (<code>#1a1a1d</code>, default), <strong>dark</strong> (<code>#07080a</code>), and <strong>cream</strong> (daylight). Graphite and dark are both nocturnal ink grounds; the practical difference is ground lightness and a one-step body weight (340 vs 330). Cream is the real outlier. Three themes is three sets of tokens to maintain and test.</p>
+    <ul class="evidence">
+      <li><b>graphite</b> bg <code>#1a1a1d</code> · weight 340 &nbsp;—&nbsp; <b>dark</b> bg <code>#07080a</code> · weight 330</li>
+    </ul>
+    <div class="rec">
+      <span class="tag-rec">Recommend</span>
+      <p>A judgment call — keep all three only if terminal / Hermes surfaces genuinely need the deepest ink. Otherwise keep <strong>graphite + cream</strong> and make the deepest ink a one-off override rather than a third maintained theme. Your call; there may be product reasons I can't see.</p>
+    </div>
+  </div>
+
+  <div class="sec-head">
+    <span class="n">07 / 07</span>
+    <h2>The same rules, written three times</h2>
+  </div>
+
+  <div class="finding">
+    <div class="top">
+      <span class="id">G</span>
+      <h3>README, SKILL, and fonts/README restate each other</h3>
+      <span class="mn-tag bone">Consolidate</span>
+    </div>
+    <p class="issue">Voice, color, type, and motion rules are spelled out in full across three documents. Restating values in three places is exactly how they drift — finding A is the proof that it already happened. The fix isn't more editing discipline; it's not duplicating the content.</p>
+    <div class="rec">
+      <span class="tag-rec">Recommend</span>
+      <p>Make <strong>README the single source of truth.</strong> Cut SKILL down to a short operator's note — "read the README, here's how to apply it." Reduce fonts/README to the load table only. State each value <em>once</em>, link to it from the rest.</p>
+    </div>
+  </div>
+
+  <!-- ============ PHASES ============ -->
+  <div class="sec-head">
+    <span class="n">PLAN</span>
+    <h2>Four phases, ordered by risk</h2>
+  </div>
+
+  <div class="phases">
+    <div class="phase">
+      <span class="pn">1</span>
+      <div class="pbody">
+        <h4>Correctness</h4>
+        <p>Align the font story across all docs (A). Fix the SKILL theming trap (D). Reconcile the domain to kennyliu.io. No visual change, no deletions.</p>
+      </div>
+      <span class="risk low">Low risk</span>
+    </div>
+    <div class="phase">
+      <span class="pn">2</span>
+      <div class="pbody">
+        <h4>Delete dead weight</h4>
+        <p>Remove the two stale bundles and the scratch file; decide rebuild-or-delete on the legacy kits; clear the stray upload (C). ~1.3 MB gone.</p>
+      </div>
+      <span class="risk low">Low risk</span>
+    </div>
+    <div class="phase">
+      <span class="pn">3</span>
+      <div class="pbody">
+        <h4>Consolidate</h4>
+        <p>Trim Brand cards 8 → ~5 and drop the redundant index (E). Collapse or label the alias tokens (D). De-duplicate the docs (G).</p>
+      </div>
+      <span class="risk call">Judgment</span>
+    </div>
+    <div class="phase">
+      <span class="pn">4</span>
+      <div class="pbody">
+        <h4>Decide &amp; propagate</h4>
+        <p>Lock the system name and retire "Remix" from files, cards, and namespace (B). Optionally collapse themes 3 → 2 (F). Optional <code>--rmx-</code> prefix rename.</p>
+      </div>
+      <span class="risk call">Needs your calls</span>
+    </div>
+  </div>
+
+  <!-- ============ CLOSING ============ -->
+  <div class="closing">
+    <h2>Where I need you</h2>
+    <p>I can start <strong>Phase 1 immediately</strong> — the correctness fixes touch only docs and won't change a single rendered pixel. Phases 2–4 hinge on three decisions:</p>
+    <ul class="qlist">
+      <li>
+        <span class="qn">Q1</span>
+        <span>Body reading face — keep <strong>Literata</strong>, or revert to Fraunces and run three fonts?
+          <span class="mine">My lean — <b>keep Literata</b>; it's already wired and tested.</span>
+        </span>
+      </li>
+      <li>
+        <span class="qn">Q2</span>
+        <span>System name — lock <strong>Minerali</strong> and retire "Remix" from files and namespace?
+          <span class="mine">My lean — <b>yes</b>; keep the <code>--rmx-</code> prefix to avoid a churn-only rename.</span>
+        </span>
+      </li>
+      <li>
+        <span class="qn">Q3</span>
+        <span>Themes — keep all three, or collapse to <strong>graphite + cream</strong>?
+          <span class="mine">My lean — <b>collapse</b>, unless a product needs the deepest ink.</span>
+        </span>
+      </li>
+    </ul>
+  </div>
+
+</div>
+</body>
+</html>

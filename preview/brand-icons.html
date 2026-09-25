@@ -1,0 +1,37 @@
+<!doctype html>
+<!-- @dsCard group="Brand" name="Iconography — Lucide" subtitle="Heroicons-style substitute · 2px stroke · 24px" viewport="700x140" -->
+<html data-theme="graphite">
+<head>
+<meta charset="utf-8">
+<title>Iconography — Lucide</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js"></script>
+<style>
+  html, body { margin: 0; height: 100%; }
+  body { padding: 22px; display: flex; flex-direction: column; gap: 14px; }
+  .tag { font-family: var(--font-ui); font-size: 10px; color: var(--text-muted); letter-spacing: 0.1em; text-transform: uppercase; }
+  .row { display: flex; gap: 20px; align-items: center; }
+  .icons { display: flex; gap: 18px; color: var(--text-secondary); }
+  .icons .accent { color: var(--accent); }
+  svg { stroke-width: 2 !important; }
+  .meta { font-family: var(--font-mono); font-size: 11px; color: var(--text-muted); }
+</style>
+</head>
+<body>
+  <div class="tag">Icons · Lucide (Heroicons-style substitute) · 2px stroke · 24px</div>
+  <div class="icons">
+    <i data-lucide="book-open"></i>
+    <i data-lucide="feather"></i>
+    <i data-lucide="moon"></i>
+    <i data-lucide="sun"></i>
+    <i data-lucide="download"></i>
+    <i data-lucide="message-circle"></i>
+    <i data-lucide="search"></i>
+    <i data-lucide="settings" class="accent"></i>
+    <i data-lucide="archive"></i>
+    <i data-lucide="file-text"></i>
+  </div>
+  <div class="meta">stroke-width: 2 · size: 24 · color: currentColor (accent for emphasis)</div>
+  <script>lucide.createIcons();</script>
+</body>
+</html>

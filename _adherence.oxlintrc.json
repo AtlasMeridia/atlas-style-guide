@@ -1,0 +1,216 @@
+{
+  "plugins": [
+    "react",
+    "import"
+  ],
+  "rules": {
+    "react/forbid-elements": [
+      "warn",
+      {
+        "forbid": []
+      }
+    ],
+    "no-restricted-imports": [
+      "warn",
+      {
+        "patterns": [
+          {
+            "group": [
+              "theme-toggle.js",
+              "tweaks-panel.jsx"
+            ],
+            "message": "Import design-system components from 'index.js', not component internals."
+          }
+        ]
+      }
+    ],
+    "no-restricted-syntax": [
+      "warn",
+      {
+        "selector": "Literal[value=/#[0-9a-fA-F]{3,8}\\b/]",
+        "message": "Raw hex color — use a design-system color token via var()."
+      },
+      {
+        "selector": "Literal[value=/\\b\\d+px\\b/]",
+        "message": "Raw px value — use a design-system spacing token via var()."
+      },
+      {
+        "selector": "Literal[value=/font-family\\s*:\\s*(?!['\\\"]?(?:Fraunces|Literata|JetBrains Mono|Noto Serif TC))/i]",
+        "message": "Font not provided by the design system. Available: Fraunces, Literata, JetBrains Mono, Noto Serif TC."
+      }
+    ]
+  },
+  "overrides": [
+    {
+      "files": [
+        "**/index.js"
+      ],
+      "rules": {
+        "no-restricted-imports": "off"
+      }
+    }
+  ],
+  "x-omelette": {
+    "components": {},
+    "tokens": [
+      "--accent",
+      "--accent-cut",
+      "--accent-text",
+      "--bg-deep",
+      "--bg-elevated",
+      "--bg-primary",
+      "--body-tracking",
+      "--body-weight",
+      "--border-color",
+      "--border-radius",
+      "--border-radius-lg",
+      "--border-radius-sm",
+      "--ds-version",
+      "--ease-out-expo",
+      "--error",
+      "--font-body",
+      "--font-chinese",
+      "--font-display",
+      "--font-mono",
+      "--font-ui",
+      "--leading-normal",
+      "--leading-relaxed",
+      "--leading-snug",
+      "--leading-tight",
+      "--mn-acid",
+      "--mn-bone",
+      "--mn-chalk",
+      "--mn-hairline",
+      "--mn-ink",
+      "--mn-ink-2",
+      "--mn-ink-3",
+      "--mn-muted",
+      "--mn-oxblood",
+      "--mn-paper",
+      "--mn-rust",
+      "--mn-smoke",
+      "--mn-u",
+      "--shadow",
+      "--shadow-lg",
+      "--shadow-sm",
+      "--space-1",
+      "--space-10",
+      "--space-12",
+      "--space-16",
+      "--space-2",
+      "--space-20",
+      "--space-3",
+      "--space-4",
+      "--space-5",
+      "--space-6",
+      "--space-8",
+      "--success",
+      "--text-2xl",
+      "--text-3xl",
+      "--text-4xl",
+      "--text-5xl",
+      "--text-base",
+      "--text-body",
+      "--text-lg",
+      "--text-muted",
+      "--text-primary",
+      "--text-secondary",
+      "--text-sm",
+      "--text-xl",
+      "--text-xs",
+      "--tracking-body",
+      "--tracking-caps",
+      "--tracking-tight",
+      "--transition-base",
+      "--transition-fast",
+      "--transition-slow",
+      "--warning",
+      "--width-full",
+      "--width-prose",
+      "--width-wide"
+    ],
+    "tokenKinds": {
+      "--ds-version": "other",
+      "--mn-ink": "color",
+      "--mn-ink-2": "color",
+      "--mn-ink-3": "color",
+      "--mn-hairline": "color",
+      "--mn-bone": "color",
+      "--mn-paper": "color",
+      "--mn-chalk": "color",
+      "--mn-oxblood": "color",
+      "--mn-rust": "color",
+      "--mn-acid": "color",
+      "--mn-muted": "color",
+      "--mn-smoke": "color",
+      "--font-display": "font",
+      "--font-body": "font",
+      "--font-ui": "font",
+      "--font-mono": "font",
+      "--font-chinese": "font",
+      "--text-xs": "font",
+      "--text-sm": "font",
+      "--text-base": "font",
+      "--text-body": "font",
+      "--text-lg": "font",
+      "--text-xl": "font",
+      "--text-2xl": "font",
+      "--text-3xl": "font",
+      "--text-4xl": "font",
+      "--text-5xl": "font",
+      "--leading-tight": "font",
+      "--leading-snug": "font",
+      "--leading-normal": "font",
+      "--leading-relaxed": "font",
+      "--tracking-tight": "font",
+      "--tracking-body": "font",
+      "--tracking-caps": "font",
+      "--mn-u": "spacing",
+      "--space-1": "spacing",
+      "--space-2": "spacing",
+      "--space-3": "spacing",
+      "--space-4": "spacing",
+      "--space-5": "spacing",
+      "--space-6": "spacing",
+      "--space-8": "spacing",
+      "--space-10": "spacing",
+      "--space-12": "spacing",
+      "--space-16": "spacing",
+      "--space-20": "spacing",
+      "--width-prose": "spacing",
+      "--width-wide": "spacing",
+      "--width-full": "spacing",
+      "--transition-fast": "other",
+      "--transition-base": "other",
+      "--transition-slow": "other",
+      "--ease-out-expo": "other",
+      "--border-radius-sm": "radius",
+      "--border-radius": "radius",
+      "--border-radius-lg": "radius",
+      "--shadow-sm": "shadow",
+      "--shadow": "shadow",
+      "--shadow-lg": "shadow",
+      "--bg-primary": "color",
+      "--bg-deep": "color",
+      "--bg-elevated": "color",
+      "--text-primary": "font",
+      "--text-secondary": "font",
+      "--text-muted": "font",
+      "--border-color": "color",
+      "--accent": "color",
+      "--accent-cut": "color",
+      "--accent-text": "font",
+      "--success": "color",
+      "--warning": "color",
+      "--error": "color",
+      "--body-weight": "font",
+      "--body-tracking": "font"
+    },
+    "fontFamilies": [
+      "Fraunces",
+      "JetBrains Mono",
+      "Literata",
+      "Noto Serif TC"
+    ]
+  }
+}

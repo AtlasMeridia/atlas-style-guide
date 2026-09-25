@@ -1,0 +1,41 @@
+<!doctype html>
+<!-- @dsCard group="Colors" name="Themes" subtitle="Graphite (default) · cream (daylight)" viewport="640x300" -->
+<html data-theme="graphite">
+<head>
+<meta charset="utf-8">
+<title>Themes — Graphite / Cream</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  html, body { margin: 0; height: 100%; }
+  body { padding: 22px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; background: #141417; font-family: var(--font-mono); }
+  .theme { border: 1px solid var(--border-color); display: flex; flex-direction: column; }
+  .head { display: flex; justify-content: space-between; align-items: baseline; padding: 11px 13px; border-bottom: 1px solid var(--border-color); }
+  .name { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent-cut); }
+  .def { font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); }
+  .body { padding: 14px 13px 16px; flex: 1; }
+  .ttl { font-family: var(--font-display); font-variation-settings: 'opsz' 144, 'WONK' 1; font-style: italic; font-weight: 900; font-size: 26px; line-height: 0.9; letter-spacing: -0.04em; color: var(--text-primary); margin: 0 0 8px; }
+  .ln { font-size: 11px; color: var(--text-secondary); line-height: 1.5; }
+  .ln em { color: var(--accent); font-style: normal; }
+  .sw { display: flex; gap: 4px; margin-top: 12px; }
+  .sw span { width: 22px; height: 14px; border: 1px solid rgba(255,255,255,0.12); }
+</style>
+</head>
+<body>
+  <div class="theme" data-theme="graphite" style="background:var(--bg-primary)">
+    <div class="head"><span class="name">Graphite</span><span class="def">default</span></div>
+    <div class="body">
+      <p class="ttl">Aa</p>
+      <div class="ln">Lifted ground. Reads easily, still <em>nocturnal</em>. The one default.</div>
+      <div class="sw"><span style="background:#1a1a1d"></span><span style="background:#202024"></span><span style="background:#2e2e33"></span><span style="background:#ecdfc8"></span><span style="background:#c75a2a"></span><span style="background:#2be0c8"></span></div>
+    </div>
+  </div>
+  <div class="theme" data-theme="cream" style="background:var(--bg-primary)">
+    <div class="head"><span class="name">Cream</span><span class="def">daylight</span></div>
+    <div class="body">
+      <p class="ttl">Aa</p>
+      <div class="ln">Paper reading. The variant, <em>never</em> the default.</div>
+      <div class="sw"><span style="background:#f3f0ea"></span><span style="background:#f8f6f1"></span><span style="background:#d0c8bb"></span><span style="background:#2a2620"></span><span style="background:#a8431d"></span><span style="background:#0f9e8b"></span></div>
+    </div>
+  </div>
+</body>
+</html>

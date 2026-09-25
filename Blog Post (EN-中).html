@@ -1,0 +1,1000 @@
+<!doctype html>
+<!-- @dsCard group="Templates" name="Blog Post (Bilingual)" subtitle="Bilingual EN ↔ 中 — toggle in top bar, full-page swap with crossfade, hold-to-peek original" viewport="800x2400" -->
+<html data-theme="graphite" data-lang="en" lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Memory is a contract — kennyliu.io</title>
+<link rel="stylesheet" href="colors_and_type.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500;600;700;900&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<style>
+  /* ───────────────────────────────────────────────────────
+     Theming. Three grounds; one accent system.
+     ─────────────────────────────────────────────────────── */
+  :root {
+    --bp-acid:      #2be0c8;
+    --bp-rust:      #c75a2a;
+    --bp-oxblood:   #3a0f10;
+  }
+
+  html[data-theme="graphite"] {
+    --bp-bg: #1a1a1d; --bp-bg-2: #202024; --bp-rule: #2e2e33; --bp-rule-soft: #26262a;
+    --bp-paper: #ecdfc8; --bp-bone: #b6ab93; --bp-muted: #7a7266;
+    --bp-mark-bg: rgba(43,224,200,0.12);
+  }
+  html[data-theme="cream"] {
+    --bp-bg: #f3f0ea; --bp-bg-2: #f8f6f1; --bp-rule: #d0c8bb; --bp-rule-soft: #e3ddd0;
+    --bp-paper: #2a2620; --bp-bone: #6b6356; --bp-muted: #8e8678;
+    --bp-mark-bg: rgba(199,90,42,0.10);
+  }
+
+  html, body { margin: 0; background: var(--bp-bg); color: var(--bp-paper); }
+  body { font-family: 'JetBrains Mono', ui-monospace, monospace; -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
+
+  /* ───────────────────────────────────────────────────────
+     Translation-mode swap. Two parallel content trees;
+     CSS hides the inactive locale. The toggle uses View
+     Transitions API for a free crossfade where supported.
+     ─────────────────────────────────────────────────────── */
+  html[data-lang="en"] [data-tr="zh"] { display: none; }
+  html[data-lang="zh"] [data-tr="en"] { display: none; }
+
+  /* The crossfade animation that pairs with view-transitions. */
+  ::view-transition-old(root),
+  ::view-transition-new(root) { animation-duration: 360ms; }
+  @media (prefers-reduced-motion: reduce) {
+    ::view-transition-old(root),
+    ::view-transition-new(root) { animation-duration: 1ms; }
+  }
+
+  /* ─── Top bar ─── */
+  .bp-bar {
+    position: sticky; top: 0; z-index: 50;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 10px 22px;
+    border-bottom: 1px solid var(--bp-rule);
+    background: color-mix(in srgb, var(--bp-bg) 88%, transparent);
+    font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--bp-bone);
+    backdrop-filter: blur(8px);
+  }
+  .bp-bar .mark { display: flex; align-items: baseline; gap: 6px; }
+  .bp-bar .mark .a { color: var(--bp-bone); letter-spacing: 0.22em; }
+  .bp-bar .mark .slash { color: var(--bp-acid); font-weight: 700; font-size: 12px; }
+  .bp-bar .mark .b {
+    font-family: 'Fraunces', serif;
+    font-variation-settings: 'opsz' 144, 'WONK' 1;
+    font-weight: 900; font-style: italic;
+    font-size: 17px; letter-spacing: -0.02em;
+    color: var(--bp-paper); text-transform: none;
+  }
+  .bp-bar .right { display: flex; gap: 12px; align-items: center; color: var(--bp-bone); }
+  .bp-bar .right .meta { color: var(--bp-bone); }
+
+  /* ─── EN / 中 segmented toggle ───
+     The whole point of the chrome. Mono on the Roman side,
+     Noto Serif TC on the Han side, hairline divider between.   */
+  .bp-lang {
+    display: inline-flex; align-items: stretch;
+    border: 1px solid var(--bp-rule);
+    background: var(--bp-bg-2);
+    height: 26px; user-select: none;
+  }
+  .bp-lang button {
+    appearance: none; background: transparent; border: 0; margin: 0;
+    padding: 0 12px; height: 100%;
+    font: inherit; color: var(--bp-bone);
+    cursor: pointer;
+    display: inline-flex; align-items: center; gap: 6px;
+    transition: color 160ms, background 160ms;
+  }
+  .bp-lang button .key {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+  }
+  .bp-lang button[data-set="zh"] .key {
+    font-family: 'Noto Serif TC', 'Songti TC', serif;
+    font-weight: 700; font-size: 14px; letter-spacing: 0.06em;
+    text-transform: none;
+  }
+  .bp-lang button:hover { color: var(--bp-paper); }
+  .bp-lang button[aria-pressed="true"] {
+    background: var(--bp-acid); color: var(--bp-bg);
+  }
+  .bp-lang .div { width: 1px; background: var(--bp-rule); }
+  .bp-lang .dot {
+    width: 5px; height: 5px; border-radius: 50%;
+    background: var(--bp-rust); opacity: 0.6;
+  }
+  .bp-lang button[aria-pressed="true"] .dot { background: var(--bp-bg); opacity: 1; }
+
+  /* Reading-progress hairline. */
+  .bp-progress { position: sticky; top: 47px; z-index: 49; height: 1px; background: transparent; }
+  .bp-progress i { display: block; height: 1px; width: 0%; background: var(--bp-acid); transition: width 80ms linear; }
+
+  /* ─── Article frame ─── */
+  .bp-article {
+    --bp-prose: 38rem;
+    --bp-wide:  46rem;
+    --bp-pad-x: 22px;
+    margin: 0 auto;
+    padding: 32px var(--bp-pad-x) 80px;
+    max-width: var(--bp-wide);
+    box-sizing: border-box;
+  }
+
+  /* ─── Translation banner — sits above the prose in 中 mode only ─── */
+  .bp-trbanner {
+    margin: 16px 0 24px;
+    border-top: 1px solid var(--bp-rule);
+    border-bottom: 1px solid var(--bp-rule);
+    padding: 10px 0;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 14px;
+    align-items: baseline;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--bp-bone);
+  }
+  .bp-trbanner .glyph { color: var(--bp-acid); }
+  .bp-trbanner .credit { color: var(--bp-paper); }
+  .bp-trbanner .credit b { color: var(--bp-acid); font-weight: 400; margin-right: 6px; }
+  .bp-trbanner .src {
+    color: var(--bp-muted);
+    text-align: right; cursor: pointer;
+    transition: color 120ms;
+  }
+  .bp-trbanner .src:hover { color: var(--bp-acid); }
+
+  /* ─── Masthead ─── */
+  .bp-eyebrow {
+    font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--bp-rust); margin-bottom: 18px;
+    display: flex; gap: 14px; align-items: baseline; flex-wrap: wrap;
+  }
+  .bp-eyebrow .acid { color: var(--bp-acid); }
+  .bp-eyebrow .bone { color: var(--bp-bone); }
+
+  .bp-title {
+    font-family: 'Fraunces', serif;
+    font-variation-settings: 'opsz' 144, 'WONK' 1, 'SOFT' 0;
+    font-weight: 900; font-style: italic;
+    font-size: clamp(40px, 8vw, 88px);
+    line-height: 0.88; letter-spacing: -0.04em;
+    color: var(--bp-paper); margin: 0 0 18px;
+    text-wrap: balance;
+  }
+  .bp-title em { color: var(--bp-acid); font-style: italic; }
+
+  .bp-deck {
+    font-family: 'Fraunces', serif;
+    font-style: normal; font-weight: 400;
+    font-variation-settings: 'opsz' 72, 'WONK' 0;
+    font-size: clamp(18px, 2.6vw, 22px);
+    line-height: 1.4; color: var(--bp-bone);
+    margin: 0 0 28px; max-width: 36ch;
+    text-wrap: pretty;
+  }
+  .bp-deck em { color: var(--bp-acid); font-style: normal; font-weight: 600; }
+
+  .bp-colophon {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    border-top: 1px solid var(--bp-rule); border-bottom: 1px solid var(--bp-rule);
+    padding: 12px 0; gap: 16px;
+    font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--bp-bone);
+  }
+  .bp-colophon .k { display: block; color: var(--bp-muted); margin-bottom: 4px; font-size: 9px; }
+  .bp-colophon .v { color: var(--bp-paper); font-weight: 400; }
+  .bp-colophon .v.acid { color: var(--bp-acid); }
+  .bp-colophon .v.italic { font-family: 'Fraunces', serif; font-style: normal; font-size: 13px; text-transform: none; letter-spacing: -0.005em; }
+
+  /* ─── Prose (English defaults) ─── */
+  .bp-prose {
+    margin: 32px auto 0; max-width: var(--bp-prose);
+    font-family: var(--font-body);
+    font-weight: 400;
+    font-size: var(--bp-body, 19px);
+    line-height: var(--bp-leading, 1.65);
+    color: var(--bp-paper);
+    letter-spacing: 0.005em;
+  }
+  .bp-prose p, .bp-prose ul, .bp-prose ol, .bp-prose blockquote,
+  .bp-prose pre, .bp-prose figure, .bp-prose hr,
+  .bp-prose .pull, .bp-prose .bp-aside { margin: 0; }
+  .bp-prose p { text-wrap: pretty; }
+  .bp-prose > * + * { margin-top: 1.1em; }
+  .bp-prose .lead.drop-cap { overflow: hidden; }
+  .bp-prose .lead.drop-cap + p { margin-top: 1.4em; }
+  .bp-prose > h2 + * { margin-top: 0.5em; }
+  .bp-prose > h3 + * { margin-top: 0.4em; }
+  .bp-prose em { color: var(--bp-acid); font-style: normal; }
+  .bp-prose strong { color: var(--bp-paper); font-weight: 600; }
+  .bp-prose s { color: var(--bp-rust); text-decoration: line-through; text-decoration-thickness: 1px; }
+  .bp-prose mark { background: var(--bp-mark-bg); color: var(--bp-paper); padding: 0 2px; }
+  .bp-prose a {
+    color: var(--bp-paper); text-decoration: underline;
+    text-decoration-color: color-mix(in srgb, var(--bp-acid) 60%, transparent);
+    text-decoration-thickness: 1px; text-underline-offset: 0.18em;
+    transition: text-decoration-color 120ms;
+  }
+  .bp-prose a:hover { text-decoration-color: var(--bp-acid); }
+
+  .bp-prose .lead.drop-cap::first-letter {
+    font-family: 'Fraunces', serif;
+    font-variation-settings: 'opsz' 144, 'WONK' 1;
+    font-weight: 900; font-style: normal;
+    font-size: 4.6em; line-height: 0.82;
+    color: var(--bp-acid);
+    float: left; padding: 0.05em 0.12em 0 0;
+  }
+
+  .bp-prose h2 {
+    font-family: 'Fraunces', serif;
+    font-variation-settings: 'opsz' 144, 'WONK' 1;
+    font-weight: 800; font-style: normal;
+    font-size: clamp(26px, 4.2vw, 36px);
+    line-height: 1.05; letter-spacing: -0.025em;
+    color: var(--bp-paper); margin: 1.8em 0 0.4em;
+    text-wrap: balance;
+  }
+  .bp-prose h2 em { color: var(--bp-acid); }
+  .bp-prose h2::before {
+    content: attr(data-n); display: block;
+    font-family: 'JetBrains Mono', monospace;
+    font-style: normal; font-weight: 500;
+    font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--bp-rust); margin-bottom: 8px;
+  }
+
+  .bp-prose h3 {
+    font-family: 'Fraunces', serif;
+    font-variation-settings: 'opsz' 72;
+    font-weight: 600; font-style: normal;
+    font-size: clamp(20px, 2.6vw, 22px);
+    line-height: 1.25; color: var(--bp-paper);
+    margin: 1.4em 0 0.2em;
+  }
+
+  .bp-prose ul, .bp-prose ol { padding-left: 1.4em; margin: 1.1em 0; }
+  .bp-prose li { margin: 0.4em 0; }
+  .bp-prose ul li::marker { color: var(--bp-acid); }
+  .bp-prose ol li::marker { color: var(--bp-rust); font-family: 'JetBrains Mono', monospace; font-size: 0.85em; }
+
+  .bp-prose blockquote {
+    margin: 1.6em 0; padding: 4px 0 4px 18px;
+    border-left: 2px solid var(--bp-acid);
+    font-family: 'Fraunces', serif;
+    font-style: normal; font-weight: 400;
+    font-variation-settings: 'opsz' 144;
+    font-size: 1.12em; line-height: 1.45;
+    color: var(--bp-paper);
+  }
+  .bp-prose blockquote cite {
+    display: block; margin-top: 8px;
+    font-family: 'JetBrains Mono', monospace; font-style: normal;
+    font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--bp-bone);
+  }
+  .bp-prose blockquote cite::before { content: '— '; color: var(--bp-rust); }
+
+  .bp-prose code {
+    font-family: 'JetBrains Mono', monospace; font-size: 0.86em;
+    color: var(--bp-acid); background: var(--bp-bg-2);
+    padding: 1px 5px; border: 1px solid var(--bp-rule-soft);
+  }
+  .bp-prose pre {
+    margin: 1.4em 0; padding: 14px 16px;
+    background: var(--bp-bg-2); border: 1px solid var(--bp-rule);
+    overflow-x: auto;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px; line-height: 1.6; color: var(--bp-bone);
+  }
+  .bp-prose pre code { background: transparent; border: 0; padding: 0; color: inherit; }
+  .bp-prose pre .h { color: var(--bp-acid); }
+  .bp-prose pre .w { color: var(--bp-paper); }
+  .bp-prose pre .c { color: var(--bp-muted); }
+
+  .bp-prose hr {
+    border: 0; text-align: center; margin: 2.4em auto;
+    color: var(--bp-rust);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px; letter-spacing: 1em;
+  }
+  .bp-prose hr::before { content: '· · ·'; }
+
+  .bp-prose .pull {
+    margin: 1.8em 0; padding: 18px 0;
+    border-top: 1px solid var(--bp-rule); border-bottom: 1px solid var(--bp-rule);
+    font-family: 'Fraunces', serif;
+    font-style: normal; font-weight: 600;
+    font-variation-settings: 'opsz' 144, 'WONK' 1;
+    font-size: clamp(22px, 3.4vw, 28px);
+    line-height: 1.2; letter-spacing: -0.02em;
+    color: var(--bp-paper); text-wrap: balance;
+  }
+  .bp-prose .pull em { color: var(--bp-acid); }
+
+  .bp-aside { position: relative; }
+  .bp-aside .note {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px; line-height: 1.55;
+    color: var(--bp-bone);
+    border-left: 1px solid var(--bp-acid);
+    padding: 6px 0 6px 12px; margin: 1em 0;
+    letter-spacing: 0.005em;
+  }
+  .bp-aside .note .k {
+    color: var(--bp-acid);
+    text-transform: uppercase; letter-spacing: 0.18em;
+    font-size: 10px; margin-right: 6px;
+  }
+  @media (min-width: 920px) {
+    .bp-aside .note {
+      position: absolute;
+      left: calc(var(--bp-prose) + 24px);
+      top: 0; width: 14rem; margin: 0;
+      border-left: 1px solid var(--bp-rule);
+      padding-left: 12px;
+    }
+  }
+
+  .bp-prose figure {
+    margin: 1.8em 0;
+    border: 1px solid var(--bp-rule);
+    background: var(--bp-bg-2);
+  }
+  .bp-prose figure .ph {
+    aspect-ratio: 16 / 9;
+    background:
+      repeating-linear-gradient(45deg, transparent 0 8px, var(--bp-rule-soft) 8px 9px),
+      var(--bp-bg-2);
+    border-bottom: 1px solid var(--bp-rule);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--bp-muted);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
+  }
+  .bp-prose figure figcaption {
+    padding: 10px 14px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; letter-spacing: 0.04em;
+    color: var(--bp-bone); line-height: 1.5;
+  }
+  .bp-prose figure figcaption b {
+    color: var(--bp-rust); font-weight: 400;
+    text-transform: uppercase; letter-spacing: 0.18em; font-size: 10px;
+    margin-right: 8px;
+  }
+
+  /* ─── Footer ─── */
+  .bp-footer {
+    max-width: var(--bp-prose);
+    margin: 56px auto 0; padding-top: 22px;
+    border-top: 1px solid var(--bp-rule);
+    display: grid; gap: 14px;
+    font-size: 11px; line-height: 1.6;
+    color: var(--bp-bone);
+  }
+  .bp-footer .row { display: flex; justify-content: space-between; gap: 18px; flex-wrap: wrap; }
+  .bp-footer .row .k { color: var(--bp-muted); text-transform: uppercase; letter-spacing: 0.18em; font-size: 10px; }
+  .bp-footer .row .v { color: var(--bp-paper); font-family: 'Fraunces', serif; font-style: normal; font-size: 14px; }
+  .bp-footer .rev {
+    border: 1px solid var(--bp-rule); padding: 10px 12px;
+    font-family: 'JetBrains Mono', monospace; font-size: 10px;
+    letter-spacing: 0.04em; color: var(--bp-bone);
+  }
+  .bp-footer .rev b { color: var(--bp-acid); font-weight: 400; }
+  .bp-footer .rev .r { color: var(--bp-rust); }
+  .bp-footer .next {
+    border-top: 1px solid var(--bp-rule);
+    padding-top: 18px; margin-top: 4px;
+    display: flex; justify-content: space-between; align-items: baseline; gap: 16px;
+  }
+  .bp-footer .next .lbl {
+    font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--bp-rust);
+  }
+  .bp-footer .next .ttl {
+    font-family: 'Fraunces', serif; font-style: normal; font-weight: 600;
+    font-variation-settings: 'opsz' 144, 'WONK' 1;
+    font-size: clamp(20px, 3vw, 26px); letter-spacing: -0.02em;
+    color: var(--bp-paper); text-decoration: none;
+  }
+  .bp-footer .next .ttl:hover { color: var(--bp-acid); }
+
+  /* ───────────────────────────────────────────────────────
+     中文 mode — Han-typography overrides.
+     - Italic doesn't work in CJK; emphasis becomes weight + acid.
+     - Drop cap is the first Han character, set in big acid.
+     - Looser line-height (1.95) — the default of CJK reading.
+     - Slug/chrome stays mono — system voice is locale-agnostic.
+     ─────────────────────────────────────────────────────── */
+  html[data-lang="zh"] body { font-family: 'Noto Sans TC', 'JetBrains Mono', sans-serif; }
+
+  html[data-lang="zh"] .bp-title {
+    font-family: 'Noto Serif TC', 'Songti TC', serif;
+    font-weight: 900; font-style: normal;
+    font-variation-settings: normal;
+    font-size: clamp(38px, 7.4vw, 80px);
+    line-height: 1.12; letter-spacing: 0.02em;
+  }
+  html[data-lang="zh"] .bp-title em {
+    color: var(--bp-acid); font-style: normal; font-weight: 900;
+    /* The acid character also gets a hairline underline as a quiet emphasis cue */
+    background-image: linear-gradient(to top, var(--bp-acid) 1px, transparent 1px);
+    background-position: 0 92%; background-repeat: repeat-x;
+    padding-bottom: 0.04em;
+  }
+  html[data-lang="zh"] .bp-title br { display: none; }  /* let CJK wrap naturally */
+
+  html[data-lang="zh"] .bp-deck {
+    font-family: 'Noto Serif TC', 'Songti TC', serif;
+    font-style: normal; font-weight: 400;
+    font-variation-settings: normal;
+    line-height: 1.7; letter-spacing: 0.05em;
+    max-width: 22em;
+  }
+  html[data-lang="zh"] .bp-deck em { font-style: normal; font-weight: 600; }
+
+  html[data-lang="zh"] .bp-prose {
+    font-family: 'Noto Serif TC', 'Songti TC', serif;
+    font-size: var(--bp-body-zh, 18px);
+    line-height: var(--bp-leading-zh, 1.95);
+    letter-spacing: 0.04em;
+  }
+  html[data-lang="zh"] .bp-prose em {
+    font-style: normal; font-weight: 600; color: var(--bp-acid);
+  }
+  html[data-lang="zh"] .bp-prose strong {
+    font-weight: 700; color: var(--bp-paper);
+  }
+  html[data-lang="zh"] .bp-prose .lead.drop-cap::first-letter {
+    font-family: 'Noto Serif TC', 'Songti TC', serif;
+    font-style: normal; font-weight: 900;
+    font-size: 3.6em; line-height: 1;
+    color: var(--bp-acid);
+    padding: 0.04em 0.18em 0 0;
+  }
+  html[data-lang="zh"] .bp-prose h2 {
+    font-family: 'Noto Serif TC', 'Songti TC', serif;
+    font-style: normal; font-weight: 900;
+    font-variation-settings: normal;
+    letter-spacing: 0.04em; line-height: 1.2;
+  }
+  html[data-lang="zh"] .bp-prose h2 em { font-style: normal; font-weight: 900; }
+  html[data-lang="zh"] .bp-prose h3 {
+    font-family: 'Noto Serif TC', 'Songti TC', serif;
+    font-weight: 700; letter-spacing: 0.04em;
+    font-variation-settings: normal;
+  }
+  html[data-lang="zh"] .bp-prose blockquote {
+    font-family: 'Noto Serif TC', 'Songti TC', serif;
+    font-style: normal; font-weight: 500;
+    font-variation-settings: normal;
+    letter-spacing: 0.04em;
+  }
+  html[data-lang="zh"] .bp-prose .pull {
+    font-family: 'Noto Serif TC', 'Songti TC', serif;
+    font-style: normal; font-weight: 700;
+    font-variation-settings: normal;
+    letter-spacing: 0.03em; line-height: 1.5;
+  }
+  html[data-lang="zh"] .bp-prose .pull em { font-style: normal; }
+
+  /* CJK list markers look better as a custom acid bracket. */
+  html[data-lang="zh"] .bp-prose ol { list-style: none; counter-reset: zh; padding-left: 0; }
+  html[data-lang="zh"] .bp-prose ol li {
+    counter-increment: zh; position: relative; padding-left: 2.6em;
+  }
+  html[data-lang="zh"] .bp-prose ol li::before {
+    content: counter(zh, decimal-leading-zero);
+    position: absolute; left: 0; top: 0.05em;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8em; letter-spacing: 0.1em;
+    color: var(--bp-rust);
+  }
+
+  /* Italic/Fraunces values inside the colophon should swap to Noto Serif TC. */
+  html[data-lang="zh"] .bp-colophon .v.italic,
+  html[data-lang="zh"] .bp-footer .row .v,
+  html[data-lang="zh"] .bp-footer .next .ttl {
+    font-family: 'Noto Serif TC', 'Songti TC', serif;
+    font-style: normal; font-weight: 600;
+    font-variation-settings: normal;
+    letter-spacing: 0.03em;
+  }
+  html[data-lang="zh"] .bp-footer .next .ttl { font-weight: 700; }
+
+  /* ─── Mobile ─── */
+  @media (max-width: 720px) {
+    .bp-article { padding: 22px 18px 60px; }
+    .bp-bar { padding: 10px 14px; font-size: 9px; letter-spacing: 0.16em; gap: 8px; }
+    .bp-bar .right .meta { display: none; }
+    .bp-colophon { grid-template-columns: 1fr 1fr; gap: 10px; padding: 10px 0; }
+    .bp-prose { font-size: var(--bp-body-mobile, 17px); line-height: 1.6; }
+    .bp-prose .lead.drop-cap::first-letter { font-size: 4em; }
+    .bp-aside .note { font-size: 11.5px; }
+    html[data-lang="zh"] .bp-prose { font-size: 16.5px; line-height: 1.95; letter-spacing: 0.045em; }
+    .bp-trbanner { grid-template-columns: 1fr; gap: 4px; }
+    .bp-trbanner .src { text-align: left; }
+  }
+
+  /* ─── Accessibility ─── */
+  :focus-visible { outline: 2px solid var(--bp-acid); outline-offset: 3px; }
+  ::selection { background: var(--bp-acid); color: var(--bp-bg); }
+  @media (prefers-reduced-motion: reduce) {
+    .bp-progress i { transition: none; }
+  }
+
+  /* When the user holds the "show original" affordance, fade in the EN copy. */
+  html[data-lang="zh"][data-peek="en"] [data-tr="zh"] { display: none; }
+  html[data-lang="zh"][data-peek="en"] [data-tr="en"] { display: revert; }
+  html[data-lang="zh"][data-peek="en"] .bp-trbanner { background: var(--bp-bg-2); }
+</style>
+</head>
+<body>
+
+  <header class="bp-bar">
+    <div class="mark">
+      <span class="a">ATLAS</span><span class="slash">/</span><span class="b">Meridia</span>
+    </div>
+    <div class="right">
+      <span class="meta" data-tr="en">· journal</span>
+      <span class="meta" data-tr="zh">· 札記</span>
+      <div class="bp-lang" role="group" aria-label="Language">
+        <button data-set="en" aria-pressed="true" type="button">
+          <span class="dot"></span><span class="key">EN</span>
+        </button>
+        <span class="div"></span>
+        <button data-set="zh" aria-pressed="false" type="button">
+          <span class="key">中</span>
+        </button>
+      </div>
+    </div>
+  </header>
+  <div class="bp-progress" id="bpProgress" aria-hidden="true"><i></i></div>
+
+  <article class="bp-article">
+
+    <!-- ── EYEBROW ─────────────────────────────────────── -->
+    <div class="bp-eyebrow" data-tr="en">
+      <span class="acid">▚ journal · 04</span>
+      <span>· first principles</span>
+      <span class="bone">· may 2026</span>
+    </div>
+    <div class="bp-eyebrow" data-tr="zh">
+      <span class="acid">▚ 札記 · 04</span>
+      <span>· 第一原則</span>
+      <span class="bone">· 2026 年 5 月</span>
+    </div>
+
+    <!-- ── TITLE / DECK ────────────────────────────────── -->
+    <h1 class="bp-title" data-tr="en">Memory is a <em>contract,</em><br>not a feature.</h1>
+    <h1 class="bp-title" data-tr="zh">記憶是一份<em>契約</em>，<br>而非一項功能。</h1>
+
+    <p class="bp-deck" data-tr="en">
+      The software I want to use keeps score for me, not against me — and it
+      hands the receipts back, <em>unprompted,</em> when they matter.
+    </p>
+    <p class="bp-deck" data-tr="zh">
+      我想用的軟體會替我記帳，而不是和我對賬——當證據真正<em>重要</em>的那一刻，它會主動把它遞回我手中。
+    </p>
+
+    <!-- ── COLOPHON ────────────────────────────────────── -->
+    <div class="bp-colophon">
+      <div data-tr="en"><span class="k">Author</span><span class="v italic">Kenny Liu</span></div>
+      <div data-tr="zh"><span class="k">作者</span><span class="v italic">劉柏霖</span></div>
+
+      <div data-tr="en"><span class="k">Published</span><span class="v">May 1, 2026</span></div>
+      <div data-tr="zh"><span class="k">發表</span><span class="v">2026.05.01</span></div>
+
+      <div data-tr="en"><span class="k">Read</span><span class="v">11 min · 2,409 words</span></div>
+      <div data-tr="zh"><span class="k">閱讀</span><span class="v">12 分鐘 · 約 3,200 字</span></div>
+
+      <div data-tr="en"><span class="k">Filed</span><span class="v acid">first-principles</span></div>
+      <div data-tr="zh"><span class="k">收於</span><span class="v acid">第一原則</span></div>
+
+      <div data-tr="en"><span class="k">Series</span><span class="v">Manifesto · 01 of 04</span></div>
+      <div data-tr="zh"><span class="k">系列</span><span class="v">宣言 · 01 / 04</span></div>
+    </div>
+
+    <!-- ── TRANSLATION BANNER (中 only) ─────────────────── -->
+    <div class="bp-trbanner" data-tr="zh">
+      <span class="glyph">▚ 譯本</span>
+      <span class="credit"><b>原文</b>英文 &nbsp; · &nbsp; <b>譯者</b>作者本人 · 親自校訂 &nbsp; · &nbsp; 2026.05.01</span>
+      <span class="src" id="bp-peekBtn" title="按住以查看原文">按住 <b style="color:var(--bp-acid);font-weight:400">▚</b> 查看原文</span>
+    </div>
+
+    <!-- ── PROSE — ENGLISH ─────────────────────────────── -->
+    <div class="bp-prose" data-tr="en">
+
+      <p class="lead drop-cap">
+        Most software calls itself <em>intelligent</em> and means
+        <em>predictive</em> — a system that guesses your next keystroke so
+        you don't have to finish the thought. I want the opposite. I want a
+        system that refuses to finish the thought, that hands it back to me
+        with three questions in the margin, that <strong>forces the
+        revision.</strong> An archive is the only honest AI interface.
+        Everything else is a wrapper around one.
+      </p>
+
+      <p>
+        Hermes — the agent I've been building since the winter — does not
+        autocomplete. It <em>indexes.</em> Every journal entry, every unsent
+        letter, every half-formed note becomes part of a single ledger that
+        the system reads on a schedule and surfaces, sometimes, when it
+        thinks I've contradicted myself. <s>That sounds like a feature.</s>
+        It is not a feature. It is a <em>contract.</em>
+      </p>
+
+      <h2 data-n="01 · the contract">What memory <em>owes</em> you</h2>
+
+      <p>
+        When you write something down and ask a system to remember it, the
+        system has implicitly agreed to three things. It will not lose the
+        words. It will not lose the <em>fact</em> of the words. And it will
+        return them, intact, when asked — even if the asking is your future
+        self disagreeing with your past one.
+      </p>
+
+      <div class="bp-aside">
+        <p>
+          Most cloud notes apps fail the second clause. They will lose the
+          fact of a deletion, even when they retain the bytes. The system
+          treats your edit history as <mark>chrome</mark>, not as evidence.
+        </p>
+        <aside class="note"><span class="k">▚ note</span>This is why I won't ship a cloud sync. Not because the cloud is unsafe — because the cloud is <em>convenient,</em> and convenience is what trains a system to lie about what it kept.</aside>
+      </div>
+
+      <p class="pull">
+        An archive that lets you delete is not an archive. It is a draft.
+        The difference is whether you expect the ledger to have an
+        <em>opinion.</em>
+      </p>
+
+      <h2 data-n="02 · the receipts">Receipts, not <em>nudges</em></h2>
+
+      <p>
+        Hermes raises three kinds of artefacts: <strong>contradictions,</strong>
+        <strong>unresolved threads,</strong> and <strong>unsent letters.</strong>
+        It does not raise more than one at a time, and it does not raise
+        the same one twice without a 7-day cool-down. Silence is the
+        default state.
+      </p>
+
+      <ol>
+        <li>A <em>contradiction</em> is two of your own statements that disagree. The system surfaces both, dated, and shuts up.</li>
+        <li>An <em>unresolved thread</em> is a question you posed to yourself in writing and never answered. After 30 days, it asks once.</li>
+        <li>An <em>unsent letter</em> is a draft addressed to a real person that you wrote and did not send. The system holds it, and asks <em>only</em> if a related entry suggests you've changed your mind.</li>
+      </ol>
+
+      <blockquote>
+        The archive keeps score. Not against you — for you. That's the deal.
+        <cite>Kenny Liu, journal · April 2026</cite>
+      </blockquote>
+
+      <h3>An aside on burns</h3>
+
+      <p>
+        There is no delete key. There is an <em>acknowledge</em> key, a
+        <em>supersede</em> key, and a <em>burn</em> key — which takes 72 hours
+        and asks you three questions: <em>why now, what changed, who
+        benefits.</em> If you can answer all three, the words are
+        permanently redacted. The fact of the entry remains. You can see
+        where a thing used to be — only the contents are gone.
+      </p>
+
+      <pre><code><span class="c"># hermes config — defaults, not negotiable</span>
+<span class="h">memory</span>     <span class="w">local-first</span>     <span class="c">// no cloud sync</span>
+<span class="h">delete</span>     <span class="w">redact-only</span>    <span class="c">// 72h hold</span>
+<span class="h">surface</span>    <span class="w">on-contradict</span>  <span class="c">// not on schedule</span>
+<span class="h">silence</span>    <span class="w">default</span>        <span class="c">// the ledger waits</span></code></pre>
+
+      <h2 data-n="03 · the form">Form follows <em>intent</em></h2>
+
+      <p>
+        The visual language of this site reflects the contract. Hairlines
+        carry structure; one accent earns its place; italics are reserved
+        for the moments that earn them. There are no gradients, no blurs,
+        no apologies. <em>Taste is the enemy of intent.</em>
+      </p>
+
+      <figure>
+        <div class="ph">FIG · 01 — diagnostics surface, hermes</div>
+        <figcaption><b>fig 01</b>The diagnostics rail surfaces three contradictions, one unsent letter, and a low-pressure memory state. Most days it shows nothing.</figcaption>
+      </figure>
+
+      <p>
+        I am not the audience for a system that tries to be charming.
+        Charm is the marketing department's revenge on engineering.
+        I want a tool that is <em>quiet,</em> opinionated, and
+        <a href="#">unembarrassed</a> by the fact that I will outgrow some
+        of my own past sentences. The ledger doesn't mind. That's the
+        whole point.
+      </p>
+
+      <hr>
+
+      <p>
+        If you've read this far, you already know whether you want this
+        kind of software. There is no waitlist. There is a repo, a manifesto,
+        and a tarball. The agent grows with you, but only if you write to it.
+      </p>
+
+    </div>
+
+    <!-- ── PROSE — 中文 ─────────────────────────────────── -->
+    <div class="bp-prose" data-tr="zh" lang="zh-Hant">
+
+      <p class="lead drop-cap">
+        多數軟體自稱<em>「智慧」</em>，實則只是<em>「預測」</em>——一套替你接下未說完的句子的系統，好讓你不必把念頭想完。我要的是相反。我要一套會把念頭退還給我的系統，會在頁邊提出三個問題的系統，<strong>逼出修訂</strong>的系統。檔案，是唯一誠實的 AI 介面。其餘的，都只是包在這之上的外殼。
+      </p>
+
+      <p>
+        Hermes ——我從去年冬天開始打造的代理人——不會自動補完。它<em>索引</em>。每一篇日誌、每一封未寄出的信、每一段半成形的筆記，都成為一份單一帳本的一部分。系統依排程讀取，並在它認為我自相矛盾時，偶爾把它浮現出來。<s>這聽起來像是一項功能。</s>它不是功能。它是一份<em>契約</em>。
+      </p>
+
+      <h2 data-n="01 · 契約">記憶<em>虧欠</em>你什麼</h2>
+
+      <p>
+        當你把某件事寫下來，請系統替你記住，系統便默默簽下了三件事：它不會弄丟那些字；不會弄丟那些字曾被寫下的<em>事實</em>；當被詢問時，它會把它們完整歸還——即使提問的，是對過去的自己持有異議的、未來的你。
+      </p>
+
+      <div class="bp-aside">
+        <p>
+          多數雲端筆記應用，敗在第二條。它們會弄丟「一次刪除」這個事實，即使保留了位元組。系統把你的編輯歷史當作<mark>介面裝飾</mark>，而非證據。
+        </p>
+        <aside class="note"><span class="k">▚ 註</span>這就是為什麼我不會推出雲端同步。不是因為雲端不安全——而是因為雲端<em>方便</em>，而方便會訓練系統對自己保留下的東西說謊。</aside>
+      </div>
+
+      <p class="pull">
+        一個容許刪除的檔案，不是檔案。是草稿。差別在於，你是否期望這份帳本，擁有自己的<em>意見</em>。
+      </p>
+
+      <h2 data-n="02 · 收據">收據，而非<em>提示</em></h2>
+
+      <p>
+        Hermes 升起三類物件：<strong>矛盾、</strong><strong>未解的線索、</strong><strong>未寄出的信。</strong>一次只升起一件，並且在七天的冷卻期內不會再次升起同一件。沉默，是預設狀態。
+      </p>
+
+      <ol>
+        <li><em>「矛盾」</em>：你自己的兩段陳述彼此牴觸。系統把兩段同時呈現，附上日期，然後閉嘴。</li>
+        <li><em>「未解的線索」</em>：你曾在文字中向自己提出、卻未曾回答的問題。三十天後，它問一次。</li>
+        <li><em>「未寄出的信」</em>：你寫下、卻未寄出，地址寫的是真實的人的草稿。系統替你保留——<em>只</em>在某篇相關日誌暗示你已改變心意時，才會發問。</li>
+      </ol>
+
+      <blockquote>
+        檔案會替你記帳。不是針對你——是替你。這就是約定。
+        <cite>劉柏霖，札記 · 2026 年 4 月</cite>
+      </blockquote>
+
+      <h3>關於「焚毀」一事</h3>
+
+      <p>
+        沒有刪除鍵。有一個<em>確認鍵</em>、一個<em>取代鍵</em>、以及一個<em>焚毀鍵</em>——後者需要七十二小時冷卻，並會問你三個問題：<em>為何此刻、什麼改變了、誰會受益。</em>三題都能回答，那些字會被永久遮蔽。條目本身的事實仍在。你看得見某段文字曾經存在的位置——只是內容已不可見。
+      </p>
+
+      <pre><code><span class="c"># hermes 設定 — 預設值，不可協商</span>
+<span class="h">memory</span>     <span class="w">local-first</span>     <span class="c">// 不上雲</span>
+<span class="h">delete</span>     <span class="w">redact-only</span>    <span class="c">// 72h 冷卻</span>
+<span class="h">surface</span>    <span class="w">on-contradict</span>  <span class="c">// 不照排程</span>
+<span class="h">silence</span>    <span class="w">default</span>        <span class="c">// 帳本等待</span></code></pre>
+
+      <h2 data-n="03 · 形式">形式追隨<em>意圖</em></h2>
+
+      <p>
+        這個網站的視覺語言反映了那份契約。髮絲線承擔結構；唯一的強調色，須掙得它的位置；斜體只保留給值得的時刻。沒有漸層、沒有模糊、沒有道歉。<em>品味，是意圖的敵人。</em>
+      </p>
+
+      <figure>
+        <div class="ph">圖 · 01 — 診斷面板，hermes</div>
+        <figcaption><b>圖 01</b>診斷側欄浮出三項矛盾、一封未寄出的信、以及一個低壓的記憶狀態。多數日子，它什麼也不顯示。</figcaption>
+      </figure>
+
+      <p>
+        我並非那種「試圖討人喜歡的系統」的目標讀者。「魅力」是行銷部門對工程的反擊。我要的工具是——<em>安靜</em>、有立場、不為「我終將寫出超越過往句子的自己」這件事感到<a href="#">尷尬</a>。帳本不介意。這正是重點所在。
+      </p>
+
+      <hr>
+
+      <p>
+        如果你讀到這裡，你已經知道自己是不是想要這樣的軟體。沒有候補名單。有一個 repo、一份宣言、一個 tarball。代理人會與你一同生長——但前提是，你願意持續對它書寫。
+      </p>
+
+    </div>
+
+    <!-- ── FOOTER ──────────────────────────────────────── -->
+    <footer class="bp-footer">
+      <div class="row" data-tr="en">
+        <span class="k">Tags</span>
+        <span class="v">memory · agents · first-principles · hermes</span>
+      </div>
+      <div class="row" data-tr="zh">
+        <span class="k">標籤</span>
+        <span class="v">記憶 · 代理人 · 第一原則 · hermes</span>
+      </div>
+
+      <div class="row" data-tr="en">
+        <span class="k">Last revised</span>
+        <span class="v">May 1, 2026 · two corrections, one footnote</span>
+      </div>
+      <div class="row" data-tr="zh">
+        <span class="k">最後修訂</span>
+        <span class="v">2026.05.01 · 兩處更正，一條註腳</span>
+      </div>
+
+      <div class="rev" data-tr="en">
+        <b>▚ revisions</b> &nbsp; r1 04.20 published &nbsp;·&nbsp; r2 04.27 footnote on burns &nbsp;·&nbsp; r3 05.01 typo, paragraph 04 &nbsp; <span class="r">// no edits without a record</span>
+      </div>
+      <div class="rev" data-tr="zh">
+        <b>▚ 修訂</b> &nbsp; r1 04.20 發布 &nbsp;·&nbsp; r2 04.27 補上「焚毀」一節之註腳 &nbsp;·&nbsp; r3 05.01 第四段錯字訂正 &nbsp; <span class="r">// 不留白地編輯</span>
+      </div>
+
+      <!-- Translator credit — only in 中 mode. -->
+      <div class="rev" data-tr="zh" style="border-color:color-mix(in srgb,var(--bp-acid) 30%, var(--bp-rule));">
+        <b>▚ 翻譯</b> &nbsp; en → zh-Hant &nbsp;·&nbsp; 譯者：作者本人 &nbsp;·&nbsp; 校訂於 2026.05.01 &nbsp; <span class="r">// 翻譯亦是一份契約</span>
+      </div>
+
+      <div class="next" data-tr="en">
+        <div>
+          <span class="lbl">· next in series</span><br>
+          <a class="ttl" href="#">02 · Silence is the default state</a>
+        </div>
+        <span class="lbl" style="color:var(--bp-bone)">↗</span>
+      </div>
+      <div class="next" data-tr="zh">
+        <div>
+          <span class="lbl">· 系列下一篇</span><br>
+          <a class="ttl" href="#">02 · 沉默是預設狀態</a>
+        </div>
+        <span class="lbl" style="color:var(--bp-bone)">↗</span>
+      </div>
+
+      <div class="row" style="border-top:1px solid var(--bp-rule); padding-top:14px; margin-top:8px;">
+        <span class="k">© 2026 · kennyliu.io</span>
+        <span class="k" style="color:var(--bp-acid)" data-tr="en">▚ contains opinions</span>
+        <span class="k" style="color:var(--bp-acid)" data-tr="zh">▚ 內含意見</span>
+      </div>
+    </footer>
+
+  </article>
+
+  <script>
+    // Reading-progress hairline.
+    (function () {
+      const bar = document.getElementById('bpProgress');
+      if (!bar) return;
+      const fill = bar.querySelector('i');
+      const article = document.querySelector('.bp-article');
+      function update() {
+        const r = article.getBoundingClientRect();
+        const total = r.height - window.innerHeight;
+        const passed = Math.min(Math.max(-r.top, 0), Math.max(total, 1));
+        fill.style.width = (total > 0 ? (passed / total) * 100 : 100) + '%';
+      }
+      document.addEventListener('scroll', update, { passive: true });
+      window.addEventListener('resize', update);
+      update();
+    })();
+
+    // Language toggle. View-Transitions API gives a free crossfade
+    // when supported; we fall back to an instant swap otherwise.
+    (function () {
+      const html = document.documentElement;
+      const buttons = document.querySelectorAll('.bp-lang button');
+      const peek = document.getElementById('bp-peekBtn');
+
+      function setLang(next) {
+        if (html.dataset.lang === next) return;
+        const apply = () => {
+          html.dataset.lang = next;
+          html.setAttribute('lang', next === 'zh' ? 'zh-Hant' : 'en');
+          buttons.forEach((b) => b.setAttribute('aria-pressed', b.dataset.set === next ? 'true' : 'false'));
+          // Update the document title to match locale.
+          document.title = next === 'zh'
+            ? '記憶是一份契約 — kennyliu.io'
+            : 'Memory is a contract — kennyliu.io';
+        };
+        if (document.startViewTransition) {
+          document.startViewTransition(apply);
+        } else {
+          apply();
+        }
+      }
+
+      buttons.forEach((b) => {
+        b.addEventListener('click', () => setLang(b.dataset.set));
+      });
+
+      // Keyboard: Alt+L cycles between locales.
+      window.addEventListener('keydown', (e) => {
+        if (e.altKey && e.key.toLowerCase() === 'l') {
+          e.preventDefault();
+          setLang(html.dataset.lang === 'zh' ? 'en' : 'zh');
+        }
+      });
+
+      // "Hold to peek English" affordance — only meaningful in 中 mode.
+      if (peek) {
+        const start = (e) => {
+          if (html.dataset.lang !== 'zh') return;
+          e.preventDefault();
+          html.dataset.peek = 'en';
+        };
+        const end = () => { delete html.dataset.peek; };
+        peek.addEventListener('mousedown', start);
+        peek.addEventListener('touchstart', start, { passive: false });
+        ['mouseup','mouseleave','touchend','touchcancel','blur'].forEach((evt) =>
+          peek.addEventListener(evt, end)
+        );
+        window.addEventListener('blur', end);
+      }
+    })();
+  </script>
+
+  <script type="text/babel" src="tweaks-panel.jsx"></script>
+  <script type="text/babel">
+    const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+      "theme": "graphite",
+      "width": "prose",
+      "size": "standard",
+      "leading": "normal",
+      "dropCap": true
+    }/*EDITMODE-END*/;
+
+    function App() {
+      const [t, setTweak] = useTweaks(TWEAK_DEFAULTS);
+
+      React.useEffect(() => {
+        const map = { graphite: 'graphite', cream: 'cream' };
+        document.documentElement.setAttribute('data-theme', map[t.theme] || 'graphite');
+      }, [t.theme]);
+
+      React.useEffect(() => {
+        const root = document.documentElement;
+        root.style.setProperty('--bp-body', t.size === 'larger' ? '21px' : '19px');
+        root.style.setProperty('--bp-body-mobile', t.size === 'larger' ? '18.5px' : '17px');
+        root.style.setProperty('--bp-body-zh', t.size === 'larger' ? '19.5px' : '18px');
+        root.style.setProperty('--bp-leading', t.leading === 'tight' ? '1.55' : t.leading === 'generous' ? '1.78' : '1.65');
+        root.style.setProperty('--bp-leading-zh', t.leading === 'tight' ? '1.78' : t.leading === 'generous' ? '2.10' : '1.95');
+      }, [t.size, t.leading]);
+
+      React.useEffect(() => {
+        document.querySelector('.bp-article').style.setProperty(
+          '--bp-prose', t.width === 'wide' ? '46rem' : '38rem'
+        );
+      }, [t.width]);
+
+      React.useEffect(() => {
+        document.querySelectorAll('.bp-prose .lead').forEach((el) => {
+          el.classList.toggle('drop-cap', !!t.dropCap);
+        });
+      }, [t.dropCap]);
+
+      return (
+        <TweaksPanel title="Tweaks · reading">
+          <TweakSection label="Theme" />
+          <TweakRadio label="Ground" value={t.theme} options={['graphite', 'cream']} onChange={(v) => setTweak('theme', v)} />
+          <TweakSection label="Layout" />
+          <TweakRadio label="Width" value={t.width} options={['prose', 'wide']} onChange={(v) => setTweak('width', v)} />
+          <TweakSection label="Type" />
+          <TweakRadio label="Size" value={t.size} options={['standard', 'larger']} onChange={(v) => setTweak('size', v)} />
+          <TweakRadio label="Leading" value={t.leading} options={['tight', 'normal', 'generous']} onChange={(v) => setTweak('leading', v)} />
+          <TweakToggle label="Drop cap" value={t.dropCap} onChange={(v) => setTweak('dropCap', v)} />
+        </TweaksPanel>
+      );
+    }
+
+    const root = ReactDOM.createRoot(document.createElement('div'));
+    document.body.appendChild(root._internalRoot.containerInfo);
+    root.render(<App />);
+  </script>
+</body>
+</html>

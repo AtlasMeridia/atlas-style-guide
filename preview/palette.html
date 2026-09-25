@@ -1,0 +1,38 @@
+<!doctype html>
+<!-- @dsCard group="Colors" name="Palette" subtitle="Ink · oxblood · rust · acid · paper" viewport="700x320" -->
+<html>
+<head>
+<meta charset="utf-8">
+<title>Minerali — palette</title>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&display=swap" rel="stylesheet">
+<style>
+  html, body { margin: 0; height: 100%; background: #07080a; color: #e6ddc8; font-family: 'JetBrains Mono', monospace; }
+  body { padding: 22px; display: flex; flex-direction: column; gap: 14px; }
+  .slug { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: #2be0c8; display: flex; justify-content: space-between; border-bottom: 1px solid #1c1e22; padding-bottom: 8px; }
+  .slug .right { color: #b8ad93; }
+  .grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0; border: 1px solid #1c1e22; }
+  .sw { aspect-ratio: 1; display: flex; flex-direction: column; justify-content: space-between; padding: 10px; position: relative; border-right: 1px solid #1c1e22; }
+  .sw:last-child { border-right: 0; }
+  .sw .name { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; }
+  .sw .hex { font-size: 10px; color: rgba(255,255,255,0.55); }
+  .sw .ring { position: absolute; top: 8px; right: 8px; width: 14px; height: 14px; border-radius: 50%; border: 1px solid currentColor; }
+  .meta { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 4px; }
+  .note { font-family: 'Fraunces', serif; font-weight: 400; font-style: italic; font-size: 14px; line-height: 1.4; color: #b8ad93; }
+  .note em { color: #2be0c8; font-style: normal; font-weight: 500; letter-spacing: 0.05em; }
+</style>
+</head>
+<body>
+  <div class="slug"><span>MINERALI · 02 · PALETTE</span><span class="right">five, no more</span></div>
+  <div class="grid">
+    <div class="sw" style="background:#07080a; color:#e6ddc8"><div class="ring"></div><div></div><div><div class="name">Ink</div><div class="hex">#07080A</div></div></div>
+    <div class="sw" style="background:#3a0f10; color:#e6ddc8"><div class="ring"></div><div></div><div><div class="name">Oxblood</div><div class="hex">#3A0F10</div></div></div>
+    <div class="sw" style="background:#c75a2a; color:#07080a"><div class="ring"></div><div></div><div><div class="name">Rust</div><div class="hex">#C75A2A</div></div></div>
+    <div class="sw" style="background:#2be0c8; color:#07080a"><div class="ring"></div><div></div><div><div class="name">Acid</div><div class="hex">#2BE0C8</div></div></div>
+    <div class="sw" style="background:#e6ddc8; color:#07080a"><div class="ring"></div><div></div><div><div class="name">Paper</div><div class="hex">#E6DDC8</div></div></div>
+  </div>
+  <div class="meta">
+    <div class="note">Ink is the ground. Paper is the page.<br>Between them: <em>oxblood</em> for weight,<br><em>rust</em> for warmth, <em>acid</em> for teeth.</div>
+    <div class="note">Use acid at ≤15% of any composition.<br>It should feel like a <em>cut</em>, not a fill.<br>No gradients. No tints. No mixes.</div>
+  </div>
+</body>
+</html>

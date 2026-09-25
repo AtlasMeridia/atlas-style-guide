@@ -1,0 +1,28 @@
+<!doctype html>
+<!-- @dsCard group="Brand" name="Monogram" subtitle="Square 'AM' · Fraunces italic · graphite / ink / acid variants" viewport="700x180" -->
+<html data-theme="graphite">
+<head>
+<meta charset="utf-8">
+<title>Monogram</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  html, body { margin: 0; height: 100%; }
+  body { padding: 24px; display: flex; align-items: center; gap: 24px; background: var(--bg-primary); }
+  .tag { font-family: var(--font-ui); font-size: 10px; color: var(--text-muted); letter-spacing: 0.18em; text-transform: uppercase; }
+  .m { width: 96px; height: 96px; border: 1px solid var(--border-color); display:flex; align-items:center; justify-content:center; font-family: var(--font-display); font-variation-settings: 'opsz' 144, 'WONK' 1; font-style: italic; font-weight: 900; font-size: 54px; letter-spacing: -0.06em; line-height: 1; flex-shrink: 0; font-synthesis: none; }
+  .graphite { background: #1a1a1d; color: var(--mn-paper); }
+  .ink { background: var(--mn-ink); color: var(--mn-acid); border-color: var(--mn-hairline); }
+  .acid { background: var(--mn-acid); color: var(--mn-ink); border-color: var(--mn-acid); }
+  .col { display: flex; flex-direction: column; gap: 8px; }
+</style>
+</head>
+<body>
+  <div class="m graphite">AM</div>
+  <div class="m ink">AM</div>
+  <div class="m acid">AM</div>
+  <div class="col">
+    <div class="tag">Monogram · square</div>
+    <div style="font-family:var(--font-body);font-variation-settings:'opsz' 28;font-size:14px;color:var(--text-secondary);line-height:1.55;max-width:230px">Square 'AM' in Fraunces italic, 900 wonk. Hairline border, no radius. The acid variant is for favicons and app icons; paper-on-graphite for everything else.</div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,124 @@
+<!doctype html>
+<!-- @dsCard group="Components" name="Diagnostics" subtitle="KPI header + dense diagnostic table" viewport="1100x640" -->
+<html data-theme="graphite">
+<head>
+<meta charset="utf-8">
+<title>Minerali — diagnostics</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  html, body { margin: 0; height: 100%; background: var(--mn-ink); color: var(--mn-paper); font-family: var(--font-mono); }
+  body { padding: 22px; display: flex; flex-direction: column; gap: 14px; }
+  .frame { border: 1px solid var(--mn-hairline); flex: 1; display: grid; grid-template-rows: auto 1fr auto; }
+  .hd { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; border-bottom: 1px solid var(--mn-hairline); }
+  .hd .cell { padding: 10px 14px; border-right: 1px solid var(--mn-hairline); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--mn-bone); display: flex; flex-direction: column; gap: 4px; }
+  .hd .cell:last-child { border-right: 0; }
+  .hd .v { font-family: var(--font-display); font-variation-settings: 'opsz' 144, 'WONK' 1; font-weight: 900; font-style: normal; font-size: 34px; line-height: 0.9; color: var(--mn-paper); letter-spacing: -0.03em; }
+  .hd .v.acid { color: var(--mn-acid); }
+  .hd .v.rust { color: var(--mn-rust); }
+  .hd .v .unit { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--mn-muted); font-style: normal; font-weight: 400; margin-left: 6px; vertical-align: 6px; }
+  .hd .delta { font-size: 10px; color: var(--mn-acid); letter-spacing: 0.1em; }
+  .hd .delta.down { color: var(--mn-rust); }
+
+  .tbl { font-size: 11px; overflow: hidden; display: flex; flex-direction: column; }
+  .trow { display: grid; grid-template-columns: 30px 1.2fr 1fr 80px 100px 90px 80px; border-bottom: 1px solid var(--mn-hairline); align-items: center; }
+  .trow.th { color: var(--mn-muted); text-transform: uppercase; letter-spacing: 0.15em; font-size: 9px; background: var(--mn-ink-2); }
+  .trow .c { padding: 9px 12px; border-right: 1px solid var(--mn-hairline); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .trow .c:last-child { border-right: 0; }
+  .trow .n { color: var(--mn-muted); }
+  .trow .name { color: var(--mn-paper); font-family: 'Fraunces', serif; font-style: normal; font-weight: 600; font-size: 14px; letter-spacing: -0.01em; }
+  .trow .tag { font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--mn-bone); }
+  .trow .tag .dot { display: inline-block; width: 6px; height: 6px; background: currentColor; margin-right: 6px; vertical-align: 1px; }
+  .trow .tag.acid { color: var(--mn-acid); }
+  .trow .tag.rust { color: var(--mn-rust); }
+  .trow .tag.ok { color: var(--mn-paper); }
+  .trow .num { font-variant-numeric: tabular-nums; text-align: right; color: var(--mn-paper); }
+  .trow .spark { display: flex; gap: 1px; align-items: flex-end; height: 18px; }
+  .trow .spark i { width: 4px; background: var(--mn-hairline); display: block; }
+  .trow .spark i.on { background: var(--mn-paper); }
+  .trow .spark i.hot { background: var(--mn-acid); }
+  .trow .spark i.bad { background: var(--mn-rust); }
+  .trow .score { text-align: right; font-size: 14px; font-family: 'Fraunces', serif; font-style: normal; color: var(--mn-acid); letter-spacing: -0.01em; font-weight: 700; }
+  .trow .score.low { color: var(--mn-rust); }
+
+  .fd { display: flex; justify-content: space-between; padding: 9px 14px; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--mn-muted); border-top: 1px solid var(--mn-hairline); }
+  .fd .acid { color: var(--mn-acid); }
+</style>
+</head>
+<body>
+  <div class="mn-slug"><span>MINERALI · 10 · DIAGNOSTICS</span><span class="right">hermes · memory health · live</span></div>
+
+  <div class="frame">
+    <div class="hd">
+      <div class="cell"><span>entries indexed</span><span class="v">14,208</span><span class="delta">+ 42 · 24h</span></div>
+      <div class="cell"><span>unresolved</span><span class="v rust">07</span><span class="delta down">+ 02 · since last run</span></div>
+      <div class="cell"><span>contradictions</span><span class="v acid">3</span><span class="delta">raised · not yet answered</span></div>
+      <div class="cell"><span>confidence</span><span class="v">0.84<span class="unit">rolling 30d</span></span><span class="delta">band <span style="color:var(--mn-paper)">0.79 – 0.88</span></span></div>
+    </div>
+
+    <div class="tbl">
+      <div class="trow th">
+        <div class="c">#</div><div class="c">thread</div><div class="c">tag</div><div class="c">age</div><div class="c">signal</div><div class="c">conf.</div><div class="c">score</div>
+      </div>
+      <div class="trow">
+        <div class="c n">01</div>
+        <div class="c name">the half-letter to Lin</div>
+        <div class="c"><span class="tag rust"><span class="dot"></span>unsent · 4d</span></div>
+        <div class="c num">96h</div>
+        <div class="c"><div class="spark"><i></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="hot"></i><i class="hot"></i><i class="on"></i><i class="hot"></i><i class="bad"></i><i class="bad"></i><i class="hot"></i><i class="hot"></i></div></div>
+        <div class="c num">0.72</div>
+        <div class="c score">0.88</div>
+      </div>
+      <div class="trow">
+        <div class="c n">02</div>
+        <div class="c name">March 18 — "I think I was wrong about quitting"</div>
+        <div class="c"><span class="tag acid"><span class="dot"></span>contradiction</span></div>
+        <div class="c num">32d</div>
+        <div class="c"><div class="spark"><i class="on"></i><i class="on"></i><i></i><i class="on"></i><i class="on"></i><i class="hot"></i><i class="hot"></i><i class="hot"></i><i class="hot"></i><i class="hot"></i><i class="on"></i><i class="on"></i></div></div>
+        <div class="c num">0.91</div>
+        <div class="c score">0.94</div>
+      </div>
+      <div class="trow">
+        <div class="c n">03</div>
+        <div class="c name">Aeon test run · session 04-17</div>
+        <div class="c"><span class="tag ok"><span class="dot"></span>resolved</span></div>
+        <div class="c num">3d</div>
+        <div class="c"><div class="spark"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
+        <div class="c num">0.88</div>
+        <div class="c score low">0.41</div>
+      </div>
+      <div class="trow">
+        <div class="c n">04</div>
+        <div class="c name">the meridia thesis — draft III</div>
+        <div class="c"><span class="tag"><span class="dot"></span>in progress</span></div>
+        <div class="c num">11d</div>
+        <div class="c"><div class="spark"><i></i><i></i><i class="on"></i><i class="on"></i><i class="hot"></i><i class="on"></i><i class="on"></i><i class="hot"></i><i class="hot"></i><i class="on"></i><i class="on"></i><i class="hot"></i></div></div>
+        <div class="c num">0.67</div>
+        <div class="c score">0.79</div>
+      </div>
+      <div class="trow">
+        <div class="c n">05</div>
+        <div class="c name">archive/2019/christmas letters</div>
+        <div class="c"><span class="tag ok"><span class="dot"></span>cold · held</span></div>
+        <div class="c num">5y</div>
+        <div class="c"><div class="spark"><i></i><i></i><i></i><i></i><i></i><i></i><i class="on"></i><i></i><i></i><i></i><i></i><i class="on"></i></div></div>
+        <div class="c num">0.95</div>
+        <div class="c score low">0.22</div>
+      </div>
+      <div class="trow">
+        <div class="c n">06</div>
+        <div class="c name">note to self re: the gate</div>
+        <div class="c"><span class="tag rust"><span class="dot"></span>unresolved · raised</span></div>
+        <div class="c num">7h</div>
+        <div class="c"><div class="spark"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i class="hot"></i><i class="hot"></i><i class="hot"></i><i class="bad"></i><i class="bad"></i></div></div>
+        <div class="c num">0.58</div>
+        <div class="c score">0.84</div>
+      </div>
+    </div>
+
+    <div class="fd">
+      <span><span class="acid">∴</span> scoring model <span style="color:var(--mn-paper)">salience × recency × emotional_weight</span> · tuned 04.18</span>
+      <span>showing 06 of <span style="color:var(--mn-paper)">14,208</span></span>
+    </div>
+  </div>
+</body>
+</html>

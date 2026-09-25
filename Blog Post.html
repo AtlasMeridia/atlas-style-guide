@@ -1,0 +1,697 @@
+<!doctype html>
+<!-- @dsCard group="Templates" name="Blog Post" subtitle="Long-form template — graphite default, drop cap, sticky progress, mobile-first" viewport="800x2400" -->
+<html data-theme="graphite">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Memory is a contract — kennyliu.io</title>
+<link rel="stylesheet" href="colors_and_type.css">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<style>
+  /* ───────────────────────────────────────────────────────
+     Theming. Three grounds; one accent system.
+     ─────────────────────────────────────────────────────── */
+  :root {
+    --bp-acid:      #2be0c8;
+    --bp-rust:      #c75a2a;
+    --bp-oxblood:   #3a0f10;
+  }
+
+  /* Graphite — the new default. Lifted enough to read; dark enough to feel nocturnal. */
+  html[data-theme="graphite"] {
+    --bp-bg:        #1a1a1d;
+    --bp-bg-2:      #202024;
+    --bp-rule:      #2e2e33;
+    --bp-rule-soft: #26262a;
+    --bp-paper:     #ecdfc8;
+    --bp-bone:      #b6ab93;
+    --bp-muted:     #7a7266;
+    --bp-deep:      #14141700;
+    --bp-mark-bg:   rgba(43,224,200,0.12);
+  }
+  /* Cream — daylight reading. */
+  html[data-theme="cream"] {
+    --bp-bg:        #f3f0ea;
+    --bp-bg-2:      #f8f6f1;
+    --bp-rule:      #d0c8bb;
+    --bp-rule-soft: #e3ddd0;
+    --bp-paper:     #2a2620;
+    --bp-bone:      #6b6356;
+    --bp-muted:     #8e8678;
+    --bp-mark-bg:   rgba(199,90,42,0.10);
+  }
+
+  html, body { margin: 0; background: var(--bp-bg); color: var(--bp-paper); }
+  body {
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* ─── Top bar (slug). Sticky, hairline-thin, mono. ─── */
+  .bp-bar {
+    position: sticky; top: 0; z-index: 50;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 10px 22px;
+    border-bottom: 1px solid var(--bp-rule);
+    background: color-mix(in srgb, var(--bp-bg) 88%, transparent);
+    font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--bp-bone);
+  }
+  .bp-bar .mark { display: flex; align-items: baseline; gap: 6px; }
+  .bp-bar .mark .a { color: var(--bp-bone); letter-spacing: 0.22em; }
+  .bp-bar .mark .slash { color: var(--bp-acid); font-weight: 700; font-size: 12px; }
+  .bp-bar .mark .b {
+    font-family: 'Fraunces', serif;
+    font-variation-settings: 'opsz' 144, 'WONK' 1;
+    font-weight: 900; font-style: italic;
+    font-size: 17px; letter-spacing: -0.02em;
+    color: var(--bp-paper); text-transform: none;
+  }
+  .bp-bar .right { color: var(--bp-acid); display: flex; gap: 14px; align-items: center; }
+  .bp-bar .right .toc { color: var(--bp-bone); cursor: pointer; }
+  .bp-bar .right .toc:hover { color: var(--bp-paper); }
+
+  /* Reading-progress hairline under the bar. */
+  .bp-progress {
+    position: sticky; top: 36px; z-index: 49;
+    height: 1px; background: transparent;
+  }
+  .bp-progress i {
+    display: block; height: 1px; width: 0%;
+    background: var(--bp-acid);
+    transition: width 80ms linear;
+  }
+
+  /* ─── Article frame ─── */
+  .bp-article {
+    --bp-prose: 38rem;   /* 608px — the canonical prose column */
+    --bp-wide:  46rem;   /* 736px — the marginalia column */
+    --bp-pad-x: 22px;
+    margin: 0 auto;
+    padding: 32px var(--bp-pad-x) 80px;
+    max-width: var(--bp-wide);
+    box-sizing: border-box;
+  }
+
+  /* ─── Masthead ─── */
+  .bp-eyebrow {
+    font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--bp-rust); margin-bottom: 18px;
+    display: flex; gap: 14px; align-items: baseline; flex-wrap: wrap;
+  }
+  .bp-eyebrow .acid { color: var(--bp-acid); }
+  .bp-eyebrow .bone { color: var(--bp-bone); }
+
+  .bp-title {
+    font-family: 'Fraunces', serif;
+    font-variation-settings: 'opsz' 144, 'WONK' 1, 'SOFT' 0;
+    font-weight: 900; font-style: italic;
+    font-size: clamp(40px, 8vw, 88px);
+    line-height: 0.88;
+    letter-spacing: -0.04em;
+    color: var(--bp-paper);
+    margin: 0 0 18px;
+    text-wrap: balance;
+  }
+  .bp-title em { color: var(--bp-acid); font-style: italic; }
+
+  .bp-deck {
+    font-family: 'Fraunces', serif;
+    font-style: normal; font-weight: 400;
+    font-variation-settings: 'opsz' 72, 'WONK' 0;
+    font-size: clamp(18px, 2.6vw, 22px);
+    line-height: 1.4;
+    color: var(--bp-bone);
+    margin: 0 0 28px;
+    max-width: 36ch;
+    text-wrap: pretty;
+  }
+  .bp-deck em { color: var(--bp-acid); font-style: normal; font-weight: 600; }
+
+  .bp-colophon {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    border-top: 1px solid var(--bp-rule);
+    border-bottom: 1px solid var(--bp-rule);
+    padding: 12px 0;
+    gap: 16px;
+    font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--bp-bone);
+  }
+  .bp-colophon .k { display: block; color: var(--bp-muted); margin-bottom: 4px; font-size: 9px; }
+  .bp-colophon .v { color: var(--bp-paper); font-weight: 400; }
+  .bp-colophon .v.acid { color: var(--bp-acid); }
+  .bp-colophon .v.italic {
+    font-family: 'Fraunces', serif; font-style: normal; font-size: 13px;
+    text-transform: none; letter-spacing: -0.005em;
+  }
+
+  /* ─── Prose ─── */
+  .bp-prose {
+    margin: 32px auto 0;
+    max-width: var(--bp-prose);
+    font-family: var(--font-body);
+    font-weight: 400;
+    font-size: var(--bp-body, 19px);
+    line-height: var(--bp-leading, 1.65);
+    color: var(--bp-paper);
+    letter-spacing: 0.005em;
+  }
+  .bp-prose p,
+  .bp-prose ul, .bp-prose ol,
+  .bp-prose blockquote,
+  .bp-prose pre,
+  .bp-prose figure,
+  .bp-prose hr,
+  .bp-prose .pull,
+  .bp-prose .bp-aside { margin: 0; }
+  .bp-prose p { text-wrap: pretty; }
+  .bp-prose > * + * { margin-top: 1.1em; }
+  /* Clear the floated drop cap so the next paragraph doesn't ride up against it. */
+  .bp-prose .lead.drop-cap { overflow: hidden; }
+  .bp-prose .lead.drop-cap + p { margin-top: 1.4em; }
+  .bp-prose > h2 + * { margin-top: 0.5em; }
+  .bp-prose > h3 + * { margin-top: 0.4em; }
+  .bp-prose em { color: var(--bp-acid); font-style: normal; font-weight: 600; }
+  .bp-prose strong { color: var(--bp-paper); font-weight: 600; }
+  .bp-prose s { color: var(--bp-rust); text-decoration: line-through; text-decoration-thickness: 1px; }
+  .bp-prose mark { background: var(--bp-mark-bg); color: var(--bp-paper); padding: 0 2px; }
+  .bp-prose a {
+    color: var(--bp-paper);
+    text-decoration: underline;
+    text-decoration-color: color-mix(in srgb, var(--bp-acid) 60%, transparent);
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.18em;
+    transition: text-decoration-color 120ms;
+  }
+  .bp-prose a:hover { text-decoration-color: var(--bp-acid); }
+
+  /* Drop cap — only on the lead paragraph (controlled by class). */
+  .bp-prose .lead.drop-cap::first-letter {
+    font-family: 'Fraunces', serif;
+    font-variation-settings: 'opsz' 144, 'WONK' 1;
+    font-weight: 900; font-style: normal;
+    font-size: 4.6em; line-height: 0.82;
+    color: var(--bp-acid);
+    float: left;
+    padding: 0.05em 0.12em 0 0;
+  }
+
+  .bp-prose h2 {
+    font-family: 'Fraunces', serif;
+    font-variation-settings: 'opsz' 72, 'WONK' 0;
+    font-weight: 700; font-style: normal;
+    font-size: clamp(26px, 4.2vw, 36px);
+    line-height: 1.05; letter-spacing: -0.025em;
+    color: var(--bp-paper);
+    margin: 1.8em 0 0.4em;
+    text-wrap: balance;
+  }
+  .bp-prose h2 em { color: var(--bp-acid); }
+  .bp-prose h2::before {
+    content: attr(data-n);
+    display: block;
+    font-family: 'JetBrains Mono', monospace;
+    font-style: normal; font-weight: 500;
+    font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--bp-rust);
+    margin-bottom: 8px;
+  }
+
+  .bp-prose h3 {
+    font-family: 'Fraunces', serif;
+    font-variation-settings: 'opsz' 72, 'WONK' 0;
+    font-weight: 600; font-style: normal;
+    font-size: clamp(20px, 2.6vw, 22px);
+    line-height: 1.25; color: var(--bp-paper);
+    margin: 1.4em 0 0.2em;
+  }
+
+  .bp-prose ul, .bp-prose ol { padding-left: 1.4em; margin: 1.1em 0; }
+  .bp-prose li { margin: 0.4em 0; }
+  .bp-prose ul li::marker { color: var(--bp-acid); }
+  .bp-prose ol li::marker { color: var(--bp-rust); font-family: 'JetBrains Mono', monospace; font-size: 0.85em; }
+
+  .bp-prose blockquote {
+    margin: 1.6em 0;
+    padding: 4px 0 4px 18px;
+    border-left: 2px solid var(--bp-acid);
+    font-family: 'Fraunces', serif;
+    font-style: normal; font-weight: 400;
+    font-variation-settings: 'opsz' 72, 'WONK' 0;
+    font-size: 1.12em; line-height: 1.45;
+    color: var(--bp-paper);
+  }
+  .bp-prose blockquote cite {
+    display: block;
+    margin-top: 8px;
+    font-family: 'JetBrains Mono', monospace; font-style: normal;
+    font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--bp-bone);
+  }
+  .bp-prose blockquote cite::before { content: '— '; color: var(--bp-rust); }
+
+  .bp-prose code {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.86em;
+    color: var(--bp-acid);
+    background: var(--bp-bg-2);
+    padding: 1px 5px;
+    border: 1px solid var(--bp-rule-soft);
+  }
+  .bp-prose pre {
+    margin: 1.4em 0;
+    padding: 14px 16px;
+    background: var(--bp-bg-2);
+    border: 1px solid var(--bp-rule);
+    overflow-x: auto;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px; line-height: 1.6; color: var(--bp-bone);
+  }
+  .bp-prose pre code { background: transparent; border: 0; padding: 0; color: inherit; }
+  .bp-prose pre .h { color: var(--bp-acid); }
+  .bp-prose pre .w { color: var(--bp-paper); }
+  .bp-prose pre .c { color: var(--bp-muted); }
+
+  .bp-prose hr {
+    border: 0;
+    text-align: center;
+    margin: 2.4em auto;
+    color: var(--bp-rust);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px; letter-spacing: 1em;
+  }
+  .bp-prose hr::before { content: '· · ·'; }
+
+  /* ─── Pull quote (full-bleed within prose) ─── */
+  .bp-prose .pull {
+    margin: 1.8em 0;
+    padding: 18px 0;
+    border-top: 1px solid var(--bp-rule);
+    border-bottom: 1px solid var(--bp-rule);
+    font-family: 'Fraunces', serif;
+    font-style: normal; font-weight: 600;
+    font-variation-settings: 'opsz' 72, 'WONK' 0;
+    font-size: clamp(22px, 3.4vw, 28px);
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+    color: var(--bp-paper);
+    text-wrap: balance;
+  }
+  .bp-prose .pull em { color: var(--bp-acid); font-style: normal; font-weight: 700; }
+
+  /* ─── Margin notes (desktop only). Footnoted on mobile via CSS swap. ─── */
+  .bp-aside {
+    position: relative;
+  }
+  .bp-aside .note {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px; line-height: 1.55;
+    color: var(--bp-bone);
+    border-left: 1px solid var(--bp-acid);
+    padding: 6px 0 6px 12px;
+    margin: 1em 0;
+    letter-spacing: 0.005em;
+  }
+  .bp-aside .note .k {
+    color: var(--bp-acid);
+    text-transform: uppercase; letter-spacing: 0.18em;
+    font-size: 10px; margin-right: 6px;
+  }
+  .bp-aside .note .k.r { color: var(--bp-rust); }
+
+  @media (min-width: 920px) {
+    .bp-aside .note {
+      position: absolute;
+      left: calc(var(--bp-prose) + 24px);
+      top: 0;
+      width: 14rem;
+      margin: 0;
+      border-left: 1px solid var(--bp-rule);
+      padding-left: 12px;
+    }
+  }
+
+  /* ─── Figure / image ─── */
+  .bp-prose figure {
+    margin: 1.8em 0;
+    border: 1px solid var(--bp-rule);
+    background: var(--bp-bg-2);
+  }
+  .bp-prose figure .ph {
+    aspect-ratio: 16 / 9;
+    background:
+      repeating-linear-gradient(45deg, transparent 0 8px, var(--bp-rule-soft) 8px 9px),
+      var(--bp-bg-2);
+    border-bottom: 1px solid var(--bp-rule);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--bp-muted);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
+  }
+  .bp-prose figure figcaption {
+    padding: 10px 14px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; letter-spacing: 0.04em;
+    color: var(--bp-bone);
+    line-height: 1.5;
+  }
+  .bp-prose figure figcaption b {
+    color: var(--bp-rust); font-weight: 400;
+    text-transform: uppercase; letter-spacing: 0.18em; font-size: 10px;
+    margin-right: 8px;
+  }
+
+  /* ─── Footer / colophon ─── */
+  .bp-footer {
+    max-width: var(--bp-prose);
+    margin: 56px auto 0;
+    padding-top: 22px;
+    border-top: 1px solid var(--bp-rule);
+    display: grid; gap: 14px;
+    font-size: 11px; line-height: 1.6;
+    color: var(--bp-bone);
+  }
+  .bp-footer .row { display: flex; justify-content: space-between; gap: 18px; flex-wrap: wrap; }
+  .bp-footer .row .k { color: var(--bp-muted); text-transform: uppercase; letter-spacing: 0.18em; font-size: 10px; }
+  .bp-footer .row .v { color: var(--bp-paper); font-family: 'Fraunces', serif; font-style: normal; font-size: 14px; }
+  .bp-footer .rev {
+    border: 1px solid var(--bp-rule); padding: 10px 12px;
+    font-family: 'JetBrains Mono', monospace; font-size: 10px;
+    letter-spacing: 0.04em; color: var(--bp-bone);
+  }
+  .bp-footer .rev b { color: var(--bp-acid); font-weight: 400; }
+  .bp-footer .rev .r { color: var(--bp-rust); }
+  .bp-footer .next {
+    border-top: 1px solid var(--bp-rule);
+    padding-top: 18px; margin-top: 4px;
+    display: flex; justify-content: space-between; align-items: baseline; gap: 16px;
+  }
+  .bp-footer .next .lbl {
+    font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--bp-rust);
+  }
+  .bp-footer .next .ttl {
+    font-family: 'Fraunces', serif; font-style: normal; font-weight: 500;
+    font-variation-settings: 'opsz' 72, 'WONK' 0;
+    font-size: clamp(20px, 3vw, 26px); letter-spacing: -0.02em;
+    color: var(--bp-paper);
+    text-decoration: none;
+  }
+  .bp-footer .next .ttl:hover { color: var(--bp-acid); }
+
+  /* Prevent body text wrapping under the floating drop cap on small screens */
+  @media (max-width: 720px) {
+    .bp-prose .lead.drop-cap { overflow: hidden; }
+  }
+  /* ─── Mobile: collapse marginalia, tighten chrome ─── */
+  @media (max-width: 720px) {
+    .bp-article { padding: 22px 18px 60px; }
+    .bp-bar { padding: 10px 16px; font-size: 9px; letter-spacing: 0.16em; }
+    .bp-bar .right .toc { display: none; }
+    .bp-colophon { grid-template-columns: 1fr 1fr; gap: 10px; padding: 10px 0; }
+    .bp-prose { font-size: var(--bp-body-mobile, 17px); line-height: 1.6; }
+    .bp-prose .lead.drop-cap::first-letter { font-size: 4em; }
+    /* Margin notes inline with their own glyph — function over flair. */
+    .bp-aside .note { font-size: 11.5px; }
+  }
+
+  /* ─── Accessibility ─── */
+  :focus-visible { outline: 2px solid var(--bp-acid); outline-offset: 3px; }
+  ::selection { background: var(--bp-acid); color: var(--bp-bg); }
+  @media (prefers-reduced-motion: reduce) {
+    .bp-progress i { transition: none; }
+  }
+</style>
+</head>
+<body>
+
+  <header class="bp-bar">
+    <div class="mark">
+      <span class="a">ATLAS</span><span class="slash">/</span><span class="b">Meridia</span>
+    </div>
+    <div class="right">
+      <span class="toc" id="bp-tocBtn">▚ contents</span>
+      <span>· journal</span>
+    </div>
+  </header>
+  <div class="bp-progress" id="bpProgress" aria-hidden="true"><i></i></div>
+
+  <article class="bp-article">
+
+    <div class="bp-eyebrow">
+      <span class="acid">▚ journal · 04</span>
+      <span>· first principles</span>
+      <span class="bone">· may 2026</span>
+    </div>
+
+    <h1 class="bp-title">Memory is a <em>contract,</em><br>not a feature.</h1>
+    <p class="bp-deck" style="font-weight: 500;">
+      The software I want to use keeps score for me, not against me — and it
+      hands the receipts back, <em>unprompted,</em> when they matter.
+    </p>
+
+    <div class="bp-colophon">
+      <div><span class="k">Author</span><span class="v italic">Kenny Liu</span></div>
+      <div><span class="k">Published</span><span class="v">May 1, 2026</span></div>
+      <div><span class="k">Read</span><span class="v">11 min · 2,409 words</span></div>
+      <div><span class="k">Filed</span><span class="v acid">first-principles</span></div>
+      <div><span class="k">Series</span><span class="v">Manifesto · 01 of 04</span></div>
+    </div>
+
+    <div class="bp-prose">
+
+      <p class="lead drop-cap">
+        Most software calls itself <em>intelligent</em> and means
+        <em>predictive</em> — a system that guesses your next keystroke so
+        you don't have to finish the thought. I want the opposite. I want a
+        system that refuses to finish the thought, that hands it back to me
+        with three questions in the margin, that <strong>forces the
+        revision.</strong> An archive is the only honest AI interface.
+        Everything else is a wrapper around one.
+      </p>
+
+      <p style="margin: 8px 0px 0px">
+        Hermes — the agent I've been building since the winter — does not
+        autocomplete. It <em>indexes.</em> Every journal entry, every unsent
+        letter, every half-formed note becomes part of a single ledger that
+        the system reads on a schedule and surfaces, sometimes, when it
+        thinks I've contradicted myself. <s>That sounds like a feature.</s>
+        It is not a feature. It is a <em>contract.</em>
+      </p>
+
+      <h2 data-n="01 · the contract">What memory <em>owes</em> you</h2>
+
+      <p>
+        When you write something down and ask a system to remember it, the
+        system has implicitly agreed to three things. It will not lose the
+        words. It will not lose the <em>fact</em> of the words. And it will
+        return them, intact, when asked — even if the asking is your future
+        self disagreeing with your past one.
+      </p>
+
+      <div class="bp-aside">
+        <p>
+          Most cloud notes apps fail the second clause. They will lose the
+          fact of a deletion, even when they retain the bytes. The system
+          treats your edit history as <mark>chrome</mark>, not as evidence.
+        </p>
+        <aside class="note"><span class="k">▚ note</span>This is why I won't ship a cloud sync. Not because the cloud is unsafe — because the cloud is <em>convenient,</em> and convenience is what trains a system to lie about what it kept.</aside>
+      </div>
+
+      <p class="pull" style="font-weight: 700; letter-spacing: 0px">
+        An archive that lets you delete is not an archive. It is a draft.
+        The difference is whether you expect the ledger to have an
+        <em>opinion.</em>
+      </p>
+
+      <h2 data-n="02 · the receipts">Receipts, not <em>nudges</em></h2>
+
+      <p>
+        Hermes raises three kinds of artefacts: <strong>contradictions,</strong>
+        <strong>unresolved threads,</strong> and <strong>unsent letters.</strong>
+        It does not raise more than one at a time, and it does not raise
+        the same one twice without a 7-day cool-down. Silence is the
+        default state.
+      </p>
+
+      <ol>
+        <li>A <em>contradiction</em> is two of your own statements that disagree. The system surfaces both, dated, and shuts up.</li>
+        <li>An <em>unresolved thread</em> is a question you posed to yourself in writing and never answered. After 30 days, it asks once.</li>
+        <li>An <em>unsent letter</em> is a draft addressed to a real person that you wrote and did not send. The system holds it, and asks <em>only</em> if a related entry suggests you've changed your mind.</li>
+      </ol>
+
+      <blockquote>
+        The archive keeps score. Not against you — for you. That's the deal.
+        <cite>Kenny Liu, journal · April 2026</cite>
+      </blockquote>
+
+      <h3>An aside on burns</h3>
+
+      <p>
+        There is no delete key. There is an <em>acknowledge</em> key, a
+        <em>supersede</em> key, and a <em>burn</em> key — which takes 72 hours
+        and asks you three questions: <em>why now, what changed, who
+        benefits.</em> If you can answer all three, the words are
+        permanently redacted. The fact of the entry remains. You can see
+        where a thing used to be — only the contents are gone.
+      </p>
+
+      <pre><code><span class="c"># hermes config — defaults, not negotiable</span>
+<span class="h">memory</span>     <span class="w">local-first</span>     <span class="c">// no cloud sync</span>
+<span class="h">delete</span>     <span class="w">redact-only</span>    <span class="c">// 72h hold</span>
+<span class="h">surface</span>    <span class="w">on-contradict</span>  <span class="c">// not on schedule</span>
+<span class="h">silence</span>    <span class="w">default</span>        <span class="c">// the ledger waits</span></code></pre>
+
+      <h2 data-n="03 · the form">Form follows <em>intent</em></h2>
+
+      <p>
+        The visual language of this site reflects the contract. Hairlines
+        carry structure; one accent earns its place; italics are reserved
+        for the moments that earn them. There are no gradients, no blurs,
+        no apologies. <em>Taste is the enemy of intent.</em>
+      </p>
+
+      <figure>
+        <div class="ph">FIG · 01 — diagnostics surface, hermes</div>
+        <figcaption><b>fig 01</b>The diagnostics rail surfaces three contradictions, one unsent letter, and a low-pressure memory state. Most days it shows nothing.</figcaption>
+      </figure>
+
+      <p>
+        I am not the audience for a system that tries to be charming.
+        Charm is the marketing department's revenge on engineering.
+        I want a tool that is <em>quiet,</em> opinionated, and
+        <a href="#">unembarrassed</a> by the fact that I will outgrow some
+        of my own past sentences. The ledger doesn't mind. That's the
+        whole point.
+      </p>
+
+      <hr>
+
+      <p>
+        If you've read this far, you already know whether you want this
+        kind of software. There is no waitlist. There is a repo, a manifesto,
+        and a tarball. The agent grows with you, but only if you write to it.
+      </p>
+
+    </div><!-- /bp-prose -->
+
+    <footer class="bp-footer">
+      <div class="row">
+        <span class="k">Tags</span>
+        <span class="v">memory · agents · first-principles · hermes</span>
+      </div>
+      <div class="row">
+        <span class="k">Last revised</span>
+        <span class="v">May 1, 2026 · two corrections, one footnote</span>
+      </div>
+      <div class="rev">
+        <b>▚ revisions</b> &nbsp; r1 04.20 published &nbsp;·&nbsp; r2 04.27 footnote on burns &nbsp;·&nbsp; r3 05.01 typo, paragraph 04 &nbsp; <span class="r">// no edits without a record</span>
+      </div>
+      <div class="next">
+        <div>
+          <span class="lbl">· next in series</span><br>
+          <a class="ttl" href="#" style="font-weight: 900">02 · Silence is the default state</a>
+        </div>
+        <span class="lbl" style="color:var(--bp-bone)">↗</span>
+      </div>
+      <div class="row" style="border-top:1px solid var(--bp-rule); padding-top:14px; margin-top:8px;">
+        <span class="k">© 2026 · kennyliu.io</span>
+        <span class="k" style="color:var(--bp-acid)">▚ contains opinions</span>
+      </div>
+    </footer>
+
+  </article>
+
+  <script>
+    // Reading-progress hairline — pure scroll, no library.
+    (function () {
+      const bar = document.getElementById('bpProgress');
+      if (!bar) return;
+      const fill = bar.querySelector('i');
+      const article = document.querySelector('.bp-article');
+      function update() {
+        const r = article.getBoundingClientRect();
+        const total = r.height - window.innerHeight;
+        const passed = Math.min(Math.max(-r.top, 0), Math.max(total, 1));
+        fill.style.width = (total > 0 ? (passed / total) * 100 : 100) + '%';
+      }
+      document.addEventListener('scroll', update, { passive: true });
+      window.addEventListener('resize', update);
+      update();
+    })();
+  </script>
+
+  <script type="text/babel" src="tweaks-panel.jsx"></script>
+  <script type="text/babel">
+    const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+      "theme": "graphite",
+      "width": "wide",
+      "size": "larger",
+      "leading": "tight",
+      "dropCap": false
+    }/*EDITMODE-END*/;
+
+    function App() {
+      const [t, setTweak] = useTweaks(TWEAK_DEFAULTS);
+
+      React.useEffect(() => {
+        const map = { graphite: 'graphite', cream: 'cream' };
+        document.documentElement.setAttribute('data-theme', map[t.theme] || 'graphite');
+      }, [t.theme]);
+
+      React.useEffect(() => {
+        const root = document.documentElement;
+        root.style.setProperty('--bp-body',
+          t.size === 'larger' ? '21px' : '19px');
+        root.style.setProperty('--bp-body-mobile',
+          t.size === 'larger' ? '18.5px' : '17px');
+        root.style.setProperty('--bp-leading',
+          t.leading === 'tight' ? '1.55' : t.leading === 'generous' ? '1.78' : '1.65');
+      }, [t.size, t.leading]);
+
+      React.useEffect(() => {
+        document.querySelector('.bp-article').style.setProperty(
+          '--bp-prose', t.width === 'wide' ? '46rem' : '38rem'
+        );
+      }, [t.width]);
+
+      React.useEffect(() => {
+        const lead = document.querySelector('.bp-prose .lead');
+        if (!lead) return;
+        lead.classList.toggle('drop-cap', !!t.dropCap);
+      }, [t.dropCap]);
+
+      return (
+        <TweaksPanel title="Tweaks · reading">
+          <TweakSection label="Theme" />
+          <TweakRadio label="Ground" value={t.theme}
+            options={['graphite', 'cream']}
+            onChange={(v) => setTweak('theme', v)} />
+
+          <TweakSection label="Layout" />
+          <TweakRadio label="Width" value={t.width}
+            options={['prose', 'wide']}
+            onChange={(v) => setTweak('width', v)} />
+
+          <TweakSection label="Type" />
+          <TweakRadio label="Size" value={t.size}
+            options={['standard', 'larger']}
+            onChange={(v) => setTweak('size', v)} />
+          <TweakRadio label="Leading" value={t.leading}
+            options={['tight', 'normal', 'generous']}
+            onChange={(v) => setTweak('leading', v)} />
+          <TweakToggle label="Drop cap" value={t.dropCap}
+            onChange={(v) => setTweak('dropCap', v)} />
+        </TweaksPanel>
+      );
+    }
+
+    const root = ReactDOM.createRoot(document.createElement('div'));
+    document.body.appendChild(root._internalRoot.containerInfo);
+    root.render(<App />);
+  </script>
+</body>
+</html>

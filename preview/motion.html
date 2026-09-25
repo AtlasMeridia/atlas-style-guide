@@ -1,0 +1,33 @@
+<!doctype html>
+<!-- @dsCard group="Spacing" name="Motion" subtitle="120ms fast / 250 / 380ms · ease-out-expo · fast or none" viewport="700x210" -->
+<html data-theme="graphite">
+<head>
+<meta charset="utf-8">
+<title>Motion</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  html, body { margin: 0; height: 100%; }
+  body { padding: 22px; display: flex; flex-direction: column; gap: 12px; }
+  .tag { font-family: var(--font-ui); font-size: 10px; color: var(--text-muted); letter-spacing: 0.1em; text-transform: uppercase; display: flex; justify-content: space-between; }
+  .row { display: flex; align-items: center; gap: 14px; }
+  .lbl { font-family: var(--font-mono); font-size: 11px; color: var(--accent); width: 130px; }
+  .track { flex: 1; height: 8px; background: var(--bg-elevated); border-radius: 999px; position: relative; overflow: hidden; }
+  .bar { position: absolute; left: 0; top: 0; height: 100%; background: var(--accent); border-radius: 999px; animation-iteration-count: infinite; }
+  @keyframes fast { 0% { width: 0 } 50%, 100% { width: 100% } }
+  @keyframes base { 0% { width: 0 } 50%, 100% { width: 100% } }
+  @keyframes slow { 0% { width: 0 } 50%, 100% { width: 100% } }
+  .fast { animation: fast 1.8s ease; }
+  .base { animation: base 2.1s ease; }
+  .slow { animation: slow 2.4s cubic-bezier(0.16, 1, 0.3, 1); }
+  .dur { font-family: var(--font-mono); font-size: 10px; color: var(--text-muted); width: 120px; text-align: right; }
+  .curve { font-family: var(--font-mono); font-size: 11px; color: var(--text-secondary); padding-top: 6px; border-top: 1px dashed var(--border-color); margin-top: 4px; }
+</style>
+</head>
+<body>
+  <div class="tag"><span>Motion</span><span>ease-out-expo · the house curve</span></div>
+  <div class="row"><span class="lbl">--transition-fast</span><div class="track"><div class="bar fast"></div></div><span class="dur">120ms · hover</span></div>
+  <div class="row"><span class="lbl">--transition-base</span><div class="track"><div class="bar base"></div></div><span class="dur">250ms · reveal</span></div>
+  <div class="row"><span class="lbl">--transition-slow</span><div class="track"><div class="bar slow"></div></div><span class="dur">380ms · emphasis</span></div>
+  <div class="curve">cubic-bezier(0.16, 1, 0.3, 1) · no springs, no bounces</div>
+</body>
+</html>

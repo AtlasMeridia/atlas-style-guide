@@ -1,0 +1,128 @@
+<!doctype html>
+<!-- @dsCard group="Components" name="Alerts & Tags" subtitle="Heard / contradiction / burn / quiet + tag set" viewport="1100x560" -->
+<html data-theme="graphite">
+<head>
+<meta charset="utf-8">
+<title>Minerali — alerts & tags</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  html, body { margin: 0; height: 100%; background: var(--mn-ink); color: var(--mn-paper); font-family: var(--font-mono); }
+  body { padding: 22px; display: flex; flex-direction: column; gap: 16px; }
+  .row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+
+  .alert { border: 1px solid currentColor; padding: 14px 16px 16px; display: grid; grid-template-columns: 28px 1fr auto; gap: 12px; align-items: start; color: var(--mn-paper); }
+  .alert .g { font-family: var(--font-display); font-style: italic; font-weight: 900; font-size: 32px; line-height: 1; color: var(--mn-acid); }
+  .alert .k { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--mn-acid); margin-bottom: 6px; }
+  .alert .t { font-family: 'Fraunces', serif; font-weight: 500; font-style: italic; font-variation-settings: 'opsz' 72; font-size: 20px; line-height: 1.25; color: var(--mn-paper); letter-spacing: -0.01em; }
+  .alert .b { font-size: 11px; color: var(--mn-bone); line-height: 1.5; margin-top: 6px; letter-spacing: 0.02em; }
+  .alert .act { display: flex; flex-direction: column; gap: 4px; align-items: flex-end; }
+  .alert .act .mini { font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--mn-bone); }
+  .alert .act .mini b { color: var(--mn-paper); font-weight: 400; }
+
+  .alert.warn { color: var(--mn-rust); border-color: var(--mn-rust); }
+  .alert.warn .g, .alert.warn .k { color: var(--mn-rust); }
+  .alert.warn .t { color: var(--mn-paper); }
+
+  .alert.cut {
+    background: var(--mn-oxblood); border-color: var(--mn-oxblood); color: var(--mn-paper);
+  }
+  .alert.cut .g, .alert.cut .k { color: var(--mn-rust); }
+  .alert.cut .b { color: #c9b7a5; }
+
+  .alert.ok { color: var(--mn-acid); border-color: var(--mn-acid); }
+  .alert.ok .b { color: var(--mn-bone); }
+
+  .alert.ghost { color: var(--mn-paper); border-color: var(--mn-hairline); }
+  .alert.ghost .g { color: var(--mn-paper); }
+  .alert.ghost .k { color: var(--mn-bone); }
+
+  .tags { display: flex; gap: 8px; flex-wrap: wrap; border-top: 1px solid var(--mn-hairline); padding-top: 14px; }
+  .tag { display: inline-flex; align-items: center; padding: 3px 8px; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; border: 1px solid currentColor; }
+  .tag .dot { width: 6px; height: 6px; background: currentColor; margin-right: 8px; }
+  .tag.acid  { color: var(--mn-acid); }
+  .tag.rust  { color: var(--mn-rust); }
+  .tag.bone  { color: var(--mn-bone); }
+  .tag.paper { color: var(--mn-paper); }
+  .tag.ink-fill { background: var(--mn-acid); color: var(--mn-ink); border-color: var(--mn-acid); }
+  .tag.red-fill { background: var(--mn-oxblood); color: var(--mn-paper); border-color: var(--mn-oxblood); }
+
+  .caption { display: flex; justify-content: space-between; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--mn-muted); }
+  .caption b { color: var(--mn-paper); font-weight: 400; }
+</style>
+</head>
+<body>
+  <div class="mn-slug"><span>MINERALI · 11 · ALERTS &amp; TAGS</span><span class="right">signal without noise</span></div>
+
+  <div class="row">
+    <div class="alert ok">
+      <span class="g">∴</span>
+      <div>
+        <div class="k">memory · heard</div>
+        <div class="t">I've filed this under <span style="color:var(--mn-acid)">unresolved/half-letter</span>. It will surface again in 7 days.</div>
+        <div class="b">You can promote, demote, or burn it from the ledger. I won't raise it before then unless you do.</div>
+      </div>
+      <div class="act">
+        <span class="mini">conf. <b>0.91</b></span>
+        <span class="mini">09:14:22</span>
+      </div>
+    </div>
+
+    <div class="alert warn">
+      <span class="g">⚠</span>
+      <div>
+        <div class="k">contradiction · 03</div>
+        <div class="t">On March 18 you wrote <em style="color:var(--mn-paper);font-style:italic">"I'm done with it."</em> On April 19 you wrote as if you weren't.</div>
+        <div class="b">Not a verdict. A receipt. You may want to look at both before tomorrow's meeting.</div>
+      </div>
+      <div class="act">
+        <span class="mini" style="color:var(--mn-rust)">raised <b style="color:var(--mn-paper)">2</b>×</span>
+        <span class="mini">32d / 1d</span>
+      </div>
+    </div>
+
+    <div class="alert cut">
+      <span class="g">✕</span>
+      <div>
+        <div class="k">burn requested · 72h hold</div>
+        <div class="t">Entry <span style="color:var(--mn-paper);font-style:italic">/unsent/lin.md</span> will be permanently redacted.</div>
+        <div class="b">Three confirmations, one to go. You'll be asked: <i>why now, what changed, who benefits.</i> You may still recall it.</div>
+      </div>
+      <div class="act">
+        <span class="mini" style="color:var(--mn-rust)">2 of 3</span>
+        <span class="mini" style="color:#c9b7a5">71:48:12</span>
+      </div>
+    </div>
+
+    <div class="alert ghost">
+      <span class="g">·</span>
+      <div>
+        <div class="k">quiet · nothing to say</div>
+        <div class="t">No new contradictions. No unsent letters. The ledger is clean as of 09:14.</div>
+        <div class="b">This message will not appear twice. Silence is the default.</div>
+      </div>
+      <div class="act">
+        <span class="mini"><b>idle</b></span>
+        <span class="mini">last write 2h</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="tags">
+    <span class="tag acid"><span class="dot"></span>listening</span>
+    <span class="tag acid"><span class="dot"></span>will-surface</span>
+    <span class="tag paper"><span class="dot"></span>archived</span>
+    <span class="tag bone"><span class="dot"></span>cold / held</span>
+    <span class="tag rust"><span class="dot"></span>unresolved</span>
+    <span class="tag rust"><span class="dot"></span>contradiction</span>
+    <span class="tag ink-fill"><span class="dot" style="background:var(--mn-ink)"></span>heard</span>
+    <span class="tag red-fill"><span class="dot" style="background:var(--mn-rust)"></span>burn / 72h</span>
+    <span class="tag paper"><span class="dot"></span>will-not-send</span>
+    <span class="tag bone"><span class="dot"></span>legal · noted</span>
+  </div>
+
+  <div class="caption">
+    <span>alerts earn their border · <b>no decoration without function</b></span>
+    <span>minerali · 11</span>
+  </div>
+</body>
+</html>

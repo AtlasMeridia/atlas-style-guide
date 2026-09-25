@@ -1,0 +1,58 @@
+<!doctype html>
+<!-- @dsCard group="Brand" name="Voice" subtitle="Principles · Fraunces wonk italic · acid on ink" viewport="700x360" -->
+<html data-theme="graphite">
+<head>
+<meta charset="utf-8">
+<title>Minerali — voice & principles</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #07080a;
+    --ink-2: #0d0e11;
+    --paper: #e6ddc8;
+    --oxblood: #3a0f10;
+    --acid: #2be0c8;
+    --rust: #c75a2a;
+    --bone: #b8ad93;
+    --hairline: #1c1e22;
+  }
+  html, body { margin: 0; height: 100%; background: var(--ink); color: var(--paper); }
+  body { padding: 28px; font-family: 'Fraunces', serif; display: flex; flex-direction: column; gap: 18px; }
+  .slug { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--acid); display: flex; justify-content: space-between; border-bottom: 1px solid var(--hairline); padding-bottom: 8px; }
+  .slug .right { color: var(--bone); }
+  .headline {
+    font-family: 'Fraunces', serif;
+    font-variation-settings: 'opsz' 144, 'SOFT' 0, 'WONK' 1;
+    font-weight: 900;
+    font-style: italic;
+    font-size: 62px;
+    line-height: 0.92;
+    letter-spacing: -0.035em;
+    color: var(--paper);
+    margin: 0;
+  }
+  .headline em { color: var(--acid); font-style: italic; }
+  .knife { height: 1px; background: var(--paper); margin: 2px 0; }
+  .rules { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; border-top: 1px solid var(--hairline); }
+  .rule { padding: 14px 14px 14px 0; border-right: 1px solid var(--hairline); }
+  .rule:last-child { border-right: 0; padding-right: 0; }
+  .rule .n { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--rust); letter-spacing: 0.15em; margin-bottom: 6px; }
+  .rule .r { font-family: 'Fraunces', serif; font-weight: 500; font-size: 13px; line-height: 1.35; color: var(--paper); }
+  .foot { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--bone); letter-spacing: 0.1em; display: flex; justify-content: space-between; margin-top: auto; }
+  .foot .warn { color: var(--acid); }
+</style>
+</head>
+<body>
+  <div class="slug"><span>MINERALI · 01</span><span class="right">v6.0 · nocturnal edit</span></div>
+  <h1 class="headline">Not tasteful.<br><em>Deliberate.</em></h1>
+  <div class="knife"></div>
+  <div class="rules">
+    <div class="rule"><div class="n">01</div><div class="r">One accent earns its place. The rest is ink & paper.</div></div>
+    <div class="rule"><div class="n">02</div><div class="r">Rules are knives — 1px, never more, never softened.</div></div>
+    <div class="rule"><div class="n">03</div><div class="r">Type does the emotional work. Chrome gets out of the way.</div></div>
+    <div class="rule"><div class="n">04</div><div class="r">No gradients. No blurs. No apologies.</div></div>
+  </div>
+  <div class="foot"><span>atlas-meridia / minerali</span><span class="warn">⚠ contains opinions</span></div>
+</body>
+</html>

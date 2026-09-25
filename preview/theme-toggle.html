@@ -1,0 +1,48 @@
+<!doctype html>
+<!-- @dsCard group="Components" name="Theme toggle" subtitle="theme-toggle.js — self-mounting graphite ⇄ cream switch, token-styled" viewport="760x340" -->
+<html data-theme="graphite">
+<head>
+<meta charset="utf-8">
+<title>Theme toggle — graphite ⇄ cream</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  html, body { margin: 0; height: 100%; }
+  body {
+    min-height: 100%;
+    background: var(--bg-primary);
+    font-family: var(--font-mono);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 22px;
+    padding: 32px 30px;
+    box-sizing: border-box;
+    transition: background var(--transition-base);
+  }
+  .slug { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent-cut); }
+  .ttl {
+    font-family: var(--font-display);
+    font-variation-settings: 'opsz' 144, 'WONK' 1;
+    font-style: italic; font-weight: 900;
+    font-size: 44px; line-height: 0.88; letter-spacing: -0.04em;
+    color: var(--text-primary); margin: 0;
+    transition: color var(--transition-base);
+  }
+  .ttl em { color: var(--accent); font-style: italic; }
+  .ln { font-size: 12px; line-height: 1.6; color: var(--text-secondary); max-width: 44ch; }
+  .ln em { color: var(--accent); font-style: normal; }
+  code { font-size: 11px; color: var(--accent-cut); background: var(--bg-elevated); padding: 2px 6px; border: 1px solid var(--border-color); }
+  /* Anchor the toggle inside this card instead of the viewport for the specimen. */
+  theme-toggle { position: absolute; top: 22px; right: 22px; }
+</style>
+</head>
+<body>
+  <div class="slug">COMPONENT · theme-toggle.js</div>
+  <p class="ttl">Two grounds,<br><em>one switch</em>.</p>
+  <p class="ln">Drop <code>&lt;script src="theme-toggle.js" defer&gt;&lt;/script&gt;</code> on any surface. It mounts top-right, flips <em>data-theme</em> on &lt;html&gt;, and remembers the choice. Styled from the same tokens it toggles — <em>no bulk</em>.</p>
+
+  <!-- Placed explicitly so it anchors to the card; omit the tag to let it auto-mount fixed. -->
+  <theme-toggle data-position="top-right"></theme-toggle>
+  <script src="../theme-toggle.js" defer></script>
+</body>
+</html>

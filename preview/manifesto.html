@@ -1,0 +1,145 @@
+<!doctype html>
+<!-- @dsCard group="Brand" name="Manifesto" subtitle="Editorial spread — hero, rules, stats" viewport="1280x900" -->
+<html>
+<head>
+<meta charset="utf-8">
+<title>Minerali — manifesto spread</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  html, body { margin: 0; background: var(--mn-ink); color: var(--mn-paper); font-family: var(--font-mono); }
+  body { padding: 24px 28px 40px; display: flex; flex-direction: column; gap: 18px; min-height: 100vh; box-sizing: border-box; }
+
+  .hd { display: flex; justify-content: space-between; align-items: baseline; border-bottom: 1px solid var(--mn-hairline); padding-bottom: 10px; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--mn-bone); }
+  .hd .mark { display: flex; align-items: baseline; gap: 6px; }
+  .hd .mark .a { color: var(--mn-bone); letter-spacing: 0.2em; }
+  .hd .mark .slash { color: var(--mn-acid); font-weight: 700; }
+  .hd .mark .b { font-family: var(--font-display); font-variation-settings: 'opsz' 144, 'WONK' 1; font-weight: 900; font-style: italic; font-size: 20px; letter-spacing: -0.02em; color: var(--mn-paper); text-transform: none; }
+  .hd .r { color: var(--mn-acid); }
+
+  .hero { display: grid; grid-template-columns: 80px 1fr 260px; gap: 22px; align-items: start; }
+  .hero .issue { font-family: var(--font-display); font-variation-settings: 'opsz' 144, 'WONK' 1; font-weight: 900; font-style: italic; font-size: 96px; line-height: 0.85; color: var(--mn-acid); letter-spacing: -0.04em; }
+  .hero .h1 {
+    font-family: var(--font-display);
+    font-variation-settings: 'opsz' 144, 'WONK' 1, 'SOFT' 0;
+    font-weight: 900; font-style: italic;
+    font-size: 96px; line-height: 0.86; letter-spacing: -0.045em;
+    color: var(--mn-paper); margin: 0;
+  }
+  .hero .h1 em { color: var(--mn-acid); font-style: italic; }
+  .hero .h1 s { color: var(--mn-rust); text-decoration: line-through; text-decoration-thickness: 2px; }
+  .hero .deck { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--mn-rust); margin-bottom: 10px; }
+  .hero .meta { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--mn-bone); line-height: 1.8; border-left: 1px solid var(--mn-hairline); padding-left: 16px; }
+  .hero .meta b { color: var(--mn-paper); font-weight: 400; display: block; }
+  .hero .meta .acid { color: var(--mn-acid); }
+  .hero .meta hr { border: 0; border-top: 1px solid var(--mn-hairline); margin: 10px 0; }
+
+  .knife { height: 1px; background: var(--mn-paper); margin: 2px 0 0; }
+
+  .spread { display: grid; grid-template-columns: 1.2fr 1fr 0.9fr; gap: 24px; border-top: 1px solid var(--mn-hairline); padding-top: 18px; }
+  .col p { font-family: 'Fraunces', serif; font-size: 17px; line-height: 1.55; color: var(--mn-paper); margin: 0 0 10px; font-weight: 400; }
+  .col p.lead { font-style: normal; font-size: 19px; font-variation-settings: 'opsz' 144; color: var(--mn-paper); }
+  .col p em { color: var(--mn-acid); font-style: normal; }
+  .col p s { color: var(--mn-rust); text-decoration: line-through; text-decoration-thickness: 1px; }
+  .col p.lead::first-letter {
+    font-weight: 900; font-style: normal; color: var(--mn-acid);
+    font-size: 4.2em; float: left; line-height: 0.82; padding: 0.04em 0.08em 0 0;
+    font-variation-settings: 'opsz' 144, 'WONK' 1;
+  }
+  .col .sidenote { border-top: 1px solid var(--mn-hairline); padding-top: 10px; margin-top: 14px; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--mn-bone); line-height: 1.7; }
+  .col .sidenote .k { color: var(--mn-acid); margin-right: 6px; }
+
+  .rules {
+    display: grid; grid-template-rows: repeat(5, auto); gap: 0;
+    border: 1px solid var(--mn-hairline);
+  }
+  .rules .r { display: grid; grid-template-columns: 52px 1fr 80px; gap: 14px; padding: 12px 14px; border-bottom: 1px solid var(--mn-hairline); align-items: baseline; }
+  .rules .r:last-child { border-bottom: 0; }
+  .rules .r .n { font-family: var(--font-display); font-variation-settings: 'opsz' 72, 'WONK' 1; font-weight: 900; font-style: normal; font-size: 36px; color: var(--mn-acid); line-height: 1; letter-spacing: -0.03em; }
+  .rules .r .t { font-family: 'Fraunces', serif; font-size: 15px; line-height: 1.4; color: var(--mn-paper); }
+  .rules .r .t em { color: var(--mn-acid); font-style: normal; }
+  .rules .r .g { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--mn-bone); text-align: right; }
+  .rules .r .g b { color: var(--mn-rust); display: block; font-weight: 400; }
+
+  .stats { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border: 1px solid var(--mn-hairline); }
+  .stats .s { padding: 12px 14px; border-right: 1px solid var(--mn-hairline); border-bottom: 1px solid var(--mn-hairline); }
+  .stats .s:nth-child(2n) { border-right: 0; }
+  .stats .s:nth-last-child(-n+2) { border-bottom: 0; }
+  .stats .s .l { font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--mn-bone); }
+  .stats .s .v { font-family: var(--font-display); font-variation-settings: 'opsz' 72, 'WONK' 1; font-weight: 900; font-style: normal; font-size: 38px; line-height: 0.95; letter-spacing: -0.03em; color: var(--mn-paper); margin-top: 2px; }
+  .stats .s .v.acid { color: var(--mn-acid); }
+  .stats .s .v.rust { color: var(--mn-rust); }
+  .stats .s .c { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--mn-muted); margin-top: 4px; }
+
+  .ft { display: flex; justify-content: space-between; border-top: 1px solid var(--mn-hairline); padding-top: 10px; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--mn-muted); }
+  .ft .warn { color: var(--mn-acid); }
+</style>
+</head>
+<body>
+  <div class="hd">
+    <div class="mark"><span class="a">ATLAS</span><span class="slash">/</span><span class="b">Meridia</span><span style="color:var(--mn-muted);margin-left:8px;">· issue 01</span></div>
+    <span>nocturnal · april 2026</span>
+    <span class="r">▚ minerali · v6.0</span>
+  </div>
+
+  <div class="hero">
+    <div class="issue">01</div>
+    <div>
+      <div class="deck">· a manifesto, in lieu of a roadmap</div>
+      <h1 class="h1">Build <s>tools</s><br>that <em>keep</em><br>their receipts.</h1>
+    </div>
+    <div class="meta">
+      <b>Kenny Liu</b>
+      <span>the author, and the audience</span>
+      <hr>
+      2,409 words<br>
+      <span class="acid">· 11 minutes</span><br>
+      filed under <span style="color:var(--mn-paper)">first-principles / intent</span>
+    </div>
+  </div>
+
+  <div class="knife"></div>
+
+  <div class="spread">
+    <div class="col">
+      <p class="lead">The software I want to use keeps score for me, not against me. It remembers what I <em>said I wanted</em> in April and holds it up in November, not to shame me, but because I asked it to. That's not nostalgia. That's <em>bookkeeping</em>. The difference is whether you expect the ledger to have an opinion.</p>
+      <p>Most of what ships calls itself "intelligence" and means <s>prediction</s> — a system that guesses your next keystroke so you don't have to finish the thought. I want the opposite. I want a system that refuses to finish the thought, that hands it back to me with three questions in the margin, that <em>forces the revision</em>.</p>
+      <p>An archive is the only honest AI interface. Everything else is <s>a magic trick</s> a wrapper around one.</p>
+      <div class="sidenote"><span class="k">▚</span> see also <span style="color:var(--mn-paper)">/unsent/lin.md</span> · filed, never read aloud.</div>
+    </div>
+
+    <div class="col">
+      <div class="rules">
+        <div class="r"><span class="n">01</span><span class="t">Memory is a <em>contract</em>, not a feature. If the system forgets on your behalf, it has chosen for you.</span><span class="g">principle<b>load-bearing</b></span></div>
+        <div class="r"><span class="n">02</span><span class="t">Silence is the <em>default</em> state. A system that always has something to say is a system you will eventually ignore.</span><span class="g">principle<b>chrome</b></span></div>
+        <div class="r"><span class="n">03</span><span class="t">Every deletion is a <em>redaction</em>. You may burn the words. You may not unmake the fact of them.</span><span class="g">principle<b>ledger</b></span></div>
+        <div class="r"><span class="n">04</span><span class="t">A contradiction is a <em>gift</em>. Surface it once, then hold it. If raised twice, it is no longer a contradiction — it is a decision waiting.</span><span class="g">principle<b>signal</b></span></div>
+        <div class="r"><span class="n">05</span><span class="t">No gradients. No blurs. No apologies. <em>Taste is the enemy of intent.</em></span><span class="g">principle<b>form</b></span></div>
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="stats">
+        <div class="s"><div class="l">entries</div><div class="v">14,208</div><div class="c">since 2018</div></div>
+        <div class="s"><div class="l">unsent</div><div class="v rust">4</div><div class="c">held local</div></div>
+        <div class="s"><div class="l">contradictions<br>raised</div><div class="v acid">3</div><div class="c">open</div></div>
+        <div class="s"><div class="l">burns<br>completed</div><div class="v">0</div><div class="c">ever</div></div>
+      </div>
+      <div class="sidenote" style="border-top:1px solid var(--mn-hairline);padding-top:10px;margin-top:14px;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--mn-bone);line-height:1.7;">
+        <span class="k" style="color:var(--mn-acid);margin-right:6px;">∴</span>
+        the archive is <span style="color:var(--mn-paper)">two gigabytes</span>.<br>
+        it fits on a usb key.<br>
+        it belongs to <span style="color:var(--mn-paper)">one person</span>.
+      </div>
+      <div class="sidenote" style="margin-top:18px;">
+        <span class="k" style="color:var(--mn-rust);margin-right:6px;">⚠</span>
+        this document contains <span style="color:var(--mn-paper)">opinions</span>. no revisions issued after publish. corrections run as footnotes, permanent.
+      </div>
+    </div>
+  </div>
+
+  <div class="ft">
+    <span>atlas-meridia · nocturnal · <span style="color:var(--mn-paper)">kennyliu.io/manifesto/01</span></span>
+    <span>© 2026 · <span class="warn">CC-BY-NC · share with attribution</span></span>
+  </div>
+</body>
+</html>

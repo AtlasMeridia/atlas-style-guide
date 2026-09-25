@@ -1,0 +1,65 @@
+<!doctype html>
+<!-- @dsCard group="Components" name="Annotations" subtitle="Visible edits, margin glyphs, redaction" viewport="900x560" -->
+<html data-theme="graphite">
+<head>
+<meta charset="utf-8">
+<title>Minerali — annotations & margin glyphs</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  html, body { margin: 0; height: 100%; background: var(--mn-ink); color: var(--mn-paper); font-family: var(--font-mono); }
+  body { padding: 22px; display: flex; flex-direction: column; gap: 14px; }
+  .wrap { display: grid; grid-template-columns: 56px 1fr 220px; gap: 0; border: 1px solid var(--mn-hairline); flex: 1; }
+  .gutter { border-right: 1px solid var(--mn-hairline); padding: 16px 0; display: flex; flex-direction: column; gap: 14px; align-items: center; font-size: 10px; color: var(--mn-muted); letter-spacing: 0.1em; }
+  .gutter .n { color: var(--mn-rust); }
+  .gutter .mark { color: var(--mn-acid); font-size: 14px; }
+
+  .body { padding: 16px 22px; font-family: 'Fraunces', serif; font-size: 16px; line-height: 1.55; color: var(--mn-paper); border-right: 1px solid var(--mn-hairline); }
+  .body p { margin: 0 0 10px; }
+  .body p.b1 { font-size: 22px; font-weight: 400; font-variation-settings: 'opsz' 144; line-height: 1.35; }
+  .body p.b1::first-letter { font-weight: 900; font-size: 1.2em; color: var(--mn-acid); }
+  .body p em { color: var(--mn-acid); font-style: normal; }
+  .body p s { color: var(--mn-rust); text-decoration: line-through; text-decoration-thickness: 1px; }
+  .body p .ins { color: var(--mn-paper); background: rgba(43,224,200,0.12); padding: 0 2px; border-bottom: 1px solid var(--mn-acid); }
+  .body p .cut { background: var(--mn-oxblood); color: var(--mn-paper); padding: 0 2px; }
+
+  .notes { padding: 16px 16px; display: flex; flex-direction: column; gap: 14px; background: var(--mn-ink-2); }
+  .note { border-top: 1px solid var(--mn-hairline); padding-top: 10px; font-size: 10px; letter-spacing: 0.08em; color: var(--mn-bone); line-height: 1.55; }
+  .note:first-child { border-top: 0; padding-top: 0; }
+  .note .k { color: var(--mn-acid); text-transform: uppercase; letter-spacing: 0.2em; margin-right: 6px; }
+  .note .k.r { color: var(--mn-rust); }
+  .note .tgt { color: var(--mn-paper); }
+  .note .who { display: block; margin-top: 4px; color: var(--mn-muted); font-family: 'Fraunces', serif; }
+</style>
+</head>
+<body>
+  <div class="mn-slug"><span>MINERALI · 08 · ANNOTATIONS</span><span class="right">edits are visible. opinions are stamped.</span></div>
+  <div class="wrap">
+    <div class="gutter">
+      <span class="n">01</span><span class="mark">▚</span>
+      <span class="n">02</span><span class="mark">∴</span>
+      <span class="n">03</span>
+      <span class="n">04</span><span class="mark">¶</span>
+      <span class="n">05</span><span class="mark" style="color:var(--mn-rust)">⚠</span>
+      <span class="n">06</span>
+    </div>
+
+    <div class="body">
+      <p class="b1">The archive is not a <em>library</em>. It is a ledger of what the system refused to forget on your behalf, <s>including things</s> <span class="ins">especially the things</span> you would have preferred it quietly lose.</p>
+      <p>Every entry keeps its <em>revision history</em>. Every deletion is a <span class="cut">redaction</span>, never an erasure. You can see where a thing used to be — only the words are gone.</p>
+      <p>There is no delete key. There is an <em>acknowledge</em> key, a <em>supersede</em> key, and, if you insist, a <em>burn</em> key — which takes 72 hours and asks you three questions.</p>
+    </div>
+
+    <div class="notes">
+      <div class="note"><span class="k">▚ 01</span><span class="tgt">"library"</span> — too soft. archives don't lend.<span class="who">— k.l · 2026-04-19</span></div>
+      <div class="note"><span class="k">∴ 02</span><span class="tgt">ledger</span> — keep. evokes the <em>bookkeeping</em> intention.<span class="who">— hermes · auto</span></div>
+      <div class="note"><span class="k">¶ 04</span>revision history — <span class="tgt">make that a link in final.</span><span class="who">— k.l · 2026-04-19</span></div>
+      <div class="note"><span class="k r">⚠ 05</span><span class="tgt">burn key</span> — legal wants "permanent delete".<br>legal does not get to name things.<span class="who">— k.l · 2026-04-20</span></div>
+    </div>
+  </div>
+
+  <div style="display:flex;justify-content:space-between;font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:var(--mn-bone);">
+    <span>edits: <span class="mn-num" style="color:var(--mn-paper)">03</span> · accepted <span class="mn-num" style="color:var(--mn-acid)">02</span> · open <span class="mn-num" style="color:var(--mn-rust)">01</span></span>
+    <span>atlas-meridia / minerali · margin speaks</span>
+  </div>
+</body>
+</html>

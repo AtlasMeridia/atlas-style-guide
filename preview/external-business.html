@@ -1,0 +1,138 @@
+<!doctype html>
+<!-- @dsCard group="Templates" name="External business" subtitle="Cream default · consulting/service page · low-acid Minerali" viewport="1280x1600" -->
+<html data-theme="cream">
+<head>
+<meta charset="utf-8">
+<title>Minerali — external business</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; min-height: 100%; }
+  body { background: var(--bg-primary); color: var(--text-primary); font-family: var(--font-ui); }
+  .site { min-height: 100vh; border-top: 3px solid var(--accent); }
+  .wrap { width: min(100% - 40px, var(--width-full)); margin: 0 auto; }
+  header, section, footer { border-top: 1px solid var(--border-color); }
+  header { border-top: 0; border-bottom: 1px solid var(--border-color); }
+  .nav { min-height: 68px; display: flex; align-items: center; justify-content: space-between; gap: var(--space-4); }
+  .mark { display: inline-flex; align-items: baseline; gap: 8px; text-decoration: none; }
+  .mark .atlas { font-family: var(--font-ui); font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--text-secondary); }
+  .mark .slash { color: var(--accent-cut); font-family: var(--font-mono); font-weight: 700; }
+  .mark .name { font-family: var(--font-display); font-variation-settings: 'opsz' 96, 'WONK' 1; font-weight: 900; font-style: italic; font-size: 24px; color: var(--text-primary); }
+  .links { display: flex; align-items: center; gap: var(--space-5); font-family: var(--font-ui); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; }
+  .links a { color: var(--text-secondary); text-decoration: none; }
+  .links a:hover { color: var(--accent); }
+  .hero { min-height: 74vh; display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.95fr); align-items: center; gap: var(--space-10); padding: var(--space-12) 0 var(--space-8); }
+  .eyebrow { font-family: var(--font-ui); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin: 0 0 var(--space-4); }
+  h1 { max-width: 780px; font-size: var(--text-5xl); line-height: 0.9; margin-bottom: var(--space-5); }
+  .lead { max-width: 620px; color: var(--text-secondary); margin: 0 0 var(--space-6); }
+  .actions { display: flex; flex-wrap: wrap; gap: var(--space-3); align-items: center; }
+  .mn-btn.primary { background: var(--accent); border-color: var(--accent); color: var(--bg-primary); }
+  .mn-btn.primary:hover { background: var(--text-primary); border-color: var(--text-primary); }
+  .signal-panel, .three, .fit-list { border: 1px solid var(--border-color); background: var(--bg-elevated); }
+  .signal-head { display: flex; justify-content: space-between; gap: var(--space-4); border-bottom: 1px solid var(--border-color); padding: var(--space-4); font-family: var(--font-ui); font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-muted); }
+  .signal-head b { color: var(--accent); font-weight: 700; }
+  .signal-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .metric { min-height: 140px; padding: var(--space-5); border-right: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color); }
+  .metric:nth-child(2n) { border-right: 0; }
+  .metric:nth-last-child(-n + 2) { border-bottom: 0; }
+  .metric .k, .tile .n, .fit-list b { font-family: var(--font-ui); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); }
+  .metric .k { color: var(--text-muted); margin-bottom: var(--space-3); }
+  .metric .v { font-family: var(--font-display); font-variation-settings: 'opsz' 96, 'WONK' 1; font-weight: 900; font-size: 46px; line-height: 1; color: var(--text-primary); }
+  .metric .v.cut { color: var(--accent-cut); }
+  .metric p, .tile p, .fit-list span, .cta p { color: var(--text-secondary); line-height: 1.55; }
+  .metric p { margin: var(--space-3) 0 0; font-size: 13px; }
+  section { padding: var(--space-10) 0; }
+  .section-head { display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: var(--space-8); align-items: start; margin-bottom: var(--space-8); }
+  .section-head h2 { font-size: var(--text-3xl); margin: 0; }
+  .section-head p { max-width: 620px; margin: 0; }
+  .three { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .tile { padding: var(--space-6); border-right: 1px solid var(--border-color); }
+  .tile:last-child { border-right: 0; }
+  .tile .n { margin-bottom: var(--space-5); }
+  .tile h3 { font-size: var(--text-xl); margin-bottom: var(--space-4); }
+  .tile p { margin: 0; }
+  .proof { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-6); }
+  .quote { border-left: 2px solid var(--accent); padding-left: var(--space-5); font-family: var(--font-body); font-size: var(--text-lg); line-height: var(--leading-relaxed); color: var(--text-primary); }
+  .fit-list { display: grid; gap: 1px; background: var(--border-color); }
+  .fit-list div { display: grid; grid-template-columns: 130px 1fr; gap: var(--space-5); background: var(--bg-primary); padding: var(--space-4); }
+  .cta { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: var(--space-8); align-items: end; padding-bottom: var(--space-12); }
+  .cta h2 { max-width: 760px; margin-bottom: var(--space-4); }
+  .cta p { max-width: 640px; margin: 0; }
+  footer { padding: var(--space-5) 0; color: var(--text-muted); font-family: var(--font-ui); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; }
+  @media (max-width: 900px) {
+    .hero, .section-head, .proof, .cta { grid-template-columns: 1fr; }
+    .three, .signal-grid { grid-template-columns: 1fr; }
+    .tile, .metric { border-right: 0; }
+    .metric:nth-last-child(-n + 2) { border-bottom: 1px solid var(--border-color); }
+    .metric:last-child { border-bottom: 0; }
+    .links { display: none; }
+    h1 { font-size: 52px; }
+  }
+</style>
+</head>
+<body>
+  <div class="site">
+    <header>
+      <div class="wrap nav">
+        <a class="mark" href="#"><span class="atlas">ATLAS</span><span class="slash">/</span><span class="name">Meridia</span></a>
+        <nav class="links"><a href="#diagnostic">Diagnostic</a><a href="#method">Method</a><a href="#fit">Fit</a><a href="#contact">Start</a></nav>
+      </div>
+    </header>
+
+    <main>
+      <div class="wrap hero">
+        <div>
+          <p class="eyebrow">AI operations diagnostic</p>
+          <h1>Find the workflows worth automating.</h1>
+          <p class="lead">A focused review of where your team loses time, context, and judgment to repeat work. You leave with a short map, a ranked backlog, and one practical first build.</p>
+          <div class="actions"><a class="mn-btn primary" href="#contact">Book the diagnostic</a><a class="mn-btn ghost" href="#method">See the method</a></div>
+        </div>
+
+        <aside class="signal-panel" aria-label="Diagnostic snapshot">
+          <div class="signal-head"><span>Operator map</span><b>sample</b></div>
+          <div class="signal-grid">
+            <div class="metric"><div class="k">Time reclaimed</div><div class="v">8-12h</div><p>Weekly repeat work visible enough to either automate or stop doing.</p></div>
+            <div class="metric"><div class="k">First build</div><div class="v cut">01</div><p>A bounded agent, report, or data bridge chosen for evidence, not novelty.</p></div>
+            <div class="metric"><div class="k">Risk flags</div><div class="v">03</div><p>Places where automation would create more mess than leverage.</p></div>
+            <div class="metric"><div class="k">Decision window</div><div class="v">7d</div><p>Enough time to see the system, not enough time to disappear into tooling.</p></div>
+          </div>
+        </aside>
+      </div>
+
+      <section id="diagnostic">
+        <div class="wrap">
+          <div class="section-head">
+            <p class="eyebrow">What changes</p>
+            <div><h2>The output is a map, not a deck.</h2><p class="lead">The diagnostic is useful only if it changes the next week of work. The format stays plain: interviews, artifact review, workflow sketching, and a ranked build list.</p></div>
+          </div>
+          <div class="three">
+            <div class="tile"><div class="n">01</div><h3>Workflow inventory</h3><p>Where the same context is re-created, copied, reconciled, explained, or manually checked.</p></div>
+            <div class="tile"><div class="n">02</div><h3>Automation judgment</h3><p>Which tasks are ready for agents, which need better data, and which should stay human.</p></div>
+            <div class="tile"><div class="n">03</div><h3>First useful build</h3><p>One scoped implementation candidate with owner, data path, failure mode, and expected payoff.</p></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="method">
+        <div class="wrap proof">
+          <div class="quote">Most AI projects fail before the model is chosen. The expensive mistake is automating a workflow nobody has actually described.</div>
+          <div id="fit" class="fit-list">
+            <div><b>Best fit</b><span>Founder-led teams, operators, analysts, and service businesses with visible manual coordination.</span></div>
+            <div><b>Not a fit</b><span>Open-ended AI strategy, brand theater, or a request to replace people before the work is understood.</span></div>
+            <div><b>Cadence</b><span>Two calls, artifact review, written map, implementation recommendation, and optional build sprint.</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact">
+        <div class="wrap cta">
+          <div><p class="eyebrow">Start small</p><h2>Bring one messy workflow. We will decide whether it deserves an agent.</h2><p>The first conversation should name the work, the people touching it, the data it depends on, and what breaks when it is wrong.</p></div>
+          <a class="mn-btn primary" href="mailto:hey@kennyliu.io">Email Kenny</a>
+        </div>
+      </section>
+    </main>
+
+    <footer><div class="wrap">Minerali v6 · external business profile · kennyliu.io</div></footer>
+  </div>
+</body>
+</html>
