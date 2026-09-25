@@ -16,6 +16,9 @@ Choose the profile before designing:
 - Archive, family-history, and stationery work use `cream` unless the project
   says otherwise.
 
+Track work in `BACKLOG.md`; record sessions in `_dev/dev-log.md`, design
+explorations in `_dev/research/`, and trials in `_dev/experiments/`.
+
 The previous Next.js style-guide app is archived in `v1/`. Treat it as reference
 material only. Do not use the navy / cream / amber base system for new work
 unless Kenny explicitly asks for v1.
