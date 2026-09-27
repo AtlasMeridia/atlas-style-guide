@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════════════════════════
-   MINERALI  ·  v6.2 · nocturnal  ·  house style
+   MINERALI  ·  v6.3 · nocturnal  ·  house style
    Single source of truth for all design tokens, themes, base
    element styles, and the .mn-* primitive classes.
    Graphite is the default ground. No gradients. No blurs. No bounce.
@@ -7,6 +7,7 @@
    default body face, AA contrast on every text token, 11px floor.
    v6.2 — clear body: reading copy in primary text, optical size
    follows the type size, weight lighter on graphite than cream.
+   v6.3 — card primitives: caps Fraunces card head, 15px card body.
    ═══════════════════════════════════════════════════════════════ */
 
 /* Fonts — Google Fonts CDN. Fraunces (display), Literata (body / reading),
@@ -16,7 +17,7 @@
 :root {
   /* Design-system identity — the single canonical version string.
      Reference var(--ds-version) anywhere a build/spec label is shown. */
-  --ds-version: "6.2"; /* @kind other */
+  --ds-version: "6.3"; /* @kind other */
 
   /* ─────────────────────────────────────────────────────────────
      COLOR — ink ground, paper text, two warm signals + one cut
@@ -59,6 +60,7 @@
   --text-2xs:  0.6875rem; /* 11px — mono caps labels only; the floor */
   --text-xs:   0.75rem;   /* 12px — legal, footnotes */
   --text-sm:   0.875rem;  /* 14px — captions, labels */
+  --text-card: 0.9375rem; /* 15px — card body under .mn-card-head */
   --text-base: 1.125rem;  /* 18px — UI text */
   --text-body: 1.25rem;   /* 20px — primary reading size */
   --text-lg:   1.5rem;    /* 24px — lead paragraphs */
@@ -389,6 +391,53 @@ hr {
 .mn-tag.rust  { color: var(--accent-text); }
 .mn-tag.paper { color: var(--text-primary); }
 .mn-tag.bone  { color: var(--text-secondary); }
+
+/* Card — dense operator item: a mono ref, a caps Fraunces head, a
+   15px body. The one place Fraunces goes uppercase; 600 and +0.02em
+   keep the caps firm without shouting. */
+.mn-card {
+  border: 1px solid var(--border-color);
+  background: var(--bg-deep);
+  padding: var(--space-4);
+}
+.mn-card > header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-2) var(--space-3);
+  margin-bottom: var(--space-2);
+}
+.mn-card-head {
+  font-family: var(--font-display);
+  font-optical-sizing: auto;
+  font-variation-settings: 'SOFT' 0, 'WONK' 0;
+  font-weight: 600;
+  font-size: var(--text-base);
+  line-height: var(--leading-snug);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--text-primary);
+  margin: 0;
+}
+.mn-card-head code { text-transform: none; letter-spacing: 0; }
+.mn-card-body {
+  font-family: var(--font-body);
+  font-weight: var(--body-weight);
+  font-size: var(--text-card);
+  line-height: 1.55;
+  color: var(--text-primary);
+  margin: 0;
+}
+/* Ref — filled mono index chip (I8, Q2) that opens a card header. */
+.mn-ref {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: var(--text-xs);
+  letter-spacing: 0.04em;
+  color: var(--bg-primary);
+  background: var(--text-secondary);
+  padding: 1px var(--space-2);
+}
 
 /* Button — square, 1px, inverts on hover. At most one .acid per surface. */
 .mn-btn {

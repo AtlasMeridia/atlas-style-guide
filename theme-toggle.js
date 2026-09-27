@@ -9,8 +9,8 @@
      data-themes="graphite cream"   the two states to flip between
      data-position="top-right"      top-right | top-left | bottom-right | bottom-left
      data-storage-key="mn-theme"   localStorage key
-   Place <theme-toggle></theme-toggle> yourself to anchor it inline
-   instead of fixed.
+   Place <theme-toggle data-inline></theme-toggle> yourself to anchor
+   it inline instead of fixed.
    ═══════════════════════════════════════════════════════════════ */
 (() => {
   const STORE = 'mn-theme';

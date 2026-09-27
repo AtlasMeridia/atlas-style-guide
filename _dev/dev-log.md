@@ -1,5 +1,22 @@
 # Dev log
 
+## 2026-09-26 — v6.3 cards
+
+**Origin.** Kenny liked the dense card headers in the robotica Linette console, where `.item h3` is Fraunces 700 at 18px, and wanted to see them in caps. `_dev/experiments/0001-caps-card-heading/` ran three rounds:
+1. Caps at 16px with +0.06em.
+2. Lighter weights.
+3. A tuner for weight, size, case, tracking, and card-body size.
+
+Kenny settled on Fraunces 600 · 18px · caps · +0.02em, over a 15px card body.
+
+**Adopted.**
+- `colors_and_type.css` gains `--text-card` (15px) and four primitives: `.mn-card` (hairline, `--bg-deep`, 16px pad, flex header), `.mn-ref` (filled mono index chip), `.mn-card-head`, and `.mn-card-body`. Code inside a head keeps its case.
+- New specimen `preview/cards.html`. Type-scale gains the card row.
+- The casing rule now says caps are CSS-only, both in README "Casing & symbols" and in SKILL.md rule 8, so the uppercase head doesn't contradict sentence case in the source.
+- Version bumped to 6.3.
+
+**Also fixed.** The `theme-toggle.js` header claimed that a placed `<theme-toggle>` sits inline; in fact it needs `data-inline`. The comment is corrected.
+
 ## 2026-09-26 — v6.2 clear body
 
 **Problem.** Kenny found the body text muddy, mostly in graphite. The review of the rendered blog and specimens found three causes working together:

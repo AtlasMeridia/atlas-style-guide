@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en" data-theme="graphite">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Caps Card Heading</title>
+<link rel="stylesheet" href="../../../colors_and_type.css">
+<style>
+  /* ── Candidate under test ─────────────────────────────────────
+     Not in colors_and_type.css. If adopted, it moves there. */
+  .mn-caps-head {
+    font-family: var(--font-display);
+    font-weight: var(--ch-weight, 700);
+    font-optical-sizing: auto;
+    font-variation-settings: 'WONK' 0;
+    font-size: var(--ch-size, 1rem);          /* 16px — 2px under --text-base offsets the caps width */
+    letter-spacing: var(--ch-track, 0.06em);
+    text-transform: var(--ch-case, uppercase);
+    line-height: var(--leading-snug);
+  }
+  .mn-caps-head code { text-transform: none; letter-spacing: 0; }
+
+  /* ── Page ── */
+  body { margin: 0; -webkit-font-smoothing: antialiased; }
+  .page { max-width: 1280px; margin: 0 auto; padding: 0 16px 96px; }
+  @media (min-width: 720px) { .page { padding: 0 32px 96px; } }
+
+  .bar { position: sticky; top: 0; z-index: 5; background: var(--bg-deep); border-bottom: 1px solid var(--border-color); }
+  .bar .in { max-width: 1280px; margin: 0 auto; padding: 12px 16px; display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+  @media (min-width: 720px) { .bar .in { padding: 12px 32px; } }
+  .slug { font-family: var(--font-ui); font-size: var(--text-2xs); letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-secondary); margin-right: auto; }
+  .slug .glyph { color: var(--accent-cut); }
+  .modes { display: flex; gap: 6px; flex-wrap: wrap; }
+  .modes .mn-btn { padding: 8px 12px; }
+  .modes .mn-btn[aria-pressed="true"] { background: var(--text-primary); color: var(--bg-primary); border-color: var(--text-primary); }
+
+  header.intro h1 { margin: 40px 0 12px; }
+  header.intro p { margin: 0; max-width: 44rem; font-size: var(--text-base); line-height: 1.55; }
+  header.intro code { font-size: 0.85em; }
+
+  .cols { display: grid; gap: 32px; margin-top: 32px; }
+  .page[data-mode="both"] .cols { grid-template-columns: 1fr; }
+  @media (min-width: 1000px) { .page[data-mode="both"] .cols { grid-template-columns: 1fr 1fr; } }
+  .page[data-mode="now"]  .col.caps,
+  .page[data-mode="caps"] .col.now { display: none; }
+
+  .tune { display: flex; flex-wrap: wrap; gap: 16px 28px; margin: 28px 0 0; padding: 16px; border: 1px solid var(--border-color); background: var(--bg-elevated); }
+  .tune .grp { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
+  .tune .lbl { font-family: var(--font-ui); font-size: var(--text-2xs); letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-muted); margin-right: 6px; }
+  .tune .mn-btn { padding: 7px 11px; }
+  .tune .mn-btn[aria-pressed="true"] { background: var(--text-primary); color: var(--bg-primary); border-color: var(--text-primary); }
+  .col-label { font-family: var(--font-ui); font-size: var(--text-2xs); letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-muted); margin: 0 0 8px; }
+  .col.caps .col-label b { color: var(--accent-text); font-weight: 500; }
+  .col.now .col-label b { color: var(--text-secondary); font-weight: 500; }
+
+  /* Console card pattern, rebuilt on tokens */
+  h2.sec { font-family: var(--font-ui); font-weight: 500; font-size: var(--text-sm); letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-secondary); margin: 32px 0 12px; padding-bottom: 8px; border-bottom: 1px solid var(--border-color); }
+  h2.sec .k { color: var(--accent-text); margin-right: 8px; }
+  .col > h2.sec:first-of-type { margin-top: 0; }
+
+  .item { border: 1px solid var(--border-color); background: var(--bg-deep); padding: var(--space-4); margin: 0 0 var(--space-3); min-width: 0; }
+  .item header { display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--space-2) var(--space-3); margin-bottom: var(--space-2); }
+  .item p { font-size: var(--text-base); line-height: 1.55; margin: 0; }
+  .ref { font-family: var(--font-ui); font-size: var(--text-xs); font-weight: 700; color: var(--bg-primary); background: var(--text-secondary); padding: 1px var(--space-2); letter-spacing: 0.04em; }
+  .meta { font-family: var(--font-ui); font-size: var(--text-2xs); color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.06em; }
+  .tag { font-family: var(--font-ui); font-size: var(--text-2xs); text-transform: uppercase; letter-spacing: 0.06em; border: 1px solid var(--border-color); padding: 0 var(--space-2); color: var(--text-secondary); }
+  .tag.warn { color: var(--accent-text); border-color: var(--accent); }
+  .two { display: grid; grid-template-columns: 1fr; gap: var(--space-3); }
+  @media (min-width: 560px) { .two { grid-template-columns: 1fr 1fr; } }
+  .two .item { margin: 0; }
+
+  /* The two treatments */
+  .col.now .item h3 { font-family: var(--font-display); font-weight: 700; font-optical-sizing: auto; font-variation-settings: 'WONK' 0; letter-spacing: -0.01em; font-size: var(--text-base); margin: 0; }
+  .col.caps .item h3 { margin: 0; }
+  .col.caps .item p { font-size: var(--card-body, var(--text-base)); }
+  .tune .lbl.unit { margin: 0 0 0 2px; }
+
+  theme-toggle { margin-left: 4px; }
+</style>
+</head>
+<body>
+
+<div class="bar"><div class="in">
+  <span class="slug"><span class="glyph">/</span> Minerali · experiment 0001 · caps card heading</span>
+  <div class="modes" role="group" aria-label="View">
+    <button class="mn-btn ghost" data-mode="both">Side by side</button>
+    <button class="mn-btn ghost" data-mode="now">Now only</button>
+    <button class="mn-btn ghost" data-mode="caps">Caps only</button>
+  </div>
+  <theme-toggle data-inline></theme-toggle>
+</div></div>
+
+<div class="page" data-mode="both">
+  <header class="intro">
+    <h1>Caps card heading</h1>
+    <p>Card titles from the Linette console, rebuilt here with neutral copy. Left: Fraunces 700 at 18px, sentence case. Right: the candidate <code>.mn-caps-head</code>. Tune its weight, size, case, and tracking below, and the size of the card body text under it. The left column stays at today's values (heading 18px, card body 18px). Check the heading against the mono caps around it: the section labels, refs, and tags.</p>
+  </header>
+
+  <div class="tune" id="tune" aria-label="Tune the candidate">
+    <div class="grp" data-key="weight"><span class="lbl">Weight</span>
+      <button class="mn-btn ghost" data-v="400">400</button><button class="mn-btn ghost" data-v="500">500</button><button class="mn-btn ghost" data-v="600">600</button><button class="mn-btn ghost" data-v="700">700</button></div>
+    <div class="grp" data-key="size"><span class="lbl">Size</span>
+      <button class="mn-btn ghost" data-v="16">16px</button><button class="mn-btn ghost" data-v="18">18px</button></div>
+    <div class="grp" data-key="case"><span class="lbl">Case</span>
+      <button class="mn-btn ghost" data-v="caps">Caps</button><button class="mn-btn ghost" data-v="sentence">Sentence</button></div>
+    <div class="grp" data-key="track"><span class="lbl">Tracking</span>
+      <button class="mn-btn ghost" data-v="-0.01">−0.01</button><button class="mn-btn ghost" data-v="0">0</button><button class="mn-btn ghost" data-v="0.01">.01</button><button class="mn-btn ghost" data-v="0.02">.02</button><button class="mn-btn ghost" data-v="0.03">.03</button><button class="mn-btn ghost" data-v="0.04">.04</button><button class="mn-btn ghost" data-v="0.05">.05</button><button class="mn-btn ghost" data-v="0.06">.06</button><span class="lbl unit">em</span></div>
+    <div class="grp" data-key="body"><span class="lbl">Card body</span>
+      <button class="mn-btn ghost" data-v="14">14px</button><button class="mn-btn ghost" data-v="15">15px</button><button class="mn-btn ghost" data-v="16">16px</button><button class="mn-btn ghost" data-v="17">17px</button><button class="mn-btn ghost" data-v="18">18px</button></div>
+  </div>
+
+  <div class="cols" id="cols"></div>
+</div>
+
+<template id="content">
+  <h2 class="sec"><span class="k">01</span>Identity references</h2>
+  <div class="two">
+    <article class="item"><header><span class="ref">I8</span><h3>Full-body proportions</h3></header><p>Height, shoulder line, and hip line taken from the approved front plate.</p></article>
+    <article class="item"><header><span class="ref">I9</span><h3>Wardrobe (reference)</h3></header><p>Two approved looks; nothing new until the proof shots land.</p></article>
+    <article class="item"><header><span class="ref">C4</span><h3>Back, spine, shoulder blades, rear</h3><span class="tag warn">Missing</span></header><p>No usable plate yet. The rear three-quarter covers part of it.</p></article>
+    <article class="item"><header><span class="ref">C5</span><h3>Hands</h3><span class="tag">Partial</span></header><p>Left hand clean; right hand only at rest.</p></article>
+  </div>
+
+  <h2 class="sec"><span class="k">02</span>Open questions</h2>
+  <article class="item"><header><span class="ref">Q1</span><h3>Photo page rating test</h3><span class="meta">from F5</span></header><p>Rate twelve stills on likeness and texture before any more generation.</p></article>
+  <article class="item"><header><span class="ref">Q2</span><h3>Combined test: likeness pass first, then a texture pass</h3><span class="meta">about 8 credits</span></header><p>One likeness pass, then texture on the best two. Stop if likeness drifts.</p></article>
+  <article class="item"><header><span class="ref">Q4</span><h3>Write the look targets into <code>shots.md</code>?</h3><span class="meta">from F2</span></header><p>Keeps the grade decisions next to the shot list instead of in chat.</p></article>
+  <article class="item"><header><span class="ref">Q8</span><h3>Remove the old tooling now the subscription is canceled?</h3></header><p>The wrappers still resolve a key that no longer bills.</p></article>
+  <article class="item"><header><span class="ref">Q11</span><h3>Which key bills?</h3><span class="tag warn">Blocking</span></header><p>Two keys are configured; only one is attached to the account.</p></article>
+</template>
+
+<script src="../../../theme-toggle.js" defer></script>
+<script>
+  (() => {
+    const cols = document.getElementById('cols');
+    const tpl = document.getElementById('content');
+    for (const [key, label] of [['now', 'Now · Fraunces 700 · 18px · sentence · body 18px'], ['caps', 'Candidate · .mn-caps-head · 16px · +0.06em · caps']]) {
+      const col = document.createElement('div');
+      col.className = 'col ' + key;
+      col.innerHTML = `<p class="col-label"><b>${key === 'now' ? 'Now' : 'Candidate'}</b> · <span class="spec">${label.split(' · ').slice(1).join(' · ')}</span></p>`;
+      col.append(tpl.content.cloneNode(true));
+      if (key === 'caps') col.querySelectorAll('.item h3').forEach(h => h.classList.add('mn-caps-head'));
+      cols.append(col);
+    }
+
+    // Tuning: weight, size, case drive the candidate's custom properties.
+    const tune = { weight: '600', size: '18', case: 'caps', track: '0.02', body: '15' };
+    try { Object.assign(tune, JSON.parse(localStorage.getItem('exp0001-tune-v2') || '{}')); } catch {}
+    const capsCol = cols.querySelector('.col.caps');
+    const spec = capsCol.querySelector('.spec');
+    const applyTune = () => {
+      const caps = tune.case === 'caps';
+      const track = tune.track + 'em';
+      capsCol.style.setProperty('--ch-weight', tune.weight);
+      capsCol.style.setProperty('--ch-size', tune.size / 16 + 'rem');
+      capsCol.style.setProperty('--ch-track', track);
+      capsCol.style.setProperty('--ch-case', caps ? 'uppercase' : 'none');
+      capsCol.style.setProperty('--card-body', tune.body / 16 + 'rem');
+      spec.textContent = `Fraunces ${tune.weight} · ${tune.size}px · ${track.startsWith('-') || track === '0em' ? track : '+' + track} · ${caps ? 'caps' : 'sentence'} · body ${tune.body}px`;
+      document.querySelectorAll('#tune .grp').forEach(g => g.querySelectorAll('.mn-btn')
+        .forEach(b => b.setAttribute('aria-pressed', String(b.dataset.v === tune[g.dataset.key]))));
+      try { localStorage.setItem('exp0001-tune-v2', JSON.stringify(tune)); } catch {}
+    };
+    document.querySelectorAll('#tune .grp').forEach(g => g.addEventListener('click', e => {
+      const b = e.target.closest('.mn-btn'); if (!b) return;
+      tune[g.dataset.key] = b.dataset.v; applyTune();
+    }));
+    applyTune();
+
+    const page = document.querySelector('.page');
+    const buttons = [...document.querySelectorAll('.modes .mn-btn')];
+    const set = mode => {
+      page.dataset.mode = mode;
+      buttons.forEach(b => b.setAttribute('aria-pressed', String(b.dataset.mode === mode)));
+      try { localStorage.setItem('exp0001-mode', mode); } catch {}
+    };
+    buttons.forEach(b => b.addEventListener('click', () => set(b.dataset.mode)));
+    let saved = null;
+    try { saved = localStorage.getItem('exp0001-mode'); } catch {}
+    set(['both', 'now', 'caps'].includes(saved) ? saved : 'both');
+  })();
+</script>
+</body>
+</html>

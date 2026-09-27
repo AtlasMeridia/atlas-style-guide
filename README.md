@@ -63,7 +63,7 @@ Minerali copy is **first-person, essayistic, and quietly confident** — a thoug
 
 ### Casing & symbols
 
-- UI labels, buttons, headings: **sentence case**.
+- UI labels, buttons, headings: **sentence case** in the source. Caps are a CSS treatment (`text-transform`) on mono chrome and `.mn-card-head`, never typed.
 - Wordmark: **ATLAS** set muted, the product name set in paper, split by an **acid slash** — a two-tone mark. See `preview/wordmark.html`.
 - Token names: **kebab-case** custom properties (`--mn-paper`, `--text-primary`).
 - **No emoji**, ever. The bullet-dot `·` is the meta separator. No arrow glyphs — use a real icon or the word.
@@ -122,12 +122,13 @@ Four faces, each with one job:
 - **Fraunces — display only.** Heroes, `h1`–`h3`, drop caps, stat values. Two settings, never mixed:
   - **The hero** (`.display` / `.mn-display`): `opsz 144`, `WONK 1`, weight 900 **italic**, `-0.04em` tracking, `0.86` leading.
   - **Headings** (`h1`–`h3`): automatic optical size, `WONK 0`, weight 700, `-0.02em` (h1, h2) / `-0.01em` (h3). The hero cut at heading sizes collapses word spaces, so don't use it there.
+  - **Card heads** (`.mn-card-head`): the one uppercase Fraunces. Weight 600, 18px, `+0.02em`, over a 15px card body (`.mn-card-body`, `--text-card`). Use it for dense operator items (a `.mn-ref` index chip, a head, optional `.mn-tag`s), not for page or section headings. Inline `code` in a head keeps its case.
 - **Literata — body & long-form reading.** `--font-body` is the `body` default. Weight 300 on graphite, 400 on cream (`--body-weight`): light text on a dark ground blooms, so graphite runs thinner. `.prose` sets 20px and `.lead` 24px, both at `--body-weight` in `--text-primary` with automatic optical size. Never pin `opsz` above the type size on reading copy; the display cuts thin the hairlines. Keep `--text-secondary` for decks, captions, and marginalia, not running text.
 - **JetBrains Mono — the voice of the chrome.** Buttons, inputs, labels, nav, table heads, slugs, and numbers are mono (the base styles set this on those elements). `--font-ui` *is* the mono. For operator surfaces, put `.mn-chrome` on the app shell so mono becomes the default inside it.
 - **Noto Serif TC — CJK.** Traditional Chinese for the Living Archive.
 - **Italic is reserved, not a texture.** Only the display hero, the wordmark and monogram, and the ampersand are italic. Everything else is roman; use weight where it needs presence.
 - **One emphasis channel, never stacked.** `em` is color alone (`--accent-text`), `strong` is weight alone. Never both on one word. `.prose` applies this.
-- **Type scale tops out hard.** `5xl` 88px, `4xl` 64px. Body reading size is 20px. The floor is `--text-2xs` (11px), for mono caps labels only; running text stays at 12px or larger.
+- **Type scale tops out hard.** `5xl` 88px, `4xl` 64px. Body reading size is 20px; card body is 15px (`--text-card`). The floor is `--text-2xs` (11px), for mono caps labels only; running text stays at 12px or larger.
 - **Drop caps** open long-form articles — rust, Fraunces roman, ~4.5em, float left. The hallmark of the reading surface.
 
 ### Spacing & layout
@@ -186,6 +187,7 @@ Print work uses ginkgo, wren, chrysanthemum, and ink-wash sailboat line art. Pro
 
 ## Changelog
 
+- **6.3 (September 2026): cards.** New `.mn-card`, `.mn-ref`, `.mn-card-head`, and `.mn-card-body`, with a `--text-card` 15px step. Card heads are caps Fraunces 600 at 18px with `+0.02em` tracking; this came out of `_dev/experiments/0001-caps-card-heading/`. New specimen: `preview/cards.html`.
 - **6.2 (September 2026): clear body.** `.prose`, `.body-text`, and `.lead` move from `--text-secondary` to `--text-primary`; the warm mid-value secondary read as muddy on both grounds. Their pinned `opsz 28` / `opsz 40` give way to automatic optical sizing. `--body-weight` is 300 on graphite (was 340) and 400 on cream (was 380). `.lead` follows `--body-weight` instead of a fixed 400. Specimens follow suit: running copy on the business, annotations, voice, and CJK cards is primary Literata (or Noto Serif TC), and type-scale shows the reading sizes in Literata.
 - **6.1 (September 2026): calmer.** Headings use automatic optical size at weight 700 instead of the hero cut, so word spaces don't collapse. `body` defaults to Literata, with mono set on the chrome elements, and `.mn-chrome` covers operator shells. Literata's 300–600 weights now load, so the 340/380 body weights actually render. Every text token meets AA: new `--accent-text` on graphite, deeper acid, muted, and secondary on cream. Acid is off slugs, `code`, links, and body emphasis. New `--text-2xs` 11px floor, `.mn-btn.danger`, and reduced motion. The blog templates share `blog-post.css` and read theme tokens, with no second palette.
 - **6.0 (June 2026).** Minerali replaces the navy / cream / amber base system; v1 archived.

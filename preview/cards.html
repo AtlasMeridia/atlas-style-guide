@@ -1,0 +1,45 @@
+<!doctype html>
+<!-- @dsCard group="Components" name="Cards" subtitle="Mono ref · caps Fraunces 600 head · 15px Literata body · hairline" viewport="1100x560" -->
+<html data-theme="graphite">
+<head>
+<meta charset="utf-8">
+<title>Minerali — cards</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  html, body { margin: 0; background: var(--bg-primary); color: var(--text-primary); }
+  body { padding: 22px; display: flex; flex-direction: column; gap: 14px; }
+  .slug { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; font-family: var(--font-mono); font-size: var(--text-2xs); letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-secondary); border-bottom: 1px solid var(--border-color); padding-bottom: 8px; }
+  .slug .right { color: var(--text-muted); }
+  .grid { display: grid; grid-template-columns: 1fr; gap: var(--space-3); }
+  @media (min-width: 640px) { .grid { grid-template-columns: 1fr 1fr; } }
+  .meta { font-family: var(--font-mono); font-size: var(--text-2xs); letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-muted); }
+</style>
+</head>
+<body>
+  <div class="slug"><span>MINERALI · CARDS</span><span class="right">.mn-card · .mn-ref · .mn-card-head · .mn-card-body</span></div>
+
+  <div class="grid">
+    <article class="mn-card">
+      <header><span class="mn-ref">I8</span><h3 class="mn-card-head">Full-body proportions</h3></header>
+      <p class="mn-card-body">Height, shoulder line, and hip line taken from the approved front plate.</p>
+    </article>
+    <article class="mn-card">
+      <header><span class="mn-ref">I9</span><h3 class="mn-card-head">Wardrobe (reference)</h3></header>
+      <p class="mn-card-body">Two approved looks; nothing new until the proof shots land.</p>
+    </article>
+    <article class="mn-card">
+      <header><span class="mn-ref">C4</span><h3 class="mn-card-head">Back, spine, shoulder blades, rear</h3><span class="mn-tag rust">Missing</span></header>
+      <p class="mn-card-body">No usable plate yet. The rear three-quarter covers part of it.</p>
+    </article>
+    <article class="mn-card">
+      <header><span class="mn-ref">C5</span><h3 class="mn-card-head">Hands</h3><span class="mn-tag bone">Partial</span></header>
+      <p class="mn-card-body">Left hand clean; right hand only at rest.</p>
+    </article>
+  </div>
+
+  <article class="mn-card">
+    <header><span class="mn-ref">Q4</span><h3 class="mn-card-head">Write the look targets into <code>shots.md</code>?</h3><span class="meta">from F2</span></header>
+    <p class="mn-card-body">Keeps the grade decisions next to the shot list instead of in chat. Code in a head keeps its case.</p>
+  </article>
+</body>
+</html>
