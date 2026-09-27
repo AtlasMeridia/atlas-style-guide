@@ -29,7 +29,7 @@ Then orient yourself with:
 7. **No emoji. No gradients. No backdrop blur. No bounce easings. No full-bleed stock photography.** Invariants.
 8. **Sentence case everywhere** except the wordmark and proper nouns. **Italic** only for the display hero, the wordmark/monogram, and the ampersand. **Emphasis** is one channel: `em` = color, `strong` = weight, never both.
 9. **Iconography:** inline stroke SVG in the Heroicons idiom (2px stroke, 24px viewBox, `currentColor`). Lucide from CDN is acceptable in prototypes, flagged as a substitution. Never emoji, raster, or arrow glyphs.
-10. **Long-form copy:** drop cap on the opening paragraph (rust, Fraunces, ~4.5em, float left) in a 608px column; body set in Literata at 20px.
+10. **Long-form copy:** drop cap on the opening paragraph (rust, Fraunces, ~4.5em, float left) in a 608px column; body set in Literata at 20px in `--text-primary`, at `--body-weight` (300 graphite, 400 cream), with automatic optical size. Secondary text is for decks and captions, never running copy.
 11. **Small type floor:** `--text-2xs` (11px) for mono caps labels only; running text 12px or larger. Every text token already meets AA; don't introduce colors that don't.
 
 ### Theme toggle

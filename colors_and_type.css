@@ -1,10 +1,12 @@
 /* ═══════════════════════════════════════════════════════════════
-   MINERALI  ·  v6.1 · nocturnal  ·  house style
+   MINERALI  ·  v6.2 · nocturnal  ·  house style
    Single source of truth for all design tokens, themes, base
    element styles, and the .mn-* primitive classes.
    Graphite is the default ground. No gradients. No blurs. No bounce.
    v6.1 — calmer: headings set by optical size, Literata as the
    default body face, AA contrast on every text token, 11px floor.
+   v6.2 — clear body: reading copy in primary text, optical size
+   follows the type size, weight lighter on graphite than cream.
    ═══════════════════════════════════════════════════════════════ */
 
 /* Fonts — Google Fonts CDN. Fraunces (display), Literata (body / reading),
@@ -14,7 +16,7 @@
 :root {
   /* Design-system identity — the single canonical version string.
      Reference var(--ds-version) anywhere a build/spec label is shown. */
-  --ds-version: "6.1"; /* @kind other */
+  --ds-version: "6.2"; /* @kind other */
 
   /* ─────────────────────────────────────────────────────────────
      COLOR — ink ground, paper text, two warm signals + one cut
@@ -150,7 +152,7 @@
   --warning: var(--accent-text);
   --error:   #e0675a;
 
-  --body-weight:   340;
+  --body-weight:   300;   /* light on dark blooms; a thin stroke reads crisp */
   --body-tracking: 0;
 }
 
@@ -173,7 +175,7 @@
   --warning: #a8431d;
   --error:   #b3402b;
 
-  --body-weight:   380;
+  --body-weight:   400;   /* dark on light never goes below regular */
   --body-tracking: 0;
 }
 
@@ -241,12 +243,12 @@ h4, .h4 {
 .prose,
 .body-text {
   font-family: var(--font-body);
-  font-variation-settings: 'opsz' 28;
+  font-optical-sizing: auto;
   font-weight: var(--body-weight);
   font-size: var(--text-body);
   line-height: var(--leading-relaxed);
   letter-spacing: var(--body-tracking);
-  color: var(--text-secondary);
+  color: var(--text-primary);
 }
 /* One emphasis channel: em is color, strong is weight. Never both. */
 .prose em,
@@ -256,12 +258,12 @@ h4, .h4 {
 
 .lead {
   font-family: var(--font-body);
-  font-variation-settings: 'opsz' 40;
-  font-weight: 400;
+  font-optical-sizing: auto;
+  font-weight: var(--body-weight);
   font-style: normal;
   font-size: var(--text-lg);
   line-height: var(--leading-relaxed);
-  color: var(--text-secondary);
+  color: var(--text-primary);
 }
 
 .ui-label,

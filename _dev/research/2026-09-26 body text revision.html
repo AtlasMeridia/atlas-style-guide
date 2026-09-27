@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="en" data-theme="graphite">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Body Text Revision</title>
+<link rel="stylesheet" href="../../colors_and_type.css">
+<style>
+  /* Specimens are set with explicit rules, not .prose / .lead, so the
+     "now" column keeps showing v6.1 after the stylesheet changes. */
+  :root { --new-weight: 300; }
+  [data-theme="cream"] { --new-weight: 400; }
+
+  body { margin: 0; -webkit-font-smoothing: antialiased; }
+  .page { max-width: 72rem; margin: 0 auto; padding: var(--space-8, 48px) 16px 96px; }
+  @media (min-width: 720px) { .page { padding-left: 40px; padding-right: 40px; } }
+
+  .slug {
+    font-family: var(--font-mono); font-size: var(--text-2xs);
+    letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-secondary);
+    display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap;
+    padding-bottom: 12px; border-bottom: 1px solid var(--border-color);
+  }
+  .slug .glyph { color: var(--accent-cut); }
+
+  header h1 { margin: 40px 0 12px; max-width: 18ch; }
+  header .deck {
+    font-family: var(--font-body); font-weight: 400; font-size: var(--text-base);
+    line-height: 1.55; color: var(--text-secondary); max-width: 40rem; margin: 0;
+  }
+
+  section { margin-top: 72px; }
+  .sec-head { display: grid; gap: 8px; max-width: 42rem; margin-bottom: 24px; }
+  .num {
+    font-family: var(--font-mono); font-size: var(--text-2xs); letter-spacing: 0.16em;
+    text-transform: uppercase; color: var(--accent-text);
+  }
+  .sec-head h2 { margin: 0; font-size: var(--text-xl); }
+  .sec-head p {
+    margin: 0; font-family: var(--font-body); font-weight: 400;
+    font-size: var(--text-base); line-height: 1.55; color: var(--text-secondary);
+  }
+  .sec-head p b { color: var(--text-primary); font-weight: 600; }
+
+  .pair { display: grid; gap: 1px; background: var(--border-color); border: 1px solid var(--border-color); }
+  @media (min-width: 820px) { .pair { grid-template-columns: 1fr 1fr; } }
+  .cell { background: var(--bg-primary); padding: 24px; min-width: 0; }
+  .cell.new { background: var(--bg-deep); }
+  .tag {
+    font-family: var(--font-mono); font-size: var(--text-2xs); letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--text-muted); margin: 0 0 16px;
+    display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap;
+  }
+  .tag .state { color: var(--text-secondary); }
+  .cell.new .tag .state { color: var(--accent-text); }
+
+  /* ── The two treatments ── */
+  .now-lead, .now-body, .new-lead, .new-body {
+    font-family: var(--font-body); font-style: normal; margin: 0;
+    line-height: var(--leading-relaxed); text-wrap: pretty; max-width: 38rem;
+  }
+  .now-lead { font-size: var(--text-lg); font-weight: 400; font-variation-settings: 'opsz' 40; color: var(--text-secondary); }
+  .now-body { font-size: var(--text-body); font-weight: var(--body-weight); font-variation-settings: 'opsz' 28; color: var(--text-secondary); }
+  .new-lead { font-size: var(--text-lg); font-weight: 400; font-optical-sizing: auto; color: var(--text-primary); }
+  .new-body { font-size: var(--text-body); font-weight: var(--new-weight); font-optical-sizing: auto; color: var(--text-primary); }
+  .now-lead + .now-body, .new-lead + .new-body { margin-top: 1.1em; }
+  .now-body em, .new-body em, .now-lead em, .new-lead em { font-style: normal; color: var(--accent-text); }
+  .now-body strong, .new-body strong { font-weight: 600; color: var(--text-primary); }
+
+  /* Isolated variables for sections 1–3 */
+  .v { font-family: var(--font-body); font-size: var(--text-body); line-height: var(--leading-relaxed); margin: 0; font-optical-sizing: auto; font-weight: 400; color: var(--text-primary); }
+  .v.c-sec { color: var(--text-secondary); }
+  .v.w-now { font-weight: var(--body-weight); }
+  .v.w-new { font-weight: var(--new-weight); }
+  .v.o-28 { font-variation-settings: 'opsz' 28; }
+
+  /* Magnifier: scaled with transform so font-size stays 20px and the
+     optical size resolves exactly as it would in the page. */
+  .loupe { overflow: hidden; height: 120px; margin-top: 20px; border-top: 1px solid var(--border-color); padding-top: 12px; }
+  .loupe .v { transform: scale(3); transform-origin: 0 0; white-space: nowrap; }
+
+  .swatches { display: flex; gap: 16px; flex-wrap: wrap; margin-top: 20px; }
+  .sw { display: flex; align-items: center; gap: 10px; font-family: var(--font-mono); font-size: var(--text-2xs); letter-spacing: 0.08em; color: var(--text-secondary); }
+  .sw i { width: 28px; height: 28px; border: 1px solid var(--border-color); display: block; }
+
+  .controls { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; margin: 0 0 16px; }
+  .controls .label { font-family: var(--font-mono); font-size: var(--text-2xs); letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-muted); margin-right: 8px; }
+  .mn-btn[hidden] { display: none; }
+  .mn-btn[aria-pressed="true"] { background: var(--text-primary); color: var(--bg-primary); border-color: var(--text-primary); }
+
+  pre {
+    margin: 0; padding: 20px; overflow-x: auto; background: var(--bg-elevated);
+    border: 1px solid var(--border-color); font-family: var(--font-mono);
+    font-size: var(--text-sm); line-height: 1.6; color: var(--text-primary);
+  }
+  pre .del { color: var(--text-muted); text-decoration: line-through; text-decoration-thickness: 1px; }
+  pre .add { color: var(--accent-text); }
+  pre .cm { color: var(--text-muted); }
+
+  .keep { list-style: none; padding: 0; margin: 24px 0 0; display: grid; gap: 10px; max-width: 42rem; }
+  .keep li { font-family: var(--font-body); font-weight: 400; font-size: var(--text-base); line-height: 1.5; color: var(--text-secondary); padding-left: 20px; position: relative; }
+  .keep li::before { content: "—"; position: absolute; left: 0; color: var(--text-muted); }
+  .keep li b { color: var(--text-primary); font-weight: 600; }
+
+  theme-toggle { position: fixed; top: 12px; right: 12px; }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="slug">
+    <span><span class="glyph">/</span> Minerali · v6.2 · adopted</span>
+    <span>Body text · 2026-09-26</span>
+  </div>
+
+  <header>
+    <h1>Why the body text reads muddy</h1>
+    <p class="deck">Three settings compound: reading copy in the secondary color, a weight below regular, and an optical size pinned above the type size. Flip the theme with the toggle in the corner; every specimen is live CSS.</p>
+  </header>
+
+  <!-- ─────────────────────────────────────────── -->
+  <section>
+    <div class="sec-head">
+      <span class="num">00 · The whole change</span>
+      <h2>Lead and first paragraph, before and after</h2>
+      <p>The left column is what <code>.lead</code> and <code>.prose</code> render today. The right column applies all three fixes.</p>
+    </div>
+    <div class="pair">
+      <div class="cell">
+        <p class="tag"><span class="state">Now · v6.1</span><span>secondary · opsz pinned</span></p>
+        <p class="now-lead">Most software calls itself <em>intelligent</em> and means <em>predictive</em> — a system that guesses your next keystroke so you don't have to finish the thought.</p>
+        <p class="now-body">When you write something down and ask a system to remember it, the system has implicitly agreed to three things. It will not lose the words. It will not lose the <em>fact</em> of the words. And it will return them, intact, when asked — even if the asking is your <strong>future self disagreeing</strong> with your past one.</p>
+      </div>
+      <div class="cell new">
+        <p class="tag"><span class="state">Proposed</span><span>primary · <span class="wt-readout">300</span> · opsz auto</span></p>
+        <p class="new-lead">Most software calls itself <em>intelligent</em> and means <em>predictive</em> — a system that guesses your next keystroke so you don't have to finish the thought.</p>
+        <p class="new-body">When you write something down and ask a system to remember it, the system has implicitly agreed to three things. It will not lose the words. It will not lose the <em>fact</em> of the words. And it will return them, intact, when asked — even if the asking is your <strong>future self disagreeing</strong> with your past one.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─────────────────────────────────────────── -->
+  <section>
+    <div class="sec-head">
+      <span class="num">01 · Color</span>
+      <h2>Reading copy is set in the secondary color</h2>
+      <p><code>.prose</code>, <code>.body-text</code>, and <code>.lead</code> use <code>--text-secondary</code>. It passes AA, but it sits at a middling value in the <b>same warm hue as the ground</b>, and that is what reads as mud. The blog body escapes only because <code>blog-post.css</code> overrides it; its lead paragraph doesn't.</p>
+    </div>
+    <div class="pair">
+      <div class="cell">
+        <p class="tag"><span class="state">Now</span><span>--text-secondary</span></p>
+        <p class="v c-sec">It will not lose the words. It will not lose the fact of the words.</p>
+      </div>
+      <div class="cell new">
+        <p class="tag"><span class="state">Proposed</span><span>--text-primary</span></p>
+        <p class="v">It will not lose the words. It will not lose the fact of the words.</p>
+      </div>
+    </div>
+    <div class="swatches">
+      <span class="sw"><i style="background: var(--bg-primary)"></i>ground</span>
+      <span class="sw"><i style="background: var(--text-secondary)"></i>secondary · <span class="ratio-sec"></span></span>
+      <span class="sw"><i style="background: var(--text-primary)"></i>primary · <span class="ratio-pri"></span></span>
+    </div>
+  </section>
+
+  <!-- ─────────────────────────────────────────── -->
+  <section>
+    <div class="sec-head">
+      <span class="num">02 · Weight</span>
+      <h2>The weight splits by theme</h2>
+      <p>Light text on a dark ground blooms, so on graphite a <b>thinner stroke reads crisper</b>. Now that the body is in the primary color, graphite can go lighter than today's 340. Cream goes the other way: dark text on a light ground has <b>no reason to go below 400</b>. Try the options in each theme.</p>
+    </div>
+    <div class="controls" id="weight-controls">
+      <span class="label">Proposed weight</span>
+      <button class="mn-btn ghost" data-w="300" data-theme-only="graphite">300</button>
+      <button class="mn-btn ghost" data-w="320" data-theme-only="graphite">320</button>
+      <button class="mn-btn ghost" data-w="340" data-theme-only="graphite">340</button>
+      <button class="mn-btn ghost" data-w="380" data-theme-only="cream">380</button>
+      <button class="mn-btn ghost" data-w="400" data-theme-only="cream">400</button>
+    </div>
+    <div class="pair">
+      <div class="cell">
+        <p class="tag"><span class="state">Now</span><span>--body-weight · <span class="wt-now"></span></span></p>
+        <p class="v w-now">And it will return them, intact, when asked — even if the asking is your future self.</p>
+      </div>
+      <div class="cell new">
+        <p class="tag"><span class="state">Proposed</span><span>weight · <span class="wt-readout">300</span></span></p>
+        <p class="v w-new">And it will return them, intact, when asked — even if the asking is your future self.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─────────────────────────────────────────── -->
+  <section>
+    <div class="sec-head">
+      <span class="num">03 · Optical size</span>
+      <h2>The optical size is pinned above the type size</h2>
+      <p><code>.prose</code> forces <code>'opsz' 28</code> on 20px text, and <code>.lead</code> forces 40 on 24px. Higher optical sizes are cut for display: <b>finer hairlines, tighter fit</b>. Letting the browser match opsz to the real size restores the stroke contrast Literata was drawn with. The strip below each specimen is the same 20px text magnified 3×.</p>
+    </div>
+    <div class="pair">
+      <div class="cell">
+        <p class="tag"><span class="state">Now</span><span>'opsz' 28 at 20px</span></p>
+        <p class="v o-28">Hairlines, serifs, and the fit of a bowl.</p>
+        <div class="loupe"><p class="v o-28">Hairlines, serifs</p></div>
+      </div>
+      <div class="cell new">
+        <p class="tag"><span class="state">Proposed</span><span>font-optical-sizing: auto</span></p>
+        <p class="v">Hairlines, serifs, and the fit of a bowl.</p>
+        <div class="loupe"><p class="v">Hairlines, serifs</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─────────────────────────────────────────── -->
+  <section>
+    <div class="sec-head">
+      <span class="num">04 · The diff</span>
+      <h2>What changes in <code>colors_and_type.css</code></h2>
+      <p>Adopted 2026-09-26 with graphite at 300. All edits are in the shared stylesheet. Consuming projects pick them up on their next copy.</p>
+    </div>
+<pre><span class="cm">/* graphite */</span>
+  <span class="del">--body-weight:   340;</span>
+  <span class="add">--body-weight:   300;</span>   <span class="cm">/* lighter on dark — see 02 */</span>
+
+<span class="cm">/* cream */</span>
+  <span class="del">--body-weight:   380;</span>
+  <span class="add">--body-weight:   400;</span>
+
+.prose, .body-text {
+  <span class="del">font-variation-settings: 'opsz' 28;</span>
+  <span class="add">font-optical-sizing: auto;</span>
+  <span class="del">color: var(--text-secondary);</span>
+  <span class="add">color: var(--text-primary);</span>
+}
+
+.lead {
+  <span class="del">font-variation-settings: 'opsz' 40;</span>
+  <span class="add">font-optical-sizing: auto;</span>
+  <span class="del">font-weight: 400;</span>
+  <span class="add">font-weight: var(--body-weight);</span>
+  <span class="del">color: var(--text-secondary);</span>
+  <span class="add">color: var(--text-primary);</span>
+}</pre>
+    <ul class="keep">
+      <li><b>Secondary stays</b> for decks, captions, marginalia, and supporting copy, where a step down in value is the point.</li>
+      <li><b>Grayscale smoothing stays.</b> Switching it off rendered graphite noticeably heavier in the comparison.</li>
+      <li><b>Follow-through:</b> README type notes, a re-render of the specimens and both blog templates, and a dev-log entry.</li>
+    </ul>
+  </section>
+
+</div>
+
+<script src="../../theme-toggle.js" defer></script>
+<script>
+  (() => {
+    const root = document.documentElement;
+    const buttons = [...document.querySelectorAll('#weight-controls .mn-btn')];
+    let override = null;
+
+    const probe = name => {
+      const el = document.createElement('span');
+      el.style.color = `var(${name})`;
+      document.body.append(el);
+      const rgb = getComputedStyle(el).color.match(/\d+/g).slice(0, 3).map(Number);
+      el.remove();
+      return rgb.map(v => v / 255)
+        .map(v => v <= 0.03928 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4)
+        .reduce((s, v, i) => s + v * [0.2126, 0.7152, 0.0722][i], 0);
+    };
+    const ratio = (a, b) => ((Math.max(a, b) + 0.05) / (Math.min(a, b) + 0.05)).toFixed(1) + ':1';
+
+    function refresh() {
+      const cs = getComputedStyle(document.body);
+      root.style.removeProperty('--new-weight');
+      if (override) root.style.setProperty('--new-weight', override);
+      const w = getComputedStyle(root).getPropertyValue('--new-weight').trim();
+      document.querySelectorAll('.wt-readout').forEach(el => el.textContent = w);
+      document.querySelectorAll('.wt-now').forEach(el => el.textContent = cs.getPropertyValue('--body-weight').trim());
+      const theme = root.getAttribute('data-theme') === 'cream' ? 'cream' : 'graphite';
+      buttons.forEach(b => {
+        b.hidden = b.dataset.themeOnly !== theme;
+        b.setAttribute('aria-pressed', String(b.dataset.w === w));
+      });
+      const bg = probe('--bg-primary');
+      document.querySelector('.ratio-sec').textContent = ratio(bg, probe('--text-secondary'));
+      document.querySelector('.ratio-pri').textContent = ratio(bg, probe('--text-primary'));
+    }
+
+    buttons.forEach(b => b.addEventListener('click', () => { override = b.dataset.w; refresh(); }));
+    new MutationObserver(() => { override = null; refresh(); })
+      .observe(root, { attributes: true, attributeFilter: ['data-theme'] });
+    refresh();
+  })();
+</script>
+</body>
+</html>

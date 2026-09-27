@@ -17,7 +17,8 @@ Choose the profile before designing:
   says otherwise.
 
 Before changing a token, check the README contrast table and keep every text
-token at AA. Shared long-form styles live in `blog-post.css`. Track work in
+token at AA. Reading copy is `--text-primary` at `--body-weight` with automatic
+optical size; `--text-secondary` is for decks, captions, and marginalia. Shared long-form styles live in `blog-post.css`. Track work in
 `BACKLOG.md`; record sessions in `_dev/dev-log.md`, design explorations in
 `_dev/research/`, and trials in `_dev/experiments/`.
 

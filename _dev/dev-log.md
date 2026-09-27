@@ -1,5 +1,22 @@
 # Dev log
 
+## 2026-09-26 — v6.2 clear body
+
+**Problem.** Kenny found the body text muddy, mostly in graphite. The review of the rendered blog and specimens found three causes working together:
+- `.prose`, `.body-text`, and `.lead` used `--text-secondary`. It passes AA (7.8:1 graphite, 6.6:1 cream), but it is a mid-value warm tone on a warm ground. The blog body escaped only through a `blog-post.css` override, so its lead paragraph was still the dimmest text on the page.
+- `.prose` pinned `opsz 28` on 20px text, and `.lead` pinned `opsz 40` on 24px. The display cuts thin the hairlines.
+- `--body-weight` was 340 / 380. On cream, 380 looked washed out.
+
+**Decision (Kenny).** Reading copy uses `--text-primary`, and optical size follows the type size. Weight splits by theme: graphite goes *lighter*, to 300, because light-on-dark blooms and a thinner stroke reads crisper once the color is primary. Cream goes to 400. `.lead` now follows `--body-weight` too, so the graphite lead isn't heavier than the body.
+
+**Kept.** Grayscale smoothing (`antialiased`): switching it off rendered graphite noticeably heavier. `--text-secondary` stays for decks, captions, and marginalia.
+
+**Propagated to specimens and docs.** On the cream business page, the lead, tile, fit-list, and CTA copy is now primary; the metric captions stay secondary. The annotations passage and the voice principles were set in Fraunces and are now Literata at `--body-weight`, since Fraunces is display-only. The CJK body sample is primary. Type-scale shows base / body / lg in Literata. `fonts/README.md`, `SKILL.md`, and `AGENTS.md` state the rule. `_ds_manifest.json` is Claude Design export metadata and still lists older values; regenerate it from Claude Design rather than hand-editing it.
+
+**Artifacts.** The visual proposal is in `research/2026-09-26 body text revision.html` (live specimens with a theme toggle and a weight picker). Version labels are bumped to 6.2.
+
+**Verified.** Rendered all 21 specimens and both templates in graphite and cream with Playwright. There were no page errors. Weight 300 holds at the 15–17px sizes in manifesto and chrome. Nine specimen cards overflow at 390px; these cards were sized for fixed viewports and the overflow is unrelated to this change. Weight and color changes can only narrow text.
+
 ## 2026-09-25 — review and v6.1 calmer pass
 
 **State found.** The v6 migration (Next.js token editor moved to `v1/`, Minerali at root) had sat uncommitted since 2026-06-30. The root `CLAUDE.md` had been deleted, and there was no `BACKLOG.md` or `_dev/`. It was committed as a baseline before any changes.
